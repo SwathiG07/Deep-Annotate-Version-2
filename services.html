@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Enterprise AI Annotation Services</title>
+  <meta name="description" content="Professional human-in-the-loop and multimodal annotation pipelines for Computer Vision, LLMs, LiDAR, and Robotics."/>
+  <meta name="theme-color" content="#08111F"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Base styling rules shared with landing page -->
+  <link rel="stylesheet" href="./css/results.css"/>
+  <link rel="stylesheet" href="./css/datasets.css"/>
+  <link rel="stylesheet" href="./css/cta.css"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  
+  <!-- Standalone Services style overrides -->
+  <link rel="stylesheet" href="./css/services.css"/>
+  
+  <style>
+    /* Premium layout adjustments */
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    .section-pad { padding-top: 100px; padding-bottom: 100px; }
+    
+    /* Dynamic grid background */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<!-- 2. PREMIUM HERO -->
+<header class="srv-hero">
+  <div class="section-wrap">
+    <div class="story-badge" style="margin-bottom:16px;">Services Portfolio</div>
+    <h1 class="srv-hero-title">Enterprise AI<br><span>Data Infrastructure.</span></h1>
+    <p class="srv-hero-sub">High-quality annotation, data generation, and human feedback pipelines powering world-class multimodal systems and physical AI.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a href="#sticky-nav" class="btn btn-amber" style="padding:14px 32px;font-size:15px;">View Services</a>
+      <a href="./contact.html" class="btn btn-outline-cyan" style="padding:14px 32px;font-size:15px;">Schedule Consultation</a>
+    </div>
+  </div>
+</header>
+
+<!-- 3. STICKY NAV -->
+<nav class="srv-sticky-nav" id="sticky-nav">
+  <div class="section-wrap srv-nav-wrap">
+    <span class="srv-nav-link active" data-target="sec-voice">Audio AI</span>
+    <span class="srv-nav-link" data-target="sec-physical">Physical AI</span>
+    <span class="srv-nav-link" data-target="sec-multimodal">Image &amp; Vision</span>
+    <span class="srv-nav-link" data-target="sec-video">Video AI</span>
+    <span class="srv-nav-link" data-target="sec-lidar">3D LiDAR</span>
+    <span class="srv-nav-link" data-target="sec-rlhf">RLHF</span>
+  </div>
+</nav>
+
+<!-- 4. SERVICE SECTIONS -->
+<main>
+  <!-- Voice AI -->
+  <section class="srv-section" id="sec-voice">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Acoustic Audio Modality</span>
+        <h2 class="srv-title">Emotional Voice &amp; Transcription</h2>
+        <p class="srv-desc">High-fidelity speech training data. We compile native emotional speech recordings, turn-taking timestamps, and multilingual phonetic segments.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>Speaker Diarization:</strong> Millisecond-accurate start/stop audio bounds.</li>
+          <li class="srv-feature"><strong>Phonetic Stress:</strong> Detailed pronunciation prosody annotations.</li>
+          <li class="srv-feature"><strong>Diverse Corpus:</strong> Native pronunciation recordings in over 34 languages.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#127908;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Audio Synthesis</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">Phonetic waveform segmentation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Physical AI -->
+  <section class="srv-section" id="sec-physical">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Embodied Systems</span>
+        <h2 class="srv-title">Physical AI &amp; Robotics</h2>
+        <p class="srv-desc">Unlock physical coordination. Specialist annotation for visual motor controls, spatial mapping, and mechanical trajectory affordances.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>Kinematic Trajectories:</strong> Robotic arm movement coordination files.</li>
+          <li class="srv-feature"><strong>Hand-Object Pose:</strong> Alignment indexing for physical object grasping.</li>
+          <li class="srv-feature"><strong>Depth Mapping:</strong> Spatial navigation vectors for autonomous bots.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#129302;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Kinematic Trajectory</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">Robotics perception arrays</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image and Vision -->
+  <section class="srv-section" id="sec-multimodal">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Image AI</span>
+        <h2 class="srv-title">Image &amp; Document Vision</h2>
+        <p class="srv-desc">High-precision segmentation masks, bounding box maps, and text extraction for advanced computer vision systems.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>Pixel-perfect Masks:</strong> Ultra-fine semantic segmentation arrays.</li>
+          <li class="srv-feature"><strong>Document Parsing:</strong> Metadata taxonomy indexing from complex invoices.</li>
+          <li class="srv-feature"><strong>OCR Classification:</strong> Precise structural language localization.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#128444;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Segmentation Array</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">High-resolution boundary mapping</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video AI -->
+  <section class="srv-section" id="sec-video">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Dynamic Video</span>
+        <h2 class="srv-title">Video Tracking &amp; Action</h2>
+        <p class="srv-desc">Cross-frame object association, dynamic boundary predictions, and temporal action labels for traffic networks and sports analytics.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>Cross-Frame IDs:</strong> Continuous tracking coordinates for moving objects.</li>
+          <li class="srv-feature"><strong>Event Boundaries:</strong> Action classification metadata at millisecond scale.</li>
+          <li class="srv-feature"><strong>Occlusion Tracking:</strong> Pre-calculated paths for hidden targets.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#127916;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Video Tracking</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">Cross-frame action labeling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D LiDAR -->
+  <section class="srv-section" id="sec-lidar">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Spatial Point Cloud</span>
+        <h2 class="srv-title">3D Point Cloud &amp; LiDAR</h2>
+        <p class="srv-desc">Sensor-fusion timestamp mapping and 3D bounding box coordinate tracking for autonomous driving fleets.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>3D Cuboids:</strong> Bounding tracking vectors in point clouds.</li>
+          <li class="srv-feature"><strong>LiDAR Segmentation:</strong> High-density spatial coordinate mapping.</li>
+          <li class="srv-feature"><strong>Sensor Projection:</strong> Matrix synchronization with camera feeds.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#128225;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">LiDAR Spatial Grid</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">Point cloud coordinate matrices</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RLHF -->
+  <section class="srv-section" id="sec-rlhf">
+    <div class="section-wrap srv-grid">
+      <div class="srv-content">
+        <span class="srv-eyebrow">Foundation Models</span>
+        <h2 class="srv-title">RLHF &amp; LLM Training</h2>
+        <p class="srv-desc">Constitutional alignment protocols, instruction formatting, and safety checks for LLMs.</p>
+        <ul class="srv-features">
+          <li class="srv-feature"><strong>Preference Ranking:</strong> Diverse prompt and response comparison pairs.</li>
+          <li class="srv-feature"><strong>Constitutional Prompts:</strong> Safety policy validation checks.</li>
+          <li class="srv-feature"><strong>Instruction Tuning:</strong> Multi-turn technical coding prompts.</li>
+        </ul>
+      </div>
+      <div class="srv-visual">
+        <div class="srv-visual-inner">
+          <div class="srv-visual-icon">&#129516;</div>
+          <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">RLHF Preference Data</h4>
+          <p style="font-size:13.5px;color:var(--text-secondary);">Fine-tuning response runs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CAPABILITY CARDS -->
+  <section class="srv-capabilities">
+    <div class="section-wrap">
+      <div style="text-align:center;">
+        <p class="srv-eyebrow">Capabilities</p>
+        <h2 class="srv-title">Specialist Annotation Blocks</h2>
+      </div>
+      <div class="capabilities-grid">
+        <div class="cap-card">
+          <div class="cap-icon">&#127908;</div>
+          <h4 class="cap-title">Speech Transcription</h4>
+          <p class="cap-desc">Phonetic transcription and stress alignment across 34 global dialects.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">&#128101;</div>
+          <h4 class="cap-title">Speaker Diarization</h4>
+          <p class="cap-desc">Turn-taking time markers for multi-speaker vocal recordings.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">&#129504;</div>
+          <h4 class="cap-title">Emotion Classification</h4>
+          <p class="cap-desc">Voice emotion tagging and sentiment indexes for TTS models.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">&#128444;</div>
+          <h4 class="cap-title">Bounding Boxes</h4>
+          <p class="cap-desc">High-speed 2D localization coordinates for image datasets.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">&#129302;</div>
+          <h4 class="cap-title">Instance Segmentation</h4>
+          <p class="cap-desc">Pixel-accurate overlays for object classes in vision arrays.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">&#129516;</div>
+          <h4 class="cap-title">Preference Ranking</h4>
+          <p class="cap-desc">Quality rating logs and constitutional checks for LLM tuning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. INDUSTRY GRID -->
+  <section class="srv-industries">
+    <div class="section-wrap">
+      <div style="text-align:center;">
+        <p class="srv-eyebrow">Sectors Served</p>
+        <h2 class="srv-title">Enterprise Domain Expertise</h2>
+      </div>
+      <div class="ind-grid">
+        <div class="ind-card">
+          <div class="ind-icon">&#127973;</div>
+          <h4 style="font-size:16.5px;font-weight:700;margin-bottom:8px;">Healthcare AI</h4>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">HIPAA-compliant medical scan indexing.</p>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">&#128663;</div>
+          <h4 style="font-size:16.5px;font-weight:700;margin-bottom:8px;">Automotive</h4>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Teal point clouds for autonomous drive fleets.</p>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">&#129302;</div>
+          <h4 style="font-size:16.5px;font-weight:700;margin-bottom:8px;">Robotics AI</h4>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Trajectory paths for embodied machinery.</p>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">&#9889;</div>
+          <h4 style="font-size:16.5px;font-weight:700;margin-bottom:8px;">Manufacturing</h4>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;">Quality inspection and error analysis datasets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. WORKFLOW TIMELINE -->
+  <section class="srv-workflow">
+    <div class="section-wrap">
+      <div style="text-align:center;">
+        <p class="srv-eyebrow">Process Workflow</p>
+        <h2 class="srv-title">Our Operational Lifecycle</h2>
+      </div>
+      <div class="timeline-track">
+        <div class="timeline-step">
+          <div class="timeline-badge">1</div>
+          <div style="padding-top:12px;"><h4 style="font-size:18px;font-weight:700;margin-bottom:6px;">Data Collection</h4><p style="font-size:14.5px;color:var(--text-secondary);">We ingest raw point cloud, acoustic audio, or image files via secure API endpoints.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-badge">2</div>
+          <div style="padding-top:12px;"><h4 style="font-size:18px;font-weight:700;margin-bottom:6px;">Annotation</h4><p style="font-size:14.5px;color:var(--text-secondary);">Expert squads label elements based on your custom taxonomy rules.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-badge">3</div>
+          <div style="padding-top:12px;"><h4 style="font-size:18px;font-weight:700;margin-bottom:6px;">Quality Assurance</h4><p style="font-size:14.5px;color:var(--text-secondary);">Multi-stage human verification and custom validation checks.</p></div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-badge">4</div>
+          <div style="padding-top:12px;"><h4 style="font-size:18px;font-weight:700;margin-bottom:6px;">Delivery</h4><p style="font-size:14.5px;color:var(--text-secondary);">Data delivered in your required formats (COCO, YOLO, PCD, CSV, etc.) directly into your workspace.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ENTERPRISE METRICS -->
+  <section class="section-pad" id="metrics-section" style="background:var(--bg-deep);">
+    <div class="section-wrap">
+      <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:40px;text-align:center;">
+        <div>
+          <div class="metric-num" data-metric="qa" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0%</div>
+          <p style="font-size:14px;color:var(--text-secondary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">QA Accuracy</p>
+        </div>
+        <div>
+          <div class="metric-num" data-metric="assets" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0</div>
+          <p style="font-size:14px;color:var(--text-secondary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">Annotations Delivered</p>
+        </div>
+        <div>
+          <div class="metric-num" data-metric="turnaround" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0</div>
+          <p style="font-size:14px;color:var(--text-secondary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">Turnaround SLA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. TECHNOLOGY SECTION -->
+  <section class="srv-tech">
+    <div class="section-wrap">
+      <p class="srv-eyebrow">Technology</p>
+      <h2 class="srv-title">Supported Target Formats</h2>
+      <div class="tech-badges">
+        <span class="tech-badge">COCO</span>
+        <span class="tech-badge">YOLO</span>
+        <span class="tech-badge">KITTI</span>
+        <span class="tech-badge">Pascal VOC</span>
+        <span class="tech-badge">JSONL</span>
+        <span class="tech-badge">CSV</span>
+        <span class="tech-badge">TFRecord</span>
+        <span class="tech-badge">Parquet</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ SECTION -->
+  <section class="srv-faq">
+    <div class="section-wrap">
+      <div style="text-align:center;">
+        <p class="srv-eyebrow">FAQ</p>
+        <h2 class="srv-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-trigger">What is your typical pilot turnaround SLA? <span class="faq-icon">+</span></button>
+          <div class="faq-panel"><div class="faq-content">We deliver fully structured, validation-locked sample datasets in 72 hours or less, directly to your workspace.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger">How do you maintain 99.9% annotation accuracy? <span class="faq-icon">+</span></button>
+          <div class="faq-panel"><div class="faq-content">Through a multi-layer verification structure: expert human review checks, inter-annotator agreement calculations, and custom automated validation filters.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 11. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<!-- ES6 Module load script -->
+<script type="module">
+  import { initServicesPage } from './js/services_page.js';
+  import { loadAllComponents } from './js/loader.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount the footer component placeholder dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('./components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+    
+    initServicesPage();
+  });
+</script>
+</body>
+</html>

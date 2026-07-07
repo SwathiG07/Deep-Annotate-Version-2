@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="../css/results.css"/>
+  <link rel="stylesheet" href="../css/datasets.css"/>
+  <link rel="stylesheet" href="../css/footer.css"/>
+  
+  <style>
+    :root {
+      --bg-deep: #08111F;
+      --bg-panel: #0D1B2E;
+      --cyan: #00D4FF;
+      --border-sub: rgba(255, 255, 255, 0.08);
+      --text-secondary: #A8B3CF;
+    }
+    body {
+      background: var(--bg-deep);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+    }
+    .section-wrap { max-width: 800px; margin: 0 auto; padding: 120px 40px; }
+    
+    .blog-content {
+      line-height: 1.8;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 40px;
+    }
+    .blog-content h2, .blog-content h3 {
+      color: #fff;
+      font-weight: 800;
+      margin-top: 36px;
+      margin-bottom: 16px;
+    }
+    .blog-content p {
+      margin-bottom: 24px;
+    }
+
+    /* Pilot CTA block matching original request */
+    .pilot-cta-box {
+      background: rgba(0, 212, 255, 0.03);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 64px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="../index.html" class="nav-brand"><img src="../logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="../services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="../how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="../datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="../case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="../blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
+    <li><a href="../about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<main class="section-wrap">
+  <a href="../blog.html" style="color: var(--cyan); text-decoration: none; font-size: 14px; font-weight: 700;">&larr; Back to Blog</a>
+  
+  <div style="margin-top: 40px; text-align: left;">
+    <span id="blog-badge" style="font-size: 11px; font-weight: 700; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em;">CATEGORY</span>
+    <h1 id="blog-title" style="font-size: clamp(28px, 4.5vw, 44px); font-weight: 800; line-height: 1.2; margin: 16px 0 24px; color:#fff;"></h1>
+    
+    <div class="blog-content" id="blog-body-content"></div>
+    
+    <!-- Pilot CTA -->
+    <div class="pilot-cta-box">
+      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 12px; color:#fff;">Request a Pilot Project</h3>
+      <p style="color: var(--text-secondary); font-size: 14.5px; margin-bottom: 24px; max-width: 540px; margin-left: auto; margin-right: auto;">Test our annotation speed and accuracy with a free sample dataset calibrated for your model specs.</p>
+      <a href="../contact.html" style="display: inline-block; padding: 12px 32px; background: var(--cyan); color: #08111F; font-weight: 700; border-radius: 8px; text-decoration: none; font-size: 14px;">Book Pilot Session</a>
+    </div>
+  </div>
+</main>
+
+<!-- Reusable Footer -->
+<div id="footer-placeholder"></div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount footer dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('../components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+
+    // Read slug parameter
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+
+    fetch('../js/blogs-data.json')
+      .then(res => res.json())
+      .then(data => {
+        const item = data.find(b => b.slug === slug);
+        if (!item) return;
+
+        document.title = `DeepAnnotate — ${item.title}`;
+        document.getElementById('blog-badge').textContent = item.category;
+        document.getElementById('blog-title').textContent = item.title;
+
+        // Custom content rendering based on slug context
+        const bodyContent = document.getElementById('blog-body-content');
+        
+        let customMarkup = '';
+        if (slug === 'model-didnt-fail-data-did') {
+          customMarkup = `
+            <p>You spent six months building the model. You ran hundreds of training experiments. You tuned every hyperparameter. Then you deployed it and it fell apart within days.</p>
+            <p>The instinct is to blame the architecture. Retrain with a bigger model. Add more layers. But in most cases, that's the wrong diagnosis entirely. The model isn't broken. The data that trained it is.</p>
+            <p>This is one of the most expensive misunderstandings in AI development and it happens to smart teams all the time.</p>
+            <h2>The Illusion of Benchmark Performance</h2>
+            <p>A model that scores 94% on your validation set can still fail spectacularly in production. Why? Because your validation set and your real-world data distribution are different. Validation sets are clean by design. Production data is not.</p>
+            <h2>What "Bad Data" Actually Looks Like</h2>
+            <p>Bad training data rarely looks obviously broken. It's subtle. It's the two annotators who interpreted "aggressive tone" differently across 10,000 examples, teaching the model contradictory signals.</p>
+            <h2>The Annotation Consistency Problem</h2>
+            <p>Annotation inconsistency is the silent killer. When you have 20 annotators working on the same task with slightly different interpretations of the guidelines, you're not building a dataset — you're building 20 different datasets averaged together.</p>
+            <h2>Edge Cases Aren't Optional</h2>
+            <p>Here's a rule that holds across every AI domain: the scenarios your model will fail on in production are almost never the scenarios you thought about when building your training set. They're the edge cases.</p>
+          `;
+        } else if (slug === '3d-annotation-different-discipline') {
+          customMarkup = `
+            <p>Most data annotation work started in two dimensions. A photo. A frame. A box drawn around something in a picture. That is a well-understood problem with decades of tools and best practices built around it.</p>
+            <p>When organizations start building physical AI, like robots or self-driving vehicles, the instinct is to extend those 2D workflows into three dimensions. Add a depth channel. Draw boxes in 3D instead of 2D. Give the same team new tools.</p>
+            <p>This instinct is wrong, not because 3D annotation is harder by degree, but because it is different in kind. The mental task, the tooling, the quality checks, and the ways things go wrong are all fundamentally distinct from 2D. Teams that treat 3D annotation as a difficulty upgrade consistently produce training data that underperforms.</p>
+            <h2>What 3D annotation actually requires</h2>
+            <p>When someone labels an object in a 2D image, they are answering a fairly contained question: where in this frame is this thing, and what is it? The work stays in the coordinate space of the image.</p>
+            <p>When someone labels an object in a 3D point cloud, they are answering something much bigger: where in physical space does this object actually exist? What are its real dimensions? How is it oriented in three-dimensional space? How is it moving over time?</p>
+            <p>This requires spatial reasoning that does not just come from doing a lot of 2D labeling. The annotator has to understand that a lidar point cloud is a sparse, partial snapshot of real objects, and reason about what is actually there even when only part of the surface is captured.</p>
+            <h2>The sensor fusion layer</h2>
+            <p>Physical AI systems almost never rely on just one sensor. A self-driving car typically combines multiple cameras, a lidar system generating millions of 3D measurements per second, radar sensors for velocity and distance, GPS, and inertial units tracking motion.</p>
+            <h2>Why standard annotation tools fall apart</h2>
+            <p>The annotation tool ecosystem was built for 2D computer vision. Image segmentation, bounding boxes, keypoint labeling. These tools work well for what they were designed to do.</p>
+            <p>When organizations try to use them for physical AI data, they run into limits that are not bugs but fundamental design constraints. These tools were not built to reason about physical space, time sequences across multiple sensor streams, or the relationship between a sparse point cloud and the actual objects it represents.</p>
+          `;
+        } else if (slug === 'force-sensors-tactile-data') {
+          customMarkup = `
+            <p>Force and tactile sensors provide critical data for robots to sense contact, pressure, and tactile vibrations, enabling precise manipulation. While visual models provide coarse spatial bounds, touching objects requires absolute feedback parameters.</p>
+            <h2>The Touch Gap in Modern Physical AI</h2>
+            <p>A robot cannot pick up a glass beaker using camera feeds alone. Translating visual frames to grip force without tactile indicators results in fragile parts breaking or objects slipping.</p>
+            <h2>Calibrating Pressure Targets</h2>
+            <p>High-fidelity force-torque data must be annotated with target limits. This allows reinforcement learning policies to map torque currents directly onto object boundaries.</p>
+          `;
+        } else {
+          // Fallback content generated dynamically for the remaining 23 titles
+          customMarkup = `
+            <p>Building high-fidelity datasets for ${item.category} requires precise annotation guidelines, trained labelers, and structured validation loops. Many AI engineering teams treat data preparation as a one-off task, resulting in production failures.</p>
+            <h2>Strategic Dataset Coverage</h2>
+            <p>To train models that generalize in the real world, the emphasis must shift from sheer volume to semantic coverage. A smaller, well-balanced dataset out-performs millions of repetitive frames.</p>
+            <h2>Human-in-the-Loop Integration</h2>
+            <p>Integrating human consensus verification directly into the active learning loop ensures that errors are flagged, addressed, and fed back into training before deploying.</p>
+          `;
+        }
+
+        bodyContent.innerHTML = customMarkup;
+      });
+  });
+</script>
+</body>
+</html>

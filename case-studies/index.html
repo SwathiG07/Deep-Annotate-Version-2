@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Case Study Specs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="../css/results.css"/>
+  <link rel="stylesheet" href="../css/datasets.css"/>
+  <link rel="stylesheet" href="../css/footer.css"/>
+  
+  <style>
+    :root {
+      --bg-deep: #08111F;
+      --bg-panel: #0D1B2E;
+      --cyan: #00D4FF;
+      --border-sub: rgba(255, 255, 255, 0.08);
+      --text-secondary: #A8B3CF;
+    }
+    body {
+      background: var(--bg-deep);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .section-wrap { max-width: 1040px; margin: 0 auto; padding: 0 40px; }
+    .section-pad { padding-top: 140px; padding-bottom: 80px; }
+
+    /* Stats bar matching screenshot styling */
+    .metrics-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 48px 0;
+      background: #091322;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .metric-card {
+      text-align: center;
+    }
+    .metric-val {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+    .metric-lbl {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Structured content rows */
+    .content-block {
+      margin-bottom: 48px;
+    }
+    .block-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: rgba(0, 212, 255, 0.1);
+      color: var(--cyan);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+    .block-title {
+      font-size: 26px;
+      font-weight: 800;
+      display: inline-block;
+      vertical-align: middle;
+      color: #fff;
+    }
+
+    /* Checkmark lists */
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 14px;
+      color: #fff;
+    }
+    .check-icon {
+      color: var(--cyan);
+      font-weight: 800;
+    }
+
+    /* Client info blocks */
+    .client-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .client-info-box {
+      background: #091322;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .client-lbl {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .client-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 6px;
+    }
+
+    /* Big Quote testimonial styling */
+    .big-quote-section {
+      text-align: center;
+      margin: 80px 0;
+      padding: 60px 40px;
+      background: linear-gradient(180deg, rgba(9, 19, 34, 0.5) 0%, rgba(9, 19, 34, 0) 100%);
+      border-radius: 16px;
+    }
+    .big-quote-text {
+      font-size: clamp(20px, 3.5vw, 26px);
+      font-style: italic;
+      color: #fff;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="../index.html" class="nav-brand"><img src="../logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="../services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="../how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="../datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="../case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="../about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="../contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<main class="section-wrap section-pad">
+  <a href="../case-studies.html" style="color: var(--cyan); text-decoration: none; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">&larr; Back to Case Studies</a>
+  
+  <div id="case-study-content" style="margin-top: 40px;">
+    <span id="cs-badge" style="font-size: 11px; font-weight: 700; color: #fff; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); padding: 6px 14px; border-radius: 6px; text-transform: uppercase;">CATEGORY</span>
+    
+    <h1 id="cs-title" style="font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin: 24px 0 12px; color: #fff; line-height: 1.15;">Case Study Title</h1>
+    <p id="cs-subtitle" style="color: var(--text-secondary); font-size: 18px; line-height: 1.6; max-width: 800px; margin-bottom: 40px;">Subtitle introduction text goes here.</p>
+    
+    <!-- 4-Stat Metrics Bar -->
+    <div class="metrics-bar-grid">
+      <div class="metric-card">
+        <div class="metric-val" id="metric-accuracy">--</div>
+        <div class="metric-lbl" id="lbl-accuracy">accuracy sustained</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="metric-size">--</div>
+        <div class="metric-lbl" id="lbl-size">audio files per annotator</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="metric-time">--</div>
+        <div class="metric-lbl" id="lbl-time">turnaround</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val" id="metric-team">--</div>
+        <div class="metric-lbl" id="lbl-team">annotators deployed</div>
+      </div>
+    </div>
+
+    <!-- 1. The Challenge -->
+    <div class="content-block">
+      <div class="block-number">1</div>
+      <h3 class="block-title">The Challenge</h3>
+      <p id="cs-challenge" style="color: var(--text-secondary); line-height: 1.6; font-size: 15px; margin-top: 16px;"></p>
+      
+      <ul class="check-list" id="challenge-list"></ul>
+
+      <div class="client-info-grid">
+        <div class="client-info-box">
+          <div class="client-lbl">Client</div>
+          <div class="client-val" id="client-name">--</div>
+        </div>
+        <div class="client-info-box">
+          <div class="client-lbl">Industry</div>
+          <div class="client-val" id="client-industry">--</div>
+        </div>
+        <div class="client-info-box">
+          <div class="client-lbl">Timeline</div>
+          <div class="client-val" id="client-timeline">--</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 2. Our Approach -->
+    <div class="content-block">
+      <div class="block-number">2</div>
+      <h3 class="block-title">Our Approach</h3>
+      <p id="cs-solution" style="color: var(--text-secondary); line-height: 1.6; font-size: 15px; margin-top: 16px;"></p>
+      
+      <ul class="check-list" id="solution-list"></ul>
+    </div>
+
+    <!-- Quality Assurance section from screenshot -->
+    <div class="content-block" id="qa-block-container" style="display:none;">
+      <h4 style="font-size: 20px; font-weight: 800; margin-bottom: 16px; color:#fff;">Quality Assurance</h4>
+      <ul class="check-list" id="qa-list"></ul>
+    </div>
+
+    <!-- 3. The Results -->
+    <div class="content-block" id="results-block-container" style="display:none;">
+      <div class="block-number">3</div>
+      <h3 class="block-title">The Results</h3>
+      <ul class="check-list" id="results-list" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px;"></ul>
+    </div>
+
+    <!-- Outcome segment from screenshot -->
+    <div class="content-block" id="outcome-block-container" style="display:none; background: rgba(0,212,255,0.03); border: 1.5px solid rgba(0,212,255,0.08); padding: 24px; border-radius: 8px;">
+      <div style="font-size:11px; font-weight:700; color:var(--cyan); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:8px;">Outcome</div>
+      <p id="outcome-text" style="font-size: 14.5px; color: var(--text-secondary); line-height: 1.6; margin: 0;"></p>
+    </div>
+
+    <!-- Full Quote block matching screenshot -->
+    <div class="big-quote-section">
+      <p class="big-quote-text" id="quote-text"></p>
+      <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;" id="quote-author"></div>
+      <div style="font-size: 12px; color: var(--text-secondary);" id="quote-company"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- 3. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount footer dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('../components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    if (!slug) return;
+
+    fetch('../js/case-studies-data.json')
+      .then(res => res.json())
+      .then(data => {
+        const item = data.find(c => c.slug === slug);
+        if (!item) return;
+
+        document.title = `DeepAnnotate — ${item.title}`;
+        document.getElementById('cs-badge').textContent = item.badge;
+        document.getElementById('cs-title').textContent = item.title;
+        document.getElementById('cs-subtitle').textContent = item.subtitle;
+        
+        document.getElementById('metric-accuracy').textContent = item.metrics.accuracy;
+        document.getElementById('metric-size').textContent = item.metrics.datasetSize;
+        document.getElementById('metric-time').textContent = item.metrics.deliveryTime;
+        document.getElementById('metric-team').textContent = item.metrics.annotators;
+
+        if (item.metricsLabels) {
+          document.getElementById('lbl-accuracy').textContent = item.metricsLabels.accuracy;
+          document.getElementById('lbl-size').textContent = item.metricsLabels.datasetSize;
+          document.getElementById('lbl-time').textContent = item.metricsLabels.deliveryTime;
+          document.getElementById('lbl-team').textContent = item.metricsLabels.annotators;
+        }
+
+        document.getElementById('client-name').textContent = item.testimonial.company;
+        document.getElementById('client-industry').textContent = item.category;
+        document.getElementById('client-timeline').textContent = item.metrics.deliveryTime;
+
+        document.getElementById('cs-challenge').textContent = item.challenge.problem;
+        document.getElementById('cs-solution').textContent = item.solution.workflow;
+
+        // Render checklist items
+        const challengeList = document.getElementById('challenge-list');
+        const solutionList = document.getElementById('solution-list');
+
+        if (item.challengeList) {
+          challengeList.innerHTML = item.challengeList.map(txt => `
+            <li class="check-item"><span class="check-icon">&#10003;</span>${txt}</li>
+          `).join('');
+        }
+
+        if (item.solutionList) {
+          solutionList.innerHTML = item.solutionList.map(txt => `
+            <li class="check-item"><span class="check-icon">&#10003;</span>${txt}</li>
+          `).join('');
+        }
+
+        // Quality Assurance block
+        if (item.qaList) {
+          document.getElementById('qa-block-container').style.display = 'block';
+          const qaList = document.getElementById('qa-list');
+          qaList.innerHTML = item.qaList.map(txt => `
+            <li class="check-item"><span class="check-icon">&#10003;</span>${txt}</li>
+          `).join('');
+        }
+
+        // Results block
+        if (item.resultsList) {
+          document.getElementById('results-block-container').style.display = 'block';
+          const resultsList = document.getElementById('results-list');
+          resultsList.innerHTML = item.resultsList.map(txt => `
+            <li class="check-item"><span class="check-icon">&#10003;</span>${txt}</li>
+          `).join('');
+        }
+
+        // Outcome segment
+        if (item.outcome) {
+          document.getElementById('outcome-block-container').style.display = 'block';
+          document.getElementById('outcome-text').textContent = item.outcome;
+        }
+
+        // Testimonial
+        document.getElementById('quote-text').textContent = `"${item.testimonial.quote}"`;
+        document.getElementById('quote-author').textContent = item.testimonial.author;
+        document.getElementById('quote-company').textContent = `${item.testimonial.role}, ${item.testimonial.company}`;
+      });
+  });
+</script>
+</body>
+</html>

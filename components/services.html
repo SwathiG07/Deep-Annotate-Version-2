@@ -1,0 +1,169 @@
+<div id="services" class="fade-in-section">
+  <div class="section-wrap section-pad">
+    <div class="services-header">
+      <p class="eyebrow">Enterprise Data Infrastructure</p>
+      <h2 class="section-title">Specialist Data Pipelines for Embodied and Multimodal AI.</h2>
+      <p class="section-sub">We build, tag, and deliver domain-specific annotation datasets aligned with your model architecture.</p>
+    </div>
+    <div class="svc-tabs-nav">
+      <button class="svc-tab-btn active" data-tab="voice">Emotional Voice</button>
+      <button class="svc-tab-btn" data-tab="physical">Physical AI</button>
+      <button class="svc-tab-btn" data-tab="multimodal">Image &amp; Text</button>
+      <button class="svc-tab-btn" data-tab="video">Video Tracking</button>
+      <button class="svc-tab-btn" data-tab="lidar">3D LiDAR</button>
+      <button class="svc-tab-btn" data-tab="rlhf">RLHF &amp; LLM</button>
+    </div>
+    <div class="svc-tab-panels">
+      <div class="svc-tab-panel active" id="tab-voice">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">Emotional Voice &amp; Speech</h3>
+          <p class="svc-detail-desc">High-fidelity voice synthesis training data. We structure multilingual acoustic datasets with native phonetic validation and precise turn-taking diarization.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Native speaker validation across 34 target languages</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Sub-millisecond boundary speaker turn-taking timestamps</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Multi-dimension prosody and phonetic stress labelling</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">JSON</span>
+            <span class="svc-format-badge">WAV</span>
+            <span class="svc-format-badge">TextGrid</span>
+          </div>
+          <div><a href="#pipeline" class="svc-link">See Annotation Process</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#127908;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Acoustic Audio Corpus</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">Vocal waveform synthesis pipeline</p>
+          </div>
+        </div>
+      </div>
+      <div class="svc-tab-panel" id="tab-physical">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">Physical AI &amp; Robotics</h3>
+          <p class="svc-detail-desc">Embodied AI spatial perception models. Specialist labelling for mechanical movement, object alignment, and hand-eye coordinates.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Hand-object manipulation and pose estimation indexing</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> 3D spatial mapping and affordance path boundaries</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> End-to-end trajectory task coordination labelling</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">HDF5</span>
+            <span class="svc-format-badge">ROSbag</span>
+            <span class="svc-format-badge">JSON</span>
+          </div>
+          <div><a href="#pipeline" class="svc-link">See Annotation Process</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#129302;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Embodied Movement Tracks</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">Kinematic trajectory vectors</p>
+          </div>
+        </div>
+      </div>
+      <div class="svc-tab-panel" id="tab-multimodal">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">Multimodal Image &amp; Text</h3>
+          <p class="svc-detail-desc">Image annotation for high-accuracy perception systems. Document intelligence classification, pixel-perfect masks, and tabular data capture.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Sub-pixel boundary segmentation masks</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Multi-language structural OCR indexing</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Tabular structure extraction from complex invoices</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">COCO</span>
+            <span class="svc-format-badge">Pascal VOC</span>
+            <span class="svc-format-badge">JSON</span>
+          </div>
+          <div><a href="#datasets" class="svc-link">Explore Dataset</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#128444;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Semantic Image Masks</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">Pixel-perfect segmentation arrays</p>
+          </div>
+        </div>
+      </div>
+      <div class="svc-tab-panel" id="tab-video">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">Video Tracking &amp; Events</h3>
+          <p class="svc-detail-desc">Dynamic object tracking across multiple frames. Action recognition datasets for security networks, sport dynamics, and AV systems.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Cross-frame target ID association</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Frame-rate event boundary classifications</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Dynamic occlusion boundary prediction</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">YOLO</span>
+            <span class="svc-format-badge">JSON</span>
+            <span class="svc-format-badge">CSV</span>
+          </div>
+          <div><a href="#pipeline" class="svc-link">See Annotation Process</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#127916;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Dynamic Occlusion Targets</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">Temporal cross-frame vectors</p>
+          </div>
+        </div>
+      </div>
+      <div class="svc-tab-panel" id="tab-lidar">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">3D Point Cloud &amp; LiDAR</h3>
+          <p class="svc-detail-desc">Teal point cloud datasets for self-driving fleets. Sensor fusion coordination alignment between camera feeds and radar arrays.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> 3D bounding cuboid localization mapping</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Precise point cloud segmentation categories</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Sensor projection timestamp coordination</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">LAS/LAZ</span>
+            <span class="svc-format-badge">PCD</span>
+            <span class="svc-format-badge">JSON</span>
+          </div>
+          <div><a href="#datasets" class="svc-link">Explore Dataset</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#128225;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Point Cloud Segments</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">LiDAR spatial coordinate grids</p>
+          </div>
+        </div>
+      </div>
+      <div class="svc-tab-panel" id="tab-rlhf">
+        <div class="svc-detail-content">
+          <h3 class="svc-detail-title">RLHF &amp; LLM Training</h3>
+          <p class="svc-detail-desc">Expert alignment data for foundation LLMs. Instruction tuning datasets, security audit runs, and constitucional training protocols.</p>
+          <ul class="svc-features-list">
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Multi-dimension preference classification runs</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> LLM security audit checks and constitutional prompts</li>
+            <li class="svc-feature-item"><span class="svc-feature-icon">&bull;</span> Specialist technical domain writing prompts</li>
+          </ul>
+          <div class="svc-format-badges">
+            <span class="svc-format-label">Formats:</span>
+            <span class="svc-format-badge">JSONL</span>
+            <span class="svc-format-badge">Parquet</span>
+            <span class="svc-format-badge">CSV</span>
+          </div>
+          <div><a href="#datasets" class="svc-link">Explore Dataset</a></div>
+        </div>
+        <div class="svc-visual-box">
+          <div class="svc-visual-inner">
+            <div class="svc-visual-graphic">&#129516;</div>
+            <h4 style="font-size:18px;color:#ffffff;margin-bottom:8px;">Fine-Tuning Runs</h4>
+            <p style="font-size:13.5px;color:var(--grey-muted);">LLM preference datasets</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

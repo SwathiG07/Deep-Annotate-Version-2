@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; AI Dataset Marketplace</title>
+  <meta name="description" content="Browse and request production-quality AI datasets calibrated for enterprise ML perception models."/>
+  <meta name="theme-color" content="#08111F"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="./css/results.css"/>
+  <link rel="stylesheet" href="./css/datasets.css"/>
+  <link rel="stylesheet" href="./css/cta.css"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  
+  <style>
+    :root {
+      --bg-deep: #08111F;
+      --bg-panel: #0D1B2E;
+      --card-bg: rgba(19, 36, 59, 0.6);
+      --cyan: #00D4FF;
+      --amber: #FFC72C;
+      --border-sub: rgba(255, 255, 255, 0.08);
+      --text-secondary: #A8B3CF;
+    }
+    body {
+      background: var(--bg-deep);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .section-wrap { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+    .section-pad { padding-top: 100px; padding-bottom: 80px; }
+    
+    /* Header Category Styles */
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-sub);
+      margin-bottom: 24px;
+      margin-top: 48px;
+      cursor: pointer;
+    }
+    .sec-header:hover h3 {
+      color: var(--cyan);
+    }
+
+    /* Grids */
+    .ds-grid-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      overflow: hidden;
+    }
+    .ds-grid-wrap.collapsed {
+      max-height: 0 !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Compact Premium Cards */
+    .ds-grid-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-sub);
+      border-radius: 18px;
+      padding: 20px;
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ds-grid-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--cyan);
+      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.12);
+    }
+
+    /* Metric Chips */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .metric-chip {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-sub);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11.5px;
+    }
+    .metric-val {
+      font-weight: 700;
+      color: #fff;
+    }
+    .metric-lbl {
+      color: var(--text-secondary);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Search sticky bar */
+    .sticky-bar-wrapper {
+      position: sticky;
+      top: 68px;
+      z-index: 100;
+      background: rgba(8, 17, 31, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 16px 0;
+    }
+    .filter-chip {
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-sub);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-chip.active, .filter-chip:hover {
+      background: rgba(0, 212, 255, 0.08);
+      border-color: var(--cyan);
+      color: #fff;
+    }
+
+    @media (max-width: 1000px) {
+      .ds-grid-wrap { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .ds-grid-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<!-- 2. HERO -->
+<section class="section-pad" style="text-align: center; padding-top: 140px; padding-bottom: 40px;">
+  <div class="section-wrap">
+    <h1 style="font-size: clamp(38px, 5.5vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px;">AI Dataset Marketplace</h1>
+    <p style="color: var(--text-secondary); max-width: 680px; margin: 0 auto; font-size: 16px; line-height: 1.6;">Browse and download production-quality datasets calibrated for autonomous driving, robotics, and speech modeling.</p>
+  </div>
+</section>
+
+<!-- 3. STICKY SEARCH & FILTER CONTROLS -->
+<div class="sticky-bar-wrapper">
+  <div class="section-wrap">
+    <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <input type="text" id="lib-search" style="padding: 12px 20px; border-radius: 100px; font-size: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); color:#fff; width: 300px;" placeholder="Search datasets..."/>
+      
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="manufacturing">Manufacturing</button>
+        <button class="filter-chip" data-filter="robotics">Robotics</button>
+        <button class="filter-chip" data-filter="smarthome">Smart Home</button>
+        <button class="filter-chip" data-filter="speech">Speech</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. CATEGORIES & ALL DATASET GRIDS -->
+<section style="padding-bottom: 80px;">
+  <div class="section-wrap" id="datasets-marketplace-container">
+    
+    <!-- Category 1: Manufacturing -->
+    <div id="sec-manufacturing" class="dataset-section" data-category="manufacturing">
+      <div class="sec-header" onclick="toggleCategorySection('sec-manufacturing')">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🏭 Manufacturing &amp; Printing</h3>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Industrial workflows captured in real-world environments.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-size: 13px; color: var(--cyan); font-weight: 700;">8 datasets</span>
+          <span class="chevron-icon" style="transition: transform 0.3s;">▼</span>
+        </div>
+      </div>
+      
+      <div class="ds-grid-wrap">
+        <!-- M1 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Pin Binding Machine</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a pin binding machine activity captured in a natural printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M2 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric 3 Side Cutting Workflow</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a 3-side cutting workflow captured in a natural printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M3 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Book Packing Process</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a book packing activity captured in a natural printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M4 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Cover Packing Machine</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a cover packing machine activity captured in a printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M5 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Printed Book Sorting</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a printed book sorting activity captured in a natural printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M6 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Book Stack Alignment</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a book stack alignment activity captured in a printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M7 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Pallet Track Movement</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a pallet track movement activity captured in a printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- M8 -->
+        <div class="ds-grid-card" data-tags="video manufacturing">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Manufacturing</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Lamination Machine</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Egocentric POV recording of a lamination machine activity captured in a printing press.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 2: Industrial Robotics -->
+    <div id="sec-robotics" class="dataset-section" data-category="robotics">
+      <div class="sec-header" onclick="toggleCategorySection('sec-robotics')">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">⚙ Industrial Robotics</h3>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Robot perception datasets mapped to mechanical kinematics.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-size: 13px; color: var(--cyan); font-weight: 700;">4 datasets</span>
+          <span class="chevron-icon" style="transition: transform 0.3s;">▼</span>
+        </div>
+      </div>
+      
+      <div class="ds-grid-wrap">
+        <!-- R1 -->
+        <div class="ds-grid-card" data-tags="video robotics">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Robotics</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Metal Grinding Process</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person industrial workflow dataset capturing grinding operations and tool handling.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- R2 -->
+        <div class="ds-grid-card" data-tags="video robotics">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Robotics</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Metal Sharpening Activity</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person industrial workflow dataset capturing metal sharpening operations.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- R3 -->
+        <div class="ds-grid-card" data-tags="video robotics">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Robotics</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Tool Cutting Operation</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person industrial workflow dataset capturing cutting operations and machine interaction.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- R4 -->
+        <div class="ds-grid-card" data-tags="video robotics">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Robotics</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Metal Winding Process</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person industrial workflow dataset capturing metal winding operations.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 3: Smart Home Activities -->
+    <div id="sec-smarthome" class="dataset-section" data-category="smarthome">
+      <div class="sec-header" onclick="toggleCategorySection('sec-smarthome')">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🏠 Smart Home Activities</h3>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Daily domestic routines tagged for robot manipulation models.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-size: 13px; color: var(--cyan); font-weight: 700;">8 datasets</span>
+          <span class="chevron-icon" style="transition: transform 0.3s;">▼</span>
+        </div>
+      </div>
+      
+      <div class="ds-grid-wrap">
+        <!-- H1 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Roti Making</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person kitchen workflow dataset capturing dough preparation and rolling.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H2 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Tea Making</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person kitchen workflow dataset capturing tea preparation and utensil handling.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H3 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Bangle Organizing</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person household organization dataset capturing bangle arranging.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H4 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Jar Refilling</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person kitchen workflow dataset capturing jar refilling and ingredient pouring.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H5 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Washing Machine</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person household workflow dataset capturing washing machine usage.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H6 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Gardening</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person POV gardening workflow capturing plant maintenance.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H7 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric Home | Chopping Vegetables</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person kitchen workflow dataset capturing vegetable chopping.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- H8 -->
+        <div class="ds-grid-card" data-tags="video smarthome">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--cyan); background: rgba(0,212,255,0.08); padding: 4px 8px; border-radius: 4px;">VIDEO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Smart Home</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Egocentric-Home | Washing Dishes</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">First-person POV kitchen cleaning activity capturing utensil washing.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">97.2%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">25K Frames</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">18 Actions</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">MP4</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category 4: Speech AI -->
+    <div id="sec-speech" class="dataset-section" data-category="speech">
+      <div class="sec-header" onclick="toggleCategorySection('sec-speech')">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🎙 Speech AI</h3>
+          <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">High-fidelity acoustic speech datasets mapped to phoneme grids.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="font-size: 13px; color: var(--cyan); font-weight: 700;">3 datasets</span>
+          <span class="chevron-icon" style="transition: transform 0.3s;">▼</span>
+        </div>
+      </div>
+      
+      <div class="ds-grid-wrap">
+        <!-- S1 -->
+        <div class="ds-grid-card" data-tags="audio speech">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--amber); background: rgba(255,199,44,0.08); padding: 4px 8px; border-radius: 4px;">AUDIO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Speech</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Telugu Mono Voice Transcription</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Telugu speech data with natural voice samples, built for reliable ASR.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">99.1%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">500+ Hours</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">Telugu</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">SRT/JSON</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- S2 -->
+        <div class="ds-grid-card" data-tags="audio speech">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--amber); background: rgba(255,199,44,0.08); padding: 4px 8px; border-radius: 4px;">AUDIO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Speech</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Hindi Mono Voice Transcription</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Hindi audio dataset featuring diverse speech patterns for scalable ASR.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">99.1%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">500+ Hours</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">Hindi</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">SRT/JSON</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+        <!-- S3 -->
+        <div class="ds-grid-card" data-tags="audio speech">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 9px; font-weight: 700; color: var(--amber); background: rgba(255,199,44,0.08); padding: 4px 8px; border-radius: 4px;">AUDIO</span>
+              <span style="font-size: 11px; color: var(--text-secondary);">Speech</span>
+            </div>
+            <h4 class="card-title" style="font-size: 15px; font-weight: 800; margin: 0 0 6px 0;">Tamil Mono Voice Transcription</h4>
+            <p class="card-desc" style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; margin: 0;">Tamil speech data with real-world voice variations, designed for ASR.</p>
+            <div class="metric-grid">
+              <div class="metric-chip"><div class="metric-lbl">Accuracy</div><div class="metric-val">99.1%</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Volume</div><div class="metric-val">500+ Hours</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Labels</div><div class="metric-val">Tamil</div></div>
+              <div class="metric-chip"><div class="metric-lbl">Format</div><div class="metric-val">SRT/JSON</div></div>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 12px;">
+            <a href="./datasets/index.html" style="font-size: 12px; color: var(--cyan); font-weight: 700; text-decoration:none;">View Details &rarr;</a>
+            <a href="./contact.html" style="font-size: 12px; background: var(--cyan); color: #08111F; padding: 6px 14px; border-radius: 100px; font-weight: 600; text-decoration:none;">Access Dataset</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 5. REQUEST LEAD FORM -->
+<section style="padding: 80px 0; background: var(--bg-panel); border-top: 1px solid var(--border-sub);">
+  <div class="section-wrap" style="max-width: 680px;">
+    <h2 style="font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 12px;">Request Dataset Access</h2>
+    <p style="color: var(--text-secondary); text-align: center; margin-bottom: 40px;">Response within 24 hours &#8226; NDA Available &#8226; Commercial Support</p>
+    
+    <form id="dataset-form" novalidate style="display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Full Name</label>
+          <input type="text" id="f-name" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="Jane Smith" required/>
+        </div>
+        <div>
+          <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Company</label>
+          <input type="text" id="f-company" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="Your Company" required/>
+        </div>
+      </div>
+      <div>
+        <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Work Email</label>
+        <input type="email" id="f-email" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="jane@company.ai" required/>
+      </div>
+      <div>
+        <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Select Dataset</label>
+        <select id="f-dataset" class="form-select" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff; appearance: none;" required>
+          <option value="" disabled selected>Choose a dataset type...</option>
+          <option value="image-seg">Image Segmentation</option>
+          <option value="video-track">Video Annotation</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn-download" style="padding: 16px; background: var(--cyan); color: #08111F; font-weight: 700; border-radius: 100px; border:none; cursor:pointer;">Request Access</button>
+    </form>
+  </div>
+</section>
+
+<!-- 6. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<script>
+  function toggleCategorySection(sectionId) {
+    const sec = document.getElementById(sectionId);
+    if (!sec) return;
+    const grid = sec.querySelector('.ds-grid-wrap');
+    const chevron = sec.querySelector('.chevron-icon');
+    if (grid) {
+      grid.classList.toggle('collapsed');
+      if (chevron) {
+        if (grid.classList.contains('collapsed')) {
+          chevron.style.transform = 'rotate(-90deg)';
+        } else {
+          chevron.style.transform = 'rotate(0deg)';
+        }
+      }
+    }
+  }
+</script>
+
+<!-- ES6 module logic load -->
+<script type="module">
+  import { initDatasetLibrary } from './js/dataset-library.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount the footer component placeholder dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('./components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+    
+    initDatasetLibrary();
+  });
+</script>
+</body>
+</html>

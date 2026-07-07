@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Client Programs &amp; Training</title>
+  <meta name="description" content="Structured training roadmaps and custom dataset preparation programs designed for enterprise AI engineers."/>
+  <meta name="theme-color" content="#08111F"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Base styling rules shared across site -->
+  <link rel="stylesheet" href="./css/results.css"/>
+  <link rel="stylesheet" href="./css/datasets.css"/>
+  <link rel="stylesheet" href="./css/cta.css"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  
+  <!-- Custom Programs styles -->
+  <link rel="stylesheet" href="./css/programs.css"/>
+  
+  <style>
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    .section-pad { padding-top: 80px; padding-bottom: 80px; }
+    .story-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<!-- 2. PREMIUM HERO -->
+<header class="prog-hero">
+  <div class="section-wrap">
+    <div class="story-badge" style="margin-bottom:20px;">DeepAnnotate Academy</div>
+    <h1 class="prog-hero-title">Choose Your AI<br><span>Learning Path.</span></h1>
+    <p class="prog-hero-sub">Every learning track is designed by industry engineers with live projects, mentors, certifications and placement support.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a href="./contact.html" class="btn btn-amber" style="padding:14px 32px;font-size:15px;">Start Your Journey</a>
+      <a href="./contact.html" class="btn btn-outline-cyan" style="padding:14px 32px;font-size:15px;">Talk to a Mentor</a>
+    </div>
+  </div>
+</header>
+
+<!-- 3. CATEGORY SCROLL NAV -->
+<section style="padding: 20px 0;">
+  <div class="section-wrap">
+    <div class="cat-scroll-wrap">
+      <div class="cat-nav-list">
+        <button class="cat-pill-btn active" data-cat="all">All Tracks</button>
+        <button class="cat-pill-btn" data-cat="generative">Generative AI</button>
+        <button class="cat-pill-btn" data-cat="ml">Machine Learning</button>
+        <button class="cat-pill-btn" data-cat="cv">Computer Vision</button>
+        <button class="cat-pill-btn" data-cat="nlp">NLP</button>
+        <button class="cat-pill-btn" data-cat="robotics">Robotics</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. FEATURED TRACKS SHOWCASE -->
+<section class="section-pad">
+  <div class="section-wrap">
+    <div class="showcase-grid">
+      
+      <!-- Track 1 -->
+      <div class="showcase-card" data-cats="generative">
+        <div class="card-left">
+          <span class="story-badge" style="width:fit-content;">Generative AI Track</span>
+          <h3 style="font-size:32px; font-weight:800; margin-bottom:8px;">AI Engineer</h3>
+          <p style="color:var(--text-secondary); font-size:16px; line-height:1.6;">Build, align, and orchestrate large language models, agent frameworks, and semantic retrieval systems.</p>
+          
+          <div class="roadmap-preview">
+            <h4 class="roadmap-title">Roadmap Overview</h4>
+            <div class="roadmap-steps">
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">Foundations</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">LLMs</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">Agents</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">Deployment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-right">
+          <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-secondary); margin-bottom:20px;">TRACK SPECIFICATIONS</div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:14.5px; color:var(--text-secondary);">
+            <div><strong>Duration:</strong> 12 Weeks</div>
+            <div><strong>Difficulty:</strong> Intermediate</div>
+            <div><strong>Core Stack:</strong> LangChain, PyTorch, OpenAI API, vectorDB</div>
+            <div><strong>Placement:</strong> SLA Guarantee</div>
+          </div>
+          <a href="./contact.html" class="btn btn-outline-cyan" style="width:100%; margin-top:24px; display:inline-flex; justify-content:center;">Explore Roadmap</a>
+        </div>
+      </div>
+      
+      <!-- Track 2 -->
+      <div class="showcase-card" data-cats="ml robotics">
+        <div class="card-left">
+          <span class="story-badge" style="width:fit-content;">Robotics Track</span>
+          <h3 style="font-size:32px; font-weight:800; margin-bottom:8px;">Robotics AI Engineer</h3>
+          <p style="color:var(--text-secondary); font-size:16px; line-height:1.6;">Develop spatial perception models, trajectory estimators, and sensor-fusion tracking architectures.</p>
+          
+          <div class="roadmap-preview">
+            <h4 class="roadmap-title">Roadmap Overview</h4>
+            <div class="roadmap-steps">
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">Geometry</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">LiDAR</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">ROSbag</div>
+              </div>
+              <div class="roadmap-step-node">
+                <div class="step-node-dot"></div>
+                <div class="step-node-label">Control</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-right">
+          <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-secondary); margin-bottom:20px;">TRACK SPECIFICATIONS</div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:14.5px; color:var(--text-secondary);">
+            <div><strong>Duration:</strong> 16 Weeks</div>
+            <div><strong>Difficulty:</strong> Advanced</div>
+            <div><strong>Core Stack:</strong> ROS, Point Cloud (PCD), C++, PyTorch</div>
+            <div><strong>Placement:</strong> SLA Guarantee</div>
+          </div>
+          <a href="./contact.html" class="btn btn-outline-cyan" style="width:100%; margin-top:24px; display:inline-flex; justify-content:center;">Explore Roadmap</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- 5. LEARNING JOURNEY -->
+<section class="hiw-flow-section">
+  <div class="section-wrap">
+    <div style="text-align:center;">
+      <p class="story-badge" style="margin-bottom:12px;">Curriculum Map</p>
+      <h2 style="font-size:36px;font-weight:800;">Your Learning Journey</h2>
+    </div>
+    
+    <div class="flow-svg-container">
+      <svg viewBox="0 0 800 200" width="100%">
+        <path class="flow-line" d="M50 100 H750"/>
+        <path class="flow-line-active" d="M50 100 H750"/>
+        
+        <circle cx="50" cy="100" r="10" fill="var(--cyan)" />
+        <text x="50" y="130" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Foundations</text>
+        
+        <circle cx="225" cy="100" r="10" fill="var(--blue)" />
+        <text x="225" y="130" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Project Builds</text>
+        
+        <circle cx="400" cy="100" r="10" fill="var(--cyan)" />
+        <text x="400" y="130" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Capstone Lab</text>
+        
+        <circle cx="575" cy="100" r="10" fill="var(--blue)" />
+        <text x="575" y="130" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Interview Prep</text>
+        
+        <circle cx="750" cy="100" r="10" fill="var(--cyan)" />
+        <text x="750" y="130" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Placement</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 6. INDUSTRY DOMAINS -->
+<section class="domains-section">
+  <div class="section-wrap">
+    <div style="text-align:center;">
+      <p class="story-badge" style="margin-bottom:12px;">Specializations</p>
+      <h2 style="font-size:36px;font-weight:800;">Target Domain Verticals</h2>
+    </div>
+    <div class="domains-grid">
+      <div class="domain-tile">
+        <h4 style="font-size:18px; font-weight:700; margin-bottom:12px;">Autonomous Systems</h4>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">Self-driving sensors, robotics automation pipelines, and spatial maps.</p>
+      </div>
+      <div class="domain-tile">
+        <h4 style="font-size:18px; font-weight:700; margin-bottom:12px;">Healthcare AI</h4>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">Anatomical labeling, cell segmentations, and medical record taxonomies.</p>
+      </div>
+      <div class="domain-tile">
+        <h4 style="font-size:18px; font-weight:700; margin-bottom:12px;">Finance AI</h4>
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">LLM instruction sets for complex audit analysis and compliance tuning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. COMPARE TRACKS TABLE -->
+<section class="comp-section">
+  <div class="section-wrap">
+    <div style="text-align:center;">
+      <p class="story-badge" style="margin-bottom:12px;">Matrix View</p>
+      <h2 style="font-size:36px;font-weight:800;">Compare Learning Tracks</h2>
+    </div>
+    
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Track Name</th>
+            <th>Difficulty</th>
+            <th>Duration</th>
+            <th>Capstone Project</th>
+            <th>SLA Placement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:#ffffff; font-weight:700;">AI Engineer</td>
+            <td>Intermediate</td>
+            <td>12 Weeks</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td style="color:#ffffff; font-weight:700;">Robotics AI Engineer</td>
+            <td>Advanced</td>
+            <td>16 Weeks</td>
+            <td>Yes</td>
+            <td>Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 8. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<!-- ES6 module logic load -->
+<script type="module">
+  import { initPrograms } from './js/programs.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount the footer component placeholder dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('./components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+    
+    initPrograms();
+  });
+</script>
+</body>
+</html>

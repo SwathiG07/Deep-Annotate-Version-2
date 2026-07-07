@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Dataset Specs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="../css/results.css"/>
+  <link rel="stylesheet" href="../css/datasets.css"/>
+  <link rel="stylesheet" href="../css/footer.css"/>
+  
+  <style>
+    :root {
+      --bg-deep: #08111F;
+      --bg-panel: #0D1B2E;
+      --cyan: #00D4FF;
+      --border-sub: rgba(255, 255, 255, 0.08);
+      --text-secondary: #A8B3CF;
+    }
+    body {
+      background: var(--bg-deep);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+    .section-wrap { max-width: 1000px; margin: 0 auto; padding: 120px 48px; }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+    .spec-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-sub);
+      border-radius: 24px;
+      padding: 32px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="../index.html" class="nav-brand"><img src="../logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="../services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="../how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="../datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="../case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="../about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+</nav>
+
+<main class="section-wrap">
+  <a href="../datasets.html" style="color: var(--cyan); text-decoration: none; font-size: 14px; font-weight: 700;">&larr; Back to Dataset Library</a>
+  
+  <div class="specs-grid">
+    <div>
+      <h1 id="ds-title" style="font-size: 38px; font-weight: 800; margin: 20px 0 12px;">Dataset Details</h1>
+      <p id="ds-desc" style="color: var(--text-secondary); line-height: 1.6; font-size: 16px;">Detailed metadata profile, action statistics, class splits, and annotation guides.</p>
+      
+      <h3 style="margin-top: 40px; font-size: 20px; font-weight: 700;">Applications</h3>
+      <p style="color: var(--text-secondary); line-height: 1.6; margin-top: 8px;">Spatial perception modeling, kinetic trajectory mapping, mechanical automation calibrations, and visual QA auditing.</p>
+    </div>
+    
+    <div class="spec-card">
+      <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">Dataset Specifications</h4>
+      <div style="display: flex; flex-direction: column; gap: 16px; font-size: 14px; color: var(--text-secondary);">
+        <div><strong>Accuracy Level:</strong> 99.4% Verified</div>
+        <div><strong>Format:</strong> COCO, YOLO, JSON</div>
+        <div><strong>License:</strong> Commercial &amp; Academic</div>
+      </div>
+      <a href="../contact.html" style="display: block; text-align: center; margin-top: 32px; padding: 14px; background: var(--cyan); color: #08111F; border-radius: 100px; font-weight: 700; text-decoration: none;">Request Access</a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

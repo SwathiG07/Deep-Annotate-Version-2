@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; AI Dataset Library</title>
+  <meta name="description" content="Explore real-world production-quality AI datasets across multiple modalities."/>
+  <meta name="theme-color" content="#08111F"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Base styling rules shared across site -->
+  <link rel="stylesheet" href="./css/results.css"/>
+  <link rel="stylesheet" href="./css/datasets.css"/>
+  <link rel="stylesheet" href="./css/cta.css"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  
+  <!-- Custom Dataset Library styles -->
+  <link rel="stylesheet" href="./css/dataset-library.css"/>
+  
+  <style>
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    .section-pad { padding-top: 80px; padding-bottom: 80px; }
+    .story-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 212, 255, 0.08);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<!-- 2. HERO -->
+<header class="lib-hero">
+  <div class="section-wrap">
+    <div class="story-badge" style="margin-bottom:20px;">DeepAnnotate Library</div>
+    <h1 class="lib-hero-title">Explore Real-World<br><span>AI Datasets.</span></h1>
+    <p class="lib-hero-sub">Production-quality datasets built for AI Engineers, Researchers, Startups and Enterprises.</p>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="lib-search" class="search-input" placeholder="Search datasets (e.g. LiDAR, Autonomous Driving, RLHF)..."/>
+    </div>
+  </div>
+</header>
+
+<!-- 3. STICKY FILTER BAR -->
+<section class="filter-bar">
+  <div class="section-wrap">
+    <div class="filter-flex">
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <select id="filter-type" class="filter-select">
+          <option value="all">All Modalities</option>
+          <option value="image">Image</option>
+          <option value="video">Video</option>
+          <option value="audio">Audio</option>
+          <option value="lidar">3D LiDAR</option>
+          <option value="text">Text/RLHF</option>
+        </select>
+        <select id="filter-industry" class="filter-select">
+          <option value="all">All Industries</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="autonomous">Autonomous Systems</option>
+          <option value="finance">Finance</option>
+        </select>
+      </div>
+      <div style="font-size:13.5px; color:var(--text-secondary);">Showing <span id="count-visible" style="color:#ffffff; font-weight:700;">6</span> datasets</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SPOTLIGHT FEATURED DATASETS -->
+<section class="section-pad" style="padding-top:0;">
+  <div class="section-wrap">
+    <div class="spotlight-grid">
+      <!-- Card 1 -->
+      <div class="spotlight-card">
+        <span class="story-badge" style="margin-bottom:16px;">FEATURED</span>
+        <h3 style="font-size:24px; font-weight:700; margin-bottom:12px;">AV Perception LiDAR</h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.6; margin-bottom:24px;">Full point-cloud segmentation indices for autonomous vehicle guidance arrays.</p>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary);">
+          <span>Size: 450 GB</span>
+          <span>Downloads: 12.4k</span>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="spotlight-card">
+        <span class="story-badge" style="margin-bottom:16px;">VERIFIED</span>
+        <h3 style="font-size:24px; font-weight:700; margin-bottom:12px;">Multilingual Emotional Speech</h3>
+        <p style="color:var(--text-secondary); font-size:14.5px; line-height:1.6; margin-bottom:24px;">High-fidelity acoustic audio speech transcripts tagging phonetic stresses across 34 languages.</p>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary);">
+          <span>Size: 120 GB</span>
+          <span>Downloads: 8.9k</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MAIN DATASET LIBRARY GRID -->
+<section class="section-pad" style="background:var(--bg-panel); border-top:1px solid var(--border-sub);">
+  <div class="section-wrap">
+    <div class="dataset-grid">
+      <!-- Card 1 -->
+      <div class="dataset-card" data-type="lidar" data-industry="autonomous">
+        <div>
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--cyan);">3D LiDAR</span>
+          <h4 class="dataset-card-title" style="font-size:18px; font-weight:700; margin-top:8px; margin-bottom:12px;">PCD Obstacle Maps</h4>
+          <p class="dataset-card-desc" style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">3D bounding cuboid localization grids matching standard LAS/LAZ arrays.</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); padding-top:16px; font-size:12.5px;">
+          <span>15k Files</span>
+          <a href="./contact.html" style="color:var(--cyan); font-weight:700; text-decoration:none;">Preview &rarr;</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="dataset-card" data-type="audio" data-industry="all">
+        <div>
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--cyan);">Audio</span>
+          <h4 class="dataset-card-title" style="font-size:18px; font-weight:700; margin-top:8px; margin-bottom:12px;">Speech Acoustic Corpus</h4>
+          <p class="dataset-card-desc" style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">WAV transcript recordings tagging multi-dimensional prosody stresses.</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); padding-top:16px; font-size:12.5px;">
+          <span>8k Files</span>
+          <a href="./contact.html" style="color:var(--cyan); font-weight:700; text-decoration:none;">Preview &rarr;</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="dataset-card" data-type="image" data-industry="healthcare">
+        <div>
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--cyan);">Image</span>
+          <h4 class="dataset-card-title" style="font-size:18px; font-weight:700; margin-top:8px; margin-bottom:12px;">MRI Segmentations</h4>
+          <p class="dataset-card-desc" style="font-size:13.5px; color:var(--text-secondary); line-height:1.6;">Pixel-perfect medical segmentations verified by certified clinical radiologists.</p>
+        </div>
+        <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.05); padding-top:16px; font-size:12.5px;">
+          <span>2.4M Files</span>
+          <a href="./contact.html" style="color:var(--cyan); font-weight:700; text-decoration:none;">Preview &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CONTRIBUTION CTA -->
+<section class="section-pad" style="background:var(--bg-deep); border-top:1px solid var(--border-sub);">
+  <div class="section-wrap" style="text-align:center; max-width:800px;">
+    <h2 style="font-size:36px; font-weight:800; margin-bottom:16px;">Contribute to the AI Community</h2>
+    <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:32px;">Publish your datasets or collaborate with researchers worldwide. Upload datasets securely via our pipeline endpoints.</p>
+    <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+      <a href="./contact.html" class="btn btn-amber">Upload Dataset</a>
+      <a href="./contact.html" class="btn btn-outline-cyan">Become a Contributor</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<!-- ES6 module logic load -->
+<script type="module">
+  import { initDatasetLibrary } from './js/dataset-library.js';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount the footer component placeholder dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('./components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+    
+    initDatasetLibrary();
+  });
+</script>
+</body>
+</html>

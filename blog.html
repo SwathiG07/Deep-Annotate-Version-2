@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Blogs &amp; Insights</title>
+  <meta name="description" content="Read insights on data annotation, AI alignment, and building reliable training datasets."/>
+  <meta name="theme-color" content="#08111F"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" href="./css/results.css"/>
+  <link rel="stylesheet" href="./css/datasets.css"/>
+  <link rel="stylesheet" href="./css/cta.css"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  
+  <style>
+    :root {
+      --bg-deep: #08111F;
+      --bg-panel: #0D1B2E;
+      --card-bg: rgba(19, 36, 59, 0.6);
+      --cyan: #00D4FF;
+      --border-sub: rgba(255, 255, 255, 0.08);
+      --text-secondary: #A8B3CF;
+    }
+    body {
+      background: var(--bg-deep);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .section-wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+    .section-pad { padding-top: 140px; padding-bottom: 80px; }
+    
+    /* Blog navigation chips */
+    .filter-chip {
+      padding: 10px 22px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid var(--border-sub);
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .filter-chip.active {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #08111F;
+    }
+    .filter-chip:hover:not(.active) {
+      border-color: var(--cyan);
+      color: #fff;
+    }
+
+    /* Featured blog layout */
+    .featured-box {
+      background: #091322;
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 12px;
+      padding: 48px;
+      margin-bottom: 56px;
+      text-align: left;
+    }
+
+    /* Blog grids */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .blog-card {
+      background: #091322;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 280px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 212, 255, 0.3);
+    }
+    .blog-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .blog-title {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #fff;
+      margin: 0 0 10px 0;
+      text-align: left;
+    }
+    .blog-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin: 0 0 20px 0;
+      text-align: left;
+    }
+
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 1. HEADER NAVBAR -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+  <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
+    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+  </ul>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+</nav>
+
+<!-- 2. HERO -->
+<section class="section-pad" style="text-align: center; padding-bottom: 40px;">
+  <div class="section-wrap">
+    <h1 style="font-size: clamp(38px, 5.5vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; background: linear-gradient(135deg, #fff, #a8b3cf); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Blogs</h1>
+    <p style="color: var(--text-secondary); max-width: 720px; margin: 0 auto 32px; font-size: 16px; line-height: 1.6;">Insights on data annotation, AI alignment, and building reliable training datasets.</p>
+    
+    <!-- Dynamic Featured Section -->
+    <div id="featured-article-container"></div>
+
+    <div style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="blog-chips-container">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="physical ai">Physical AI</button>
+        <button class="filter-chip" data-filter="data quality">Data Quality</button>
+        <button class="filter-chip" data-filter="hitl">HITL</button>
+        <button class="filter-chip" data-filter="edge case">Edge Case</button>
+        <button class="filter-chip" data-filter="ai pipeline">AI Pipeline</button>
+        <button class="filter-chip" data-filter="multimodal ai">Multimodal AI</button>
+        <button class="filter-chip" data-filter="strategy">Strategy</button>
+      </div>
+    </div>
+
+    <!-- Blogs Dynamic Grid -->
+    <div class="blog-grid" id="blogs-grid"></div>
+  </div>
+</section>
+
+<!-- Newsletter capture -->
+<section style="padding: 60px 0; background: var(--bg-panel); border-top: 1px solid var(--border-sub);">
+  <div class="section-wrap" style="max-width: 600px; text-align: center;">
+    <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Stay Updated</h3>
+    <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Get annotation best practices and AI industry insights delivered to your inbox. No spam.</p>
+    <form style="display: flex; gap: 12px; max-width: 480px; margin: 0 auto;">
+      <input type="email" placeholder="your@email.com" required style="flex-grow: 1; padding: 12px 18px; border-radius: 8px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); color:#fff; font-size:14px;"/>
+      <button type="submit" style="padding: 12px 24px; background: var(--cyan); color:#08111F; border:none; border-radius:8px; font-weight:700; cursor:pointer;">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- 3. REUSABLE FOOTER MOUNT PLACEHOLDER -->
+<div id="footer-placeholder"></div>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mount footer dynamically
+    const footerContainer = document.getElementById('footer-placeholder');
+    if (footerContainer) {
+      fetch('./components/footer.html')
+        .then(res => res.text())
+        .then(html => {
+          footerContainer.innerHTML = html;
+        });
+    }
+
+    // Load blog data dynamically from JSON
+    fetch('./js/blogs-data.json')
+      .then(res => res.json())
+      .then(data => {
+        const featuredContainer = document.getElementById('featured-article-container');
+        const grid = document.getElementById('blogs-grid');
+
+        // Render featured article block
+        const featuredItem = data.find(item => item.featured);
+        if (featuredItem) {
+          featuredContainer.innerHTML = `
+            <div class="featured-box">
+              <span class="blog-tag" style="color:var(--cyan); font-weight:800;">${featuredItem.category} &bull; FEATURED</span>
+              <h2 style="font-size: 28px; font-weight: 800; margin: 8px 0 12px; color: #fff;">${featuredItem.title}</h2>
+              <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.6; margin-bottom: 24px;">${featuredItem.subtitle}</p>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <a href="./contact.html" style="font-size:12px; background:var(--cyan); color:#08111F; padding:8px 18px; border-radius:100px; font-weight:700; text-decoration:none;">Request Articles</a>
+                <a href="./blogs/index.html?slug=${featuredItem.slug}" style="font-size: 13px; color: #fff; font-weight:700; text-decoration:none;">Read More &rarr;</a>
+              </div>
+            </div>
+          `;
+        }
+
+        const renderCards = (list) => {
+          // Filter out the featured item from listing grid
+          const nonFeatured = list.filter(item => !item.featured);
+          grid.innerHTML = nonFeatured.map(item => `
+            <div class="blog-card" data-category="${item.category.toLowerCase()}">
+              <div>
+                <span class="blog-tag">${item.category}</span>
+                <h4 class="blog-title">${item.title}</h4>
+                <p class="blog-desc">${item.subtitle}</p>
+              </div>
+              <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; text-align: left;">
+                <a href="./blogs/index.html?slug=${item.slug}" style="font-size: 13px; color: var(--cyan); font-weight: 700; text-decoration:none;">Read Article &rarr;</a>
+              </div>
+            </div>
+          `).join('');
+        };
+
+        renderCards(data);
+
+        // Filter chips logic
+        const chips = document.querySelectorAll('.filter-chip');
+
+        const applyFilters = () => {
+          const activeChip = document.querySelector('.filter-chip.active');
+          const filterVal = activeChip ? activeChip.getAttribute('data-filter') : 'all';
+
+          const filtered = data.filter(item => {
+            return filterVal === 'all' || item.category.toLowerCase() === filterVal;
+          });
+
+          renderCards(filtered);
+        };
+
+        chips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            applyFilters();
+          });
+        });
+      });
+  });
+</script>
+</body>
+</html>

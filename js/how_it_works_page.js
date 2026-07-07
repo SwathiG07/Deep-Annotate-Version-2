@@ -1,0 +1,136 @@
+// how_it_works_page.js - Optimized 60fps Card Stacking Interaction Logic
+export function initHowItWorks() {
+  initCardStacking();
+  initMetricsCounters();
+  initFAQ();
+}
+
+// 1. Stacked storytelling overlap calculations (using requestAnimationFrame & transform)
+function initCardStacking() {
+  const cards = document.querySelectorAll('.tl-stack-card');
+  if (cards.length === 0) return;
+
+  let ticking = false;
+
+  const handleScroll = () => {
+    const triggerPos = window.innerHeight * 0.25;
+    
+    cards.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      
+      // Calculate how far into sticky scroll range the card is
+      if (rect.top <= triggerPos + 20) {
+        card.classList.add('active');
+        
+        // If there's a subsequent card starting to cover it, translate and fade it
+        if (idx < cards.length - 1) {
+          const nextCard = cards[idx + 1];
+          const nextRect = nextCard.getBoundingClientRect();
+          const overlap = triggerPos + 120 - nextRect.top;
+          
+          if (overlap > 0) {
+            const factor = Math.min(1, overlap / 300);
+            const opacity = 1 - (factor * 0.4);
+            const scale = 1 - (factor * 0.03);
+            const translateY = -factor * 15;
+            
+            card.style.opacity = opacity;
+            card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+          } else {
+            card.style.opacity = 1;
+            card.style.transform = 'translate3d(0, 0, 0) scale(1)';
+          }
+        }
+      } else {
+        card.classList.remove('active');
+        card.style.opacity = 1;
+        card.style.transform = 'translate3d(0, 0, 0) scale(1)';
+      }
+    });
+    
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  handleScroll(); // Initial run
+}
+
+// 2. Metrics counters counting up (throttled)
+function initMetricsCounters() {
+  const metricsSection = document.getElementById('metrics-section');
+  if (!metricsSection) return;
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateNumbers();
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(metricsSection);
+}
+
+function animateNumbers() {
+  const targets = [
+    { el: document.querySelector('.metric-num[data-metric="accuracy"]'), end: 95, suffix: '%' },
+    { el: document.querySelector('.metric-num[data-metric="delivery"]'), end: 5, suffix: ' days' },
+    { el: document.querySelector('.metric-num[data-metric="response"]'), end: 24, suffix: ' hr' },
+    { el: document.querySelector('.metric-num[data-metric="reannotation"]'), end: 100, suffix: '%' }
+  ];
+
+  targets.forEach(t => {
+    if (!t.el) return;
+    let start = 0;
+    const duration = 1200;
+    const startTime = performance.now();
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = progress * (2 - progress);
+      const current = start + (t.end - start) * ease;
+
+      t.el.textContent = Math.round(current) + t.suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// 3. Compact FAQ Accordion panel toggle animation
+function initFAQ() {
+  const triggers = document.querySelectorAll('.faq-trigger');
+  triggers.forEach(trig => {
+    trig.addEventListener('click', () => {
+      const item = trig.parentElement;
+      const panel = item.querySelector('.faq-panel');
+      const icon = trig.querySelector('.faq-icon');
+      
+      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+      
+      // Close all other panels
+      document.querySelectorAll('.faq-panel').forEach(p => p.style.maxHeight = '0px');
+      document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+      
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        icon.textContent = '−';
+      } else {
+        panel.style.maxHeight = '0px';
+        icon.textContent = '+';
+      }
+    });
+  });
+}

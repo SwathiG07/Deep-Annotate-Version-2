@@ -1,0 +1,76 @@
+/* Pipeline CSS Stylesheet */
+#pipeline {
+  background: var(--navy);
+}
+.pipeline-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.pipeline-track {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pipeline-track::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyan), rgba(11, 168, 211, 0.1));
+  box-shadow: 0 0 12px var(--cyan);
+}
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-sub);
+}
+.pipeline-step:last-child {
+  border-bottom: none;
+}
+.p-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  border: 2px solid var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--amber);
+}
+.p-content {
+  flex: 1;
+  padding-top: 4px;
+}
+.p-day {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+.p-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--grey);
+  letter-spacing: -.02em;
+  margin-bottom: 6px;
+}
+.p-desc {
+  font-size: 13.5px;
+  color: var(--grey-muted);
+  line-height: 1.6;
+  max-width: 640px;
+}

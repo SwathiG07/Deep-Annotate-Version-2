@@ -1,0 +1,268 @@
+/* programs.css - DeepAnnotate Client Programs & Training Stylesheet */
+:root {
+  --bg-deep: #08111F;
+  --bg-panel: #0D1B2E;
+  --card-bg: rgba(19, 36, 59, 0.7);
+  --cyan: #00D4FF;
+  --blue: #3B82F6;
+  --amber: #FFC72C;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A8B3CF;
+  --border-sub: rgba(255, 255, 255, 0.08);
+  --shadow-glow: 0 0 35px rgba(0, 212, 255, 0.2);
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HERO SECTION */
+.prog-hero {
+  position: relative;
+  padding: 180px 0 80px;
+  text-align: center;
+  overflow: hidden;
+}
+.prog-hero-title {
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.prog-hero-title span {
+  color: var(--cyan);
+  -webkit-text-fill-color: initial;
+}
+.prog-hero-sub {
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: var(--text-secondary);
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* HORIZONTAL CATEGORY SCROLL NAV */
+.cat-scroll-wrap {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 16px 0;
+  margin-bottom: 56px;
+  -webkit-overflow-scrolling: touch;
+}
+.cat-scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
+.cat-nav-list {
+  display: inline-flex;
+  gap: 12px;
+}
+.cat-pill-btn {
+  padding: 12px 24px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-sub);
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cat-pill-btn:hover, .cat-pill-btn.active {
+  background: rgba(0, 212, 255, 0.08);
+  border-color: var(--cyan);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+}
+
+/* LARGE PREMIUM FEATURED SHOWCASE CARDS */
+.showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.showcase-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: 28px;
+  padding: 48px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  contain: layout paint;
+  transform: translateZ(0);
+}
+.showcase-card:hover {
+  transform: translateY(-6px) translateZ(0);
+  border-color: var(--cyan);
+  box-shadow: var(--shadow-glow);
+}
+.card-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card-right {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+/* PIPELINE VISUAL TIMELINE PREVIEW */
+.roadmap-preview {
+  margin-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+}
+.roadmap-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.roadmap-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.roadmap-steps::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+}
+.roadmap-step-node {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  flex: 1;
+}
+.step-node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 2px solid var(--border-sub);
+  margin: 0 auto 8px;
+  transition: all 0.3s ease;
+}
+.roadmap-step-node:hover .step-node-dot {
+  background: var(--cyan);
+  border-color: #ffffff;
+  box-shadow: 0 0 10px var(--cyan);
+}
+.step-node-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* HORIZONTAL ROADMAP JOURNEY */
+.hiw-flow-section {
+  padding: 80px 0;
+  background: var(--bg-panel);
+}
+.flow-svg-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 56px auto 0;
+  position: relative;
+}
+.flow-line {
+  fill: none;
+  stroke: rgba(0, 212, 255, 0.08);
+  stroke-width: 2;
+}
+.flow-line-active {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2;
+  stroke-dasharray: 20, 200;
+  animation: dashFlow 4s linear infinite;
+}
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -220;
+  }
+}
+
+/* INDUSTRY DOMAIN TILES */
+.domains-section {
+  padding: 80px 0;
+}
+.domains-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+}
+.domain-tile {
+  background: var(--card-bg);
+  border: 1px solid var(--border-sub);
+  border-radius: 20px;
+  padding: 32px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  contain: layout paint;
+}
+.domain-tile:hover {
+  transform: translateY(-5px) translateZ(0);
+  border-color: var(--cyan);
+}
+
+/* COMPARISON TABLE */
+.comp-section {
+  padding: 80px 0;
+}
+.comp-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 56px;
+  border-radius: 16px;
+  border: 1px solid var(--border-sub);
+  background: rgba(13, 27, 46, 0.4);
+}
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.comp-table th, .comp-table td {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-sub);
+  font-size: 14.5px;
+}
+.comp-table th {
+  background: rgba(255, 255, 255, 0.02);
+  font-weight: 700;
+  color: #ffffff;
+}
+.comp-table td {
+  color: var(--text-secondary);
+}
+
+@media(max-width: 900px) {
+  .showcase-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px;
+  }
+}
