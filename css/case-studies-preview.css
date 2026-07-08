@@ -1,0 +1,155 @@
+/* ── CASE STUDIES PREVIEW TEASER ────────────────────────── */
+#case-studies {
+  background: #0E1F3E;
+}
+
+.cs2-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 48px;
+}
+
+.cs2-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  margin-bottom: 48px;
+}
+
+.cs2-headline {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.cs2-all-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1.5px solid #0BA8D3;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.cs2-all-link:hover {
+  color: #0BA8D3;
+}
+
+.cs2-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cs2-card {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cs2-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(11, 168, 211, 0.25);
+}
+
+.cs2-sidebar {
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.01);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cs2-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0BA8D3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cs2-stat {
+  font-size: 40px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.cs2-stat-lbl {
+  font-size: 11px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cs2-body {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.cs2-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.cs2-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.cs2-link {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0BA8D3;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+.cs2-link:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .cs2-card {
+    grid-template-columns: 1fr;
+  }
+  .cs2-sidebar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 32px;
+  }
+  .cs2-body {
+    padding: 32px;
+  }
+  .cs2-header {
+    padding-bottom: 40px;
+  }
+  .cs2-all-link {
+    position: static;
+    margin-top: 16px;
+  }
+}
