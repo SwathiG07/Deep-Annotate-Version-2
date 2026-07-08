@@ -17,17 +17,17 @@
   
   <style>
     :root {
-      --bg-deep: #08111F;
-      --bg-panel: #0D1B2E;
-      --card-bg: rgba(19, 36, 59, 0.6);
-      --cyan: #00D4FF;
-      --amber: #FFC72C;
-      --border-sub: rgba(255, 255, 255, 0.08);
-      --text-secondary: #A8B3CF;
+      --bg-deep: #FFFFFF;
+      --bg-panel: rgba(255, 255, 255, 0.85);
+      --card-bg: #FFFFFF;
+      --cyan: #0BA8D3;
+      --amber: #FFBA08;
+      --border-sub: rgba(14, 31, 62, 0.08);
+      --text-secondary: rgba(14, 31, 62, 0.7);
     }
     body {
       background: var(--bg-deep);
-      color: #fff;
+      color: #0E1F3E;
       font-family: 'Inter', sans-serif;
       margin: 0;
       overflow-x: hidden;
@@ -45,6 +45,7 @@
       margin-bottom: 24px;
       margin-top: 48px;
       cursor: pointer;
+      color: #0E1F3E;
     }
     .sec-header:hover h3 {
       color: var(--cyan);
@@ -64,22 +65,24 @@
       pointer-events: none;
     }
 
-    /* Compact Premium Cards */
+    /* Compact Premium Cards (Height and Gap Fix) */
     .ds-grid-card {
       background: var(--card-bg);
       border: 1px solid var(--border-sub);
       border-radius: 18px;
       padding: 20px;
-      height: 350px;
+      height: auto;
+      min-height: 310px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
     }
     .ds-grid-card:hover {
       transform: translateY(-5px);
       border-color: var(--cyan);
-      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.12);
+      box-shadow: 0 16px 36px rgba(14, 31, 62, 0.08), 0 12px 32px rgba(11, 168, 211, 0.12);
     }
 
     /* Metric Chips */
@@ -90,7 +93,7 @@
       margin-top: 12px;
     }
     .metric-chip {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(14, 31, 62, 0.03);
       border: 1px solid var(--border-sub);
       border-radius: 6px;
       padding: 6px 10px;
@@ -98,7 +101,7 @@
     }
     .metric-val {
       font-weight: 700;
-      color: #fff;
+      color: #0E1F3E;
     }
     .metric-lbl {
       color: var(--text-secondary);
@@ -107,31 +110,37 @@
       letter-spacing: 0.05em;
     }
 
-    /* Search sticky bar */
+    /* Search sticky bar (White background fix) */
     .sticky-bar-wrapper {
       position: sticky;
       top: 68px;
       z-index: 100;
-      background: rgba(8, 17, 31, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid var(--border-sub);
       padding: 16px 0;
     }
     .filter-chip {
       padding: 8px 18px;
       border-radius: 100px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border-sub);
+      background: rgba(14, 31, 62, 0.05);
+      border: 1px solid rgba(14, 31, 62, 0.1);
       color: var(--text-secondary);
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
     }
-    .filter-chip.active, .filter-chip:hover {
-      background: rgba(0, 212, 255, 0.08);
-      border-color: var(--cyan);
+    .filter-chip:hover {
+      background: rgba(14, 31, 62, 0.1);
+      border-color: rgba(14, 31, 62, 0.2);
+      color: #0E1F3E;
+    }
+    .filter-chip.active {
+      background: #0E1F3E;
+      border-color: #0E1F3E;
       color: #fff;
+      box-shadow: 0 4px 12px rgba(14, 31, 62, 0.15);
     }
 
     @media (max-width: 1000px) {
@@ -145,23 +154,23 @@
 <body>
 
 <!-- 1. HEADER NAVBAR -->
-<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
-  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:#FFFFFF;backdrop-filter:blur(24px);border-bottom:1px solid rgba(14, 31, 62, 0.08);">
+  <a href="./index.html" class="nav-brand"><img src="./DeepAnnototate-1-removebg-preview.png" alt="DeepAnnotate Logo" style="height: 52px; width: auto;"/></a>
   <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
-    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
-    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
-    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
-    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
-    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
-    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Case Studies</a></li>
+    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Blog</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">About</a></li>
   </ul>
-  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow: 0 4px 12px rgba(14,31,62,0.15); border:1px solid #0E1F3E;">Connect to us</a>
 </nav>
 
 <!-- 2. HERO -->
 <section class="section-pad" style="text-align: center; padding-top: 140px; padding-bottom: 40px;">
   <div class="section-wrap">
-    <h1 style="font-size: clamp(38px, 5.5vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px;">AI Dataset Marketplace</h1>
+    <h1 style="font-size: clamp(38px, 5.5vw, 56px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; color:#0E1F3E;">AI Dataset Marketplace</h1>
     <p style="color: var(--text-secondary); max-width: 680px; margin: 0 auto; font-size: 16px; line-height: 1.6;">Browse and download production-quality datasets calibrated for autonomous driving, robotics, and speech modeling.</p>
   </div>
 </section>
@@ -170,7 +179,7 @@
 <div class="sticky-bar-wrapper">
   <div class="section-wrap">
     <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <input type="text" id="lib-search" style="padding: 12px 20px; border-radius: 100px; font-size: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); color:#fff; width: 300px;" placeholder="Search datasets..."/>
+      <input type="text" id="lib-search" style="padding: 12px 20px; border-radius: 100px; font-size: 14px; background: #fff; border: 1.5px solid var(--border-sub); color: #0E1F3E; width: 300px;" placeholder="Search datasets..."/>
       
       <div style="display: flex; gap: 8px; flex-wrap: wrap;">
         <button class="filter-chip active" data-filter="all">All</button>
@@ -191,7 +200,7 @@
     <div id="sec-manufacturing" class="dataset-section" data-category="manufacturing">
       <div class="sec-header" onclick="toggleCategorySection('sec-manufacturing')">
         <div>
-          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🏭 Manufacturing &amp; Printing</h3>
+          <h3 style="font-size: 20px; font-weight: 800; color: #0E1F3E; margin: 0;">🏭 Manufacturing &amp; Printing</h3>
           <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Industrial workflows captured in real-world environments.</p>
         </div>
         <div style="display:flex; align-items:center; gap:16px;">
@@ -376,7 +385,7 @@
     <div id="sec-robotics" class="dataset-section" data-category="robotics">
       <div class="sec-header" onclick="toggleCategorySection('sec-robotics')">
         <div>
-          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">⚙ Industrial Robotics</h3>
+          <h3 style="font-size: 20px; font-weight: 800; color: #0E1F3E; margin: 0;">⚙ Industrial Robotics</h3>
           <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Robot perception datasets mapped to mechanical kinematics.</p>
         </div>
         <div style="display:flex; align-items:center; gap:16px;">
@@ -477,7 +486,7 @@
     <div id="sec-smarthome" class="dataset-section" data-category="smarthome">
       <div class="sec-header" onclick="toggleCategorySection('sec-smarthome')">
         <div>
-          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🏠 Smart Home Activities</h3>
+          <h3 style="font-size: 20px; font-weight: 800; color: #0E1F3E; margin: 0;">🏠 Smart Home Activities</h3>
           <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">Daily domestic routines tagged for robot manipulation models.</p>
         </div>
         <div style="display:flex; align-items:center; gap:16px;">
@@ -662,7 +671,7 @@
     <div id="sec-speech" class="dataset-section" data-category="speech">
       <div class="sec-header" onclick="toggleCategorySection('sec-speech')">
         <div>
-          <h3 style="font-size: 20px; font-weight: 800; color: #fff; margin: 0;">🎙 Speech AI</h3>
+          <h3 style="font-size: 20px; font-weight: 800; color: #0E1F3E; margin: 0;">🎙 Speech AI</h3>
           <p style="font-size: 12px; color: var(--text-secondary); margin: 4px 0 0 0;">High-fidelity acoustic speech datasets mapped to phoneme grids.</p>
         </div>
         <div style="display:flex; align-items:center; gap:16px;">
@@ -751,20 +760,20 @@
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
         <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Full Name</label>
-          <input type="text" id="f-name" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="Jane Smith" required/>
+          <input type="text" id="f-name" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#0E1F3E;" placeholder="Jane Smith" required/>
         </div>
         <div>
           <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Company</label>
-          <input type="text" id="f-company" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="Your Company" required/>
+          <input type="text" id="f-company" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#0E1F3E;" placeholder="Your Company" required/>
         </div>
       </div>
       <div>
         <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Work Email</label>
-        <input type="email" id="f-email" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff;" placeholder="jane@company.ai" required/>
+        <input type="email" id="f-email" class="form-input" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#0E1F3E;" placeholder="jane@company.ai" required/>
       </div>
       <div>
         <label style="display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; color: var(--text-secondary);">Select Dataset</label>
-        <select id="f-dataset" class="form-select" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#fff; appearance: none;" required>
+        <select id="f-dataset" class="form-select" style="width: 100%; padding: 14px; background: var(--bg-deep); border: 1.5px solid var(--border-sub); border-radius: 10px; color:#0E1F3E; appearance: none;" required>
           <option value="" disabled selected>Choose a dataset type...</option>
           <option value="image-seg">Image Segmentation</option>
           <option value="video-track">Video Annotation</option>

@@ -1,15 +1,14 @@
 /* programs.css - DeepAnnotate Client Programs & Training Stylesheet */
 :root {
-  --bg-deep: #08111F;
-  --bg-panel: #0D1B2E;
-  --card-bg: rgba(19, 36, 59, 0.7);
-  --cyan: #00D4FF;
-  --blue: #3B82F6;
-  --amber: #FFC72C;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A8B3CF;
-  --border-sub: rgba(255, 255, 255, 0.08);
-  --shadow-glow: 0 0 35px rgba(0, 212, 255, 0.2);
+  --bg-deep: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --cyan: #0E1F3E;
+  --blue: #0E1F3E;
+  --text-primary: #0E1F3E;
+  --text-secondary: rgba(14, 31, 62, 0.7);
+  --border-sub: rgba(14, 31, 62, 0.1);
+  --shadow-glow: 0 12px 32px rgba(14, 31, 62, 0.05);
   --font-family: 'Inter', sans-serif;
 }
 
@@ -34,7 +33,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary));
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--text-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

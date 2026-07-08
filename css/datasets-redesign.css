@@ -1,0 +1,65 @@
+/* Datasets CSS Stylesheet - Light Theme */
+:root {
+  --navy: #FFFFFF;
+  --navy-panel: #FFFFFF;
+  --navy-deep: #FFFFFF;
+  --cyan: #0E1F3E;
+  --grey: #0E1F3E;
+  --grey-muted: rgba(14, 31, 62, 0.7);
+  --border-sub: rgba(14, 31, 62, 0.1);
+}
+
+body {
+  background: var(--navy);
+  color: var(--grey);
+}
+
+#datasets {
+  background: var(--navy);
+}
+
+/* Category header adjustments */
+.category-header {
+  border-bottom: 1px solid var(--border-sub);
+}
+
+/* Card hover transitions */
+.ds-card {
+  background: var(--navy-panel);
+  border: 1px solid var(--border-sub);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  contain: layout paint;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+}
+.ds-card:hover {
+  transform: translateY(-5px) translateZ(0);
+  border-color: rgba(14, 31, 62, 0.2);
+  box-shadow: 0 16px 36px rgba(14, 31, 62, 0.08), 0 12px 32px rgba(14, 31, 62, 0.05);
+}
+
+/* Filter Chip controls */
+.filter-chip {
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: rgba(14, 31, 62, 0.05);
+  border: 1px solid rgba(14, 31, 62, 0.1);
+  color: var(--grey-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.filter-chip:hover {
+  background: rgba(14, 31, 62, 0.1);
+  border-color: rgba(14, 31, 62, 0.2);
+  color: var(--grey);
+}
+.filter-chip.active {
+  background: var(--grey);
+  border-color: var(--grey);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(14, 31, 62, 0.15);
+}

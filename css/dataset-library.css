@@ -1,15 +1,14 @@
 /* dataset-library.css - Standalone AI Dataset Library Stylesheet */
 :root {
-  --bg-deep: #08111F;
-  --bg-panel: #0D1B2E;
-  --card-bg: rgba(19, 36, 59, 0.7);
-  --cyan: #00D4FF;
-  --blue: #3B82F6;
-  --amber: #FFC72C;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A8B3CF;
-  --border-sub: rgba(255, 255, 255, 0.08);
-  --shadow-glow: 0 0 35px rgba(0, 212, 255, 0.2);
+  --bg-deep: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --cyan: #0E1F3E;
+  --blue: #0E1F3E;
+  --text-primary: #0E1F3E;
+  --text-secondary: rgba(14, 31, 62, 0.7);
+  --border-sub: rgba(14, 31, 62, 0.1);
+  --shadow-glow: 0 12px 32px rgba(14, 31, 62, 0.05);
   --font-family: 'Inter', sans-serif;
 }
 
@@ -34,7 +33,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary));
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--text-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -59,10 +58,10 @@ body {
 .search-input {
   width: 100%;
   padding: 18px 24px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border: 1px solid var(--border-sub);
   border-radius: 100px;
-  color: #ffffff;
+  color: var(--text-primary);
   font-size: 16px;
   outline: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -102,7 +101,7 @@ body {
   margin-bottom: 80px;
 }
 .cat-tile {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(14, 31, 62, 0.03);
   border: 1px solid var(--border-sub);
   border-radius: 20px;
   padding: 24px;
@@ -113,7 +112,7 @@ body {
 .cat-tile:hover {
   transform: translateY(-4px);
   border-color: var(--cyan);
-  background: rgba(0, 212, 255, 0.04);
+  background: rgba(11, 168, 211, 0.06);
 }
 
 /* DATASET GRID SECTION */
@@ -124,7 +123,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--border-sub);
   padding-bottom: 20px;
   margin-bottom: 32px;
 }
@@ -144,6 +143,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 380px;
+  box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
 }
 .ds-grid-card:hover {
   transform: translateY(-6px) translateZ(0);
@@ -155,7 +155,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(8, 17, 31, 0.85);
+  background: rgba(14, 31, 62, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
@@ -170,7 +170,7 @@ body {
   padding: 48px;
   max-width: 800px;
   width: 90%;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 30px 60px rgba(14, 31, 62, 0.15);
   position: relative;
 }
 .modal-close-btn {

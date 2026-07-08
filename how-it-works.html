@@ -39,17 +39,17 @@
 <body>
 
 <!-- 1. HEADER NAVBAR -->
-<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,17,31,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);">
-  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo" style="height: 40px; width: auto;"/></a>
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:#FFFFFF;backdrop-filter:blur(24px);border-bottom:1px solid rgba(14, 31, 62, 0.08);">
+  <a href="./index.html" class="nav-brand"><img src="./DeepAnnototate-1-removebg-preview.png" alt="DeepAnnotate Logo" style="height: 52px; width: auto;"/></a>
   <ul class="nav-links" style="display:flex;align-items:center;gap:32px;list-style:none;">
-    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Services</a></li>
-    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">How It Works</a></li>
-    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Datasets</a></li>
-    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Case Studies</a></li>
-    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">Blog</a></li>
-    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:var(--text-secondary);">About</a></li>
+    <li><a href="./services.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Services</a></li>
+    <li><a href="./how-it-works.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">How It Works</a></li>
+    <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Datasets</a></li>
+    <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Case Studies</a></li>
+    <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Blog</a></li>
+    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">About</a></li>
   </ul>
-  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,#0BA8D3,#FFBA08);transition:all 0.3s;box-shadow: 0 4px 12px rgba(11,168,211,0.15);">Connect to us</a>
+  <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow: 0 4px 12px rgba(14,31,62,0.15); border:1px solid #0E1F3E;">Connect to us</a>
 </nav>
 
 <!-- 2. PREMIUM HERO -->
@@ -399,63 +399,113 @@
     </div>
     
     <div class="faq-list">
+      <!-- 1 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          What is your typical pilot turnaround SLA? <span class="faq-icon">+</span>
+          What is the minimum dataset size you support? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            We deliver fully structured, validation-locked sample datasets in 5 days or less, directly to your workspace.
+            We support projects ranging from small pilot datasets to large-scale production pipelines. Most engagements begin with a pilot phase and scale based on requirements.
           </div>
         </div>
       </div>
+      <!-- 2 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          How do you verify annotation accuracy? <span class="faq-icon">+</span>
+          How do you handle complex or edge-case scenarios in data? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            We run automated geometry checks, calculate inter-annotator consensus values, and perform expert audits on all outputs.
+            Edge cases are identified early through sampling and continuously monitored during production. We apply custom annotation guidelines and multi-level validation to ensure consistency and accuracy.
           </div>
         </div>
       </div>
+      <!-- 3 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          Is the team dedicated only to our project? <span class="faq-icon">+</span>
+          What data formats do you deliver? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            Yes. When we form a Pod, the vetted annotators and Team Lead work exclusively on your taxonomy and guidelines.
+            We deliver structured outputs in flexible formats such as JSON, CSV, or custom schemas, along with aligned media files (audio, text, or metadata).
           </div>
         </div>
       </div>
+      <!-- 4 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          What data formats do you support? <span class="faq-icon">+</span>
+          Can the pipeline scale for large production workloads? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            We support COCO, YOLO, custom JSON/CSV schemas, PCD for 3D LiDAR, ROSbag, and WAV/TextGrid for phonetic transcription.
+            Yes, our infrastructure is designed to scale seamlessly from pilot to high-volume production, with consistent quality and turnaround times.
           </div>
         </div>
       </div>
+      <!-- 5 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          Do you support on-premise deployments? <span class="faq-icon">+</span>
+          How is data quality measured and maintained? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            Yes. For secure enterprise mandates, we can provision delivery pods operating completely within client-controlled VPC setups.
+            Quality is tracked using defined metrics, automated validation checks, and human review layers, ensuring high accuracy across all deliverables.
           </div>
         </div>
       </div>
+      <!-- 6 -->
       <div class="faq-item">
         <button class="faq-trigger">
-          How do you handle edge-case calibrations? <span class="faq-icon">+</span>
+          What happens if the delivered data does not meet expectations? <span class="faq-icon">+</span>
         </button>
         <div class="faq-panel">
           <div class="faq-content">
-            Any labels dropping below calibration thresholds trigger an immediate review to update the guidelines and re-align taxonomy targets.
+            We perform targeted re-evaluation and correction cycles based on feedback, ensuring the final dataset aligns with agreed quality benchmarks.
+          </div>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="faq-item">
+        <button class="faq-trigger">
+          Do you support real-time or streaming data workflows? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-panel">
+          <div class="faq-content">
+            Yes, we support near real-time and streaming data pipelines depending on project requirements, including continuous ingestion and annotation workflows.
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="faq-item">
+        <button class="faq-trigger">
+          How do you ensure data security and compliance? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-panel">
+          <div class="faq-content">
+            We follow strict data governance practices, including secure storage, controlled access, and compliance with global privacy standards.
+          </div>
+        </div>
+      </div>
+      <!-- 9 -->
+      <div class="faq-item">
+        <button class="faq-trigger">
+          Can annotation guidelines be customized for specific use cases? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-panel">
+          <div class="faq-content">
+            Yes, all annotation workflows are fully customizable based on model requirements, domain specificity, and desired output formats.
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+      <div class="faq-item">
+        <button class="faq-trigger">
+          What types of AI use cases do you support? <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-panel">
+          <div class="faq-content">
+            Our datasets support a wide range of applications including physical AI, speech AI, conversational systems, audio intelligence, and large language model training.
           </div>
         </div>
       </div>

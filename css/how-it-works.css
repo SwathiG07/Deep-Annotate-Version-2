@@ -1,15 +1,14 @@
 /* how-it-works.css - Standalone How It Works Page Stylesheet (Optimized 60fps) */
 :root {
-  --bg-deep: #08111F;
-  --bg-panel: #0D1B2E;
-  --card-bg: rgba(19, 36, 59, 0.9);
-  --cyan: #00D4FF;
-  --blue: #3B82F6;
-  --amber: #FFC72C;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A8B3CF;
-  --border-sub: rgba(255, 255, 255, 0.08);
-  --shadow-glow: 0 0 25px rgba(0, 212, 255, 0.15);
+  --bg-deep: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --card-bg: #FFFFFF;
+  --cyan: #0E1F3E;
+  --blue: #0E1F3E;
+  --text-primary: #0E1F3E;
+  --text-secondary: rgba(14, 31, 62, 0.7);
+  --border-sub: rgba(14, 31, 62, 0.1);
+  --shadow-glow: 0 12px 32px rgba(14, 31, 62, 0.05);
   --font-family: 'Inter', sans-serif;
 }
 
@@ -35,7 +34,7 @@ body {
   line-height: 1.05;
   letter-spacing: -0.04em;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--text-secondary));
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--text-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -155,13 +154,13 @@ body {
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: var(--text-primary);
 }
 .tl-step-badge {
   display: inline-block;
   padding: 6px 14px;
-  background: rgba(0, 212, 255, 0.08);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  background: rgba(14, 31, 62, 0.05);
+  border: 1px solid rgba(14, 31, 62, 0.12);
   color: var(--cyan);
   font-size: 12px;
   font-weight: 700;
@@ -186,13 +185,13 @@ body {
   font-size: 180px;
   font-weight: 900;
   line-height: 1;
-  color: var(--cyan);
-  opacity: 0.08;
+  color: #0BA8D3; /* Blue/Teal numbers */
+  opacity: 0.18;
   user-select: none;
   pointer-events: none;
 }
 
-/* Right Col - Premium Glass Information Panel */
+/* Right Col - Solid Black Box Information Panel */
 .tl-col-right {
   height: 100%;
   display: flex;
@@ -200,23 +199,22 @@ body {
 }
 .tl-info-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #000000; /* Solid Black Box */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle white border */
   border-radius: 20px;
   padding: 32px;
   box-sizing: border-box;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* Removed backdrop-filter to prevent scroll lag and layout repaints */
 }
 .tl-panel-title {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.5); /* Muted white */
   text-transform: uppercase;
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .tl-checklist {
   list-style: none;
@@ -228,14 +226,14 @@ body {
 .tl-check-item {
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85); /* White text */
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 .tl-check-item::before {
   content: '✓';
-  color: var(--cyan);
+  color: #0BA8D3; /* Blue/Teal checkmarks */
   font-weight: 800;
   flex-shrink: 0;
 }
@@ -244,10 +242,11 @@ body {
   align-items: center;
   justify-content: space-between;
   font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.5);
 }
 .tl-status-val {
   font-weight: 700;
-  color: var(--cyan);
+  color: #0BA8D3; /* Blue/Teal values */
 }
 
 @media(max-width: 900px) {
@@ -320,7 +319,7 @@ body {
   text-align: left;
   background: none;
   border: none;
-  color: #ffffff;
+  color: var(--text-primary); /* Fix white-on-white text contrast */
   font-size: 17px;
   font-weight: 600;
   cursor: pointer;

@@ -1,76 +1,61 @@
 // services.js - Standalone Services Page Javascript logic (ES6 Module)
 export function initServicesPage() {
   initStickyNav();
-  initFAQ();
   initMetrics();
   initObserverAnimations();
 }
 
-// 1. Sticky Nav Intersection Highlight
+// 1. Modality Tab Smooth Scroll & Highlight System
 function initStickyNav() {
-  const sections = document.querySelectorAll('.srv-section');
-  const navLinks = document.querySelectorAll('.srv-nav-link');
-  
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.scrollY + 120;
-    
-    sections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        current = sec.getAttribute('id');
-      }
-    });
-    
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('data-target') === current) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
+  const tabCards = document.querySelectorAll('.srv-nav-card');
+  const panels = document.querySelectorAll('.srv-section');
 
-  // Click smooth scroll binding
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const targetId = link.getAttribute('data-target');
-      const targetSec = document.getElementById(targetId);
-      if (targetSec) {
+  tabCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const targetId = card.getAttribute('data-target');
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        // Calculate scroll offset accounting for fixed top navbar (68px) + sticky tab nav (~68px)
+        const offset = 138;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = targetElement.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
         window.scrollTo({
-          top: targetSec.offsetTop - 100,
+          top: offsetPosition,
           behavior: 'smooth'
         });
       }
     });
   });
-}
 
-// 2. FAQ Accordion panel toggle animation
-function initFAQ() {
-  const triggers = document.querySelectorAll('.faq-trigger');
-  triggers.forEach(trig => {
-    trig.addEventListener('click', () => {
-      const item = trig.parentElement;
-      const panel = item.querySelector('.faq-panel');
-      const icon = trig.querySelector('.faq-icon');
-      
-      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
-      
-      // Close all other panels
-      document.querySelectorAll('.faq-panel').forEach(p => p.style.maxHeight = '0px');
-      document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
-      
-      if (!isOpen) {
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-        icon.textContent = '−';
-      } else {
-        panel.style.maxHeight = '0px';
-        icon.textContent = '+';
+  // Highlight active tab during scroll using IntersectionObserver
+  const observerOptions = {
+    root: null,
+    rootMargin: '-140px 0px -70% 0px', // focused around the upper viewport
+    threshold: 0
+  };
+
+  const activeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tabCards.forEach(card => {
+          if (card.getAttribute('data-target') === id) {
+            card.classList.add('active');
+          } else {
+            card.classList.remove('active');
+          }
+        });
       }
     });
-  });
+  }, observerOptions);
+
+  panels.forEach(p => activeObserver.observe(p));
 }
+
+
 
 // 3. Scroll Triggered metrics counter animations
 function initMetrics() {
@@ -93,9 +78,7 @@ function animateMetrics() {
   const targets = [
     { el: document.querySelector('.metric-num[data-metric="qa"]'), end: 99.8, suffix: '%', decimals: 1 },
     { el: document.querySelector('.metric-num[data-metric="assets"]'), end: 10, suffix: 'M+' },
-    { el: document.querySelector('.metric-num[data-metric="turnaround"]'), end: 24, suffix: ' Hours' },
-    { el: document.querySelector('.metric-num[data-metric="resources"]'), end: 100, suffix: '+' },
-    { el: document.querySelector('.metric-num[data-metric="languages"]'), end: 35, suffix: '+' }
+    { el: document.querySelector('.metric-num[data-metric="turnaround"]'), end: 24, suffix: ' Hours' }
   ];
   
   targets.forEach(t => {

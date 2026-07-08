@@ -11,21 +11,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="./css/footer.css"/>
   <style>
-    :root{--navy:#0E1F3E;--navy-deep:#060e1c;--navy-panel:#0a1830;--cyan:#0BA8D3;--cyan-light:#00D4FF;--amber:#FFBA08;--grey:#F1F5F9;--grey-muted:rgba(241,245,249,0.75);--grey-dim:rgba(241,245,249,0.4);--border-sub:rgba(255,255,255,0.06);--border-cyan:rgba(11,168,211,0.25);--shadow-glow:0 0 40px rgba(11,168,211,0.18);}
+    :root {
+      --navy: #0E1F3E;
+      --navy-deep: #FFFFFF;
+      --navy-panel: #FFFFFF;
+      --cyan: #0E1F3E;
+      --cyan-light: #000000;
+      --amber: #000000;
+      --grey: #0E1F3E;
+      --grey-muted: rgba(14, 31, 62, 0.7);
+      --grey-dim: rgba(14, 31, 62, 0.4);
+      --border-sub: rgba(14, 31, 62, 0.1);
+      --border-cyan: rgba(14, 31, 62, 0.15);
+      --shadow-glow: 0 12px 32px rgba(14, 31, 62, 0.05);
+    }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--navy-deep);color:var(--grey);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
     a{text-decoration:none;color:inherit;}
-    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--navy-deep);}::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:2px;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--navy-deep);}::-webkit-scrollbar-thumb{background:var(--navy);border-radius:2px;}
 
     /* NAVBAR */
-    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(6,14,28,0.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border-sub);}
-    .nav-brand img{height:40px;width:auto;}
+    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:#FFFFFF;backdrop-filter:blur(24px);border-bottom:1px solid rgba(14,31,62,0.08);}
+    .nav-brand{display:flex;align-items:center;overflow:hidden;height:68px;}
+    .nav-brand img{height:110px;margin:-21px 0;width:auto;display:block;}
     .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
-    .nav-links a{font-size:13.5px;font-weight:500;color:var(--grey-muted);transition:color .25s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--grey);}
-    .nav-cta{display:inline-flex;align-items:center;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#0E1F3E;background:linear-gradient(90deg,var(--cyan),var(--amber));transition:all 0.3s;box-shadow:0 4px 12px rgba(11,168,211,0.15);}
-    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(11,168,211,0.35);}
+    .nav-links a{font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);transition:color .25s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--cyan);}
+    .nav-cta{display:inline-flex;align-items:center;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow:0 4px 12px rgba(14,31,62,0.1); border: 1px solid #0E1F3E;}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(14,31,62,0.2); background:transparent; color:#0E1F3E;}
 
     /* SHARED */
     .sw{max-width:1240px;margin:0 auto;padding:0 48px;}
@@ -255,7 +269,7 @@
 
 <!-- NAVBAR -->
 <nav id="navbar">
-  <a href="./index.html" class="nav-brand"><img src="./logo.svg" alt="DeepAnnotate Logo"/></a>
+  <a href="./index.html" class="nav-brand"><img src="./DeepAnnototate-1-removebg-preview.png" alt="DeepAnnotate Logo" style="height: 52px; width: auto;"/></a>
   <ul class="nav-links">
     <li><a href="./services.html">Services</a></li>
     <li><a href="./how-it-works.html">How It Works</a></li>

@@ -5,28 +5,50 @@ export function initHowItWorks() {
   initFAQ();
 }
 
-// 1. Stacked storytelling overlap calculations (using requestAnimationFrame & transform)
+// 1. Stacked storytelling overlap calculations (Optimized 60fps Cache-linked scrolling)
 function initCardStacking() {
   const cards = document.querySelectorAll('.tl-stack-card');
   if (cards.length === 0) return;
 
+  const wrapper = document.querySelector('.tl-stack-wrapper');
+  if (!wrapper) return;
+
+  let wrapperTop = 0;
+  let cachedOffsets = [];
   let ticking = false;
 
+  const cachePositions = () => {
+    // Read elements static top offsets relative to wrapper
+    const wrapperRect = wrapper.getBoundingClientRect();
+    wrapperTop = wrapperRect.top + window.scrollY;
+    
+    cachedOffsets = Array.from(cards).map(card => {
+      const cardRect = card.getBoundingClientRect();
+      return (cardRect.top + window.scrollY) - wrapperTop;
+    });
+  };
+
+  // Initial cache read
+  cachePositions();
+
+  // Re-read on resize or font loading changes
+  window.addEventListener('resize', cachePositions);
+  window.addEventListener('load', cachePositions);
+
   const handleScroll = () => {
+    const scrollY = window.scrollY;
     const triggerPos = window.innerHeight * 0.25;
     
     cards.forEach((card, idx) => {
-      const rect = card.getBoundingClientRect();
+      // Calculate current card top relative to viewport without querying DOM
+      const cardViewportTop = (wrapperTop + cachedOffsets[idx]) - scrollY;
       
-      // Calculate how far into sticky scroll range the card is
-      if (rect.top <= triggerPos + 20) {
+      if (cardViewportTop <= triggerPos + 20) {
         card.classList.add('active');
         
-        // If there's a subsequent card starting to cover it, translate and fade it
         if (idx < cards.length - 1) {
-          const nextCard = cards[idx + 1];
-          const nextRect = nextCard.getBoundingClientRect();
-          const overlap = triggerPos + 120 - nextRect.top;
+          const nextCardViewportTop = (wrapperTop + cachedOffsets[idx + 1]) - scrollY;
+          const overlap = triggerPos + 120 - nextCardViewportTop;
           
           if (overlap > 0) {
             const factor = Math.min(1, overlap / 300);

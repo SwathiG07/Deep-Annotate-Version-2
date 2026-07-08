@@ -1,8 +1,14 @@
 /* Footer CSS Stylesheet */
 #footer {
-  background: var(--navy);
-  border-top: 1px solid var(--border-sub);
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  border-top: 1px solid rgba(14, 31, 62, 0.08);
   padding: 72px 48px 40px;
+  --grey: #0E1F3E; /* Dark Navy for brand/primary titles */
+  --grey-muted: #475569; /* Slate Gray for body description and links */
+  --grey-dim: #64748B; /* Slate Gray for secondary copy/legal links */
+  --border-sub: rgba(14, 31, 62, 0.08);
+  --cyan: #0E1F3E; /* Dark Navy for headers */
+  --border-cyan: rgba(11, 168, 211, 0.3);
 }
 .footer-top {
   display: grid;
@@ -35,7 +41,7 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(212, 212, 212, 0.06);
+  background: rgba(14, 31, 62, 0.03);
   border: 1px solid var(--border-sub);
   display: flex;
   align-items: center;
@@ -47,7 +53,7 @@
 }
 .f-social-btn:hover {
   background: rgba(11, 168, 211, 0.1);
-  color: var(--cyan);
+  color: #0BA8D3;
   border-color: var(--border-cyan);
 }
 .f-col-title {
@@ -70,7 +76,7 @@
   transition: color .25s;
 }
 .f-col-links a:hover {
-  color: var(--amber);
+  color: #0BA8D3;
 }
 .f-contact-item {
   display: flex;
@@ -82,7 +88,7 @@
   line-height: 1.5;
 }
 .f-contact-icon {
-  color: var(--cyan);
+  color: #0BA8D3; /* Highlight icons in corporate blue/teal */
   flex-shrink: 0;
 }
 .footer-bottom {

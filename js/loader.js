@@ -1,4 +1,6 @@
 // loader.js - Dynamic modular component loader (ES6 Module)
+import { initHero } from './hero.js';
+import { initIntro } from './intro.js';
 import { initServices } from './services.js';
 import { initResults } from './results.js';
 import { initPipeline } from './pipeline.js';
@@ -6,11 +8,13 @@ import { initDatasets } from './datasets.js';
 
 // Configuration array mapping placeholder divs, HTML paths, and initializer callbacks
 const components = [
+  { id: 'hero-placeholder', url: './components/hero.html', init: initHero },
+  { id: 'intro-placeholder', url: './components/intro.html', init: initIntro },
   { id: 'results-placeholder', url: './components/results.html', init: initResults },
   { id: 'services-placeholder', url: './components/services.html', init: initServices },
   { id: 'pipeline-placeholder', url: './components/pipeline.html', init: initPipeline },
   { id: 'case-studies-placeholder', url: './components/case-studies.html', init: null },
-  { id: 'datasets-placeholder', url: './components/datasets.html', init: initDatasets },
+  { id: 'datasets-placeholder', url: './components/datasets-preview.html', init: null },
   { id: 'cta-placeholder', url: './components/cta.html', init: null },
   { id: 'footer-placeholder', url: './components/footer.html', init: null }
 ];
