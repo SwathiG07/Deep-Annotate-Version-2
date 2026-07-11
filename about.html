@@ -54,8 +54,12 @@
     .d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}.d5{transition-delay:0.5s;}.d6{transition-delay:0.6s;}
 
     /* HERO */
-    #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(11,168,211,0.1) 0%,transparent 60%),var(--navy-deep);padding-top:80px;}
-    #hcvs{position:absolute;inset:0;width:100%;height:100%;}
+    #hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(11,168,211,0.1) 0%, transparent 60%), var(--navy-deep);
+      padding-top: 80px;
+    }
+    #hcvs { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
     .hc{position:relative;z-index:10;text-align:center;max-width:920px;padding:0 32px;}
     .hbadge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:100px;background:rgba(11,168,211,0.08);border:1px solid rgba(11,168,211,0.2);font-size:12px;font-weight:600;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:36px;}
     .hdot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pdot 2s ease-in-out infinite;}
@@ -133,8 +137,8 @@
     
     /* Levitating Glass Cards on White Background */
     .tlcard {
-      background: rgba(14, 31, 62, 0.85); /* dark glass */
-      border: 1px solid rgba(14, 31, 62, 0.9);
+      background: #0B2545; /* premium navy blue */
+      border: 1px solid rgba(11, 168, 211, 0.15);
       border-radius: 18px; padding: 28px 24px; text-align: center;
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       backdrop-filter: blur(20px); position: relative; z-index: 1;
@@ -142,7 +146,7 @@
     .tlcard:hover {
       transform: translateY(-12px) scale(1.05);
       border-color: #0BA8D3;
-      box-shadow: 0 25px 60px -15px rgba(11, 168, 211, 0.4), 0 0 30px rgba(11, 168, 211, 0.2);
+      box-shadow: 0 25px 60px -15px rgba(11, 168, 211, 0.45), 0 0 30px rgba(11, 168, 211, 0.2);
     }
     
     .tlci{font-size:32px;margin-bottom:8px; color: #0BA8D3;}
@@ -159,12 +163,12 @@
     #mv .eyebrow { color: #0BA8D3 !important; }
     .mvg{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:64px;}
     
-    .mvc{background:rgba(14, 31, 62, 0.88) !important;border:1px solid rgba(14, 31, 62, 0.9) !important;border-radius:24px;padding:56px 48px;position:relative;overflow:hidden;transition:all 0.5s cubic-bezier(0.16,1,0.3,1); backdrop-filter: blur(20px); z-index: 1;}
+    .mvc{background:#0B2545 !important;border:1px solid rgba(11, 168, 211, 0.15) !important;border-radius:24px;padding:56px 48px;position:relative;overflow:hidden;transition:all 0.5s cubic-bezier(0.16,1,0.3,1); backdrop-filter: blur(20px); z-index: 1;}
     .mvc:hover{transform:translateY(-16px);}
     
     /* Glowing shadows (Cyan for Mission, White for Vision) */
-    .mvc.m:hover{border-color:#0BA8D3 !important; box-shadow: 0 25px 60px rgba(11, 168, 211, 0.35);}
-    .mvc.v:hover{border-color:rgba(255,255,255,0.6) !important; box-shadow: 0 25px 60px rgba(14, 31, 62, 0.4);}
+    .mvc.m:hover{border-color:#0BA8D3 !important; box-shadow: 0 10px 40px rgba(11, 168, 211, 0.4), 0 0 25px rgba(11, 168, 211, 0.25);}
+    .mvc.v:hover{border-color:#FFFFFF !important; box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 255, 255, 0.35);}
     
     /* Sweeping Laser Reflection */
     .mvc::after{
@@ -181,8 +185,8 @@
     }
     
     /* Floating background glowing lights */
-    .mvc::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(11,168,211,0.12),transparent 70%); z-index: -1; transition: opacity 0.5s;}
-    .mvc.v::before{background:radial-gradient(circle,rgba(255,255,255,0.08),transparent 70%);}
+    .mvc::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(11,168,211,0.15),transparent 70%); z-index: -1; transition: opacity 0.5s;}
+    .mvc.v::before{background:radial-gradient(circle,rgba(255,255,255,0.12),transparent 70%);}
     .mvc:hover::before{opacity: 1.5;}
     
     /* Icons styling */
@@ -191,7 +195,7 @@
     .mvc.v .mvi{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15); color: #FFFFFF;}
     
     .mvc.m:hover .mvi{background:rgba(11,168,211,0.2); border-color:rgba(11,168,211,0.5); transform:scale(1.1); box-shadow: 0 0 20px rgba(11,168,211,0.4);}
-    .mvc.v:hover .mvi{background:rgba(255,255,255,0.2); border-color:rgba(255,255,255,0.5); transform:scale(1.1); box-shadow: 0 0 20px rgba(255,255,255,0.4);}
+    .mvc.v:hover .mvi{background:rgba(255,255,255,0.25); border-color:rgba(255,255,255,0.6); transform:scale(1.1); box-shadow: 0 0 20px rgba(255,255,255,0.4);}
     
     /* Labels inside dark cards - bright */
     .mvl{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#0BA8D3;margin-bottom:14px; transition: all 0.4s;}
@@ -208,18 +212,27 @@
     .mvc:hover .mvd{color:rgba(255,255,255,0.85);}
 
     /* VALUES - Editorial Accordion (Premium Light) */
-    #values{background:var(--navy-panel); position: relative; padding-top: 60px; padding-bottom: 100px;}
+    #values{background:var(--navy-panel); position: relative; padding-top: 0px; padding-bottom: 100px;}
     
     .val-split {
       display: grid; grid-template-columns: 1fr 1.3fr; gap: 100px; align-items: start;
     }
     .val-left {
       position: sticky; top: calc(50vh - 160px);
-      padding-right: 20px;
+      padding: 40px; border-radius: 24px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(14, 31, 62, 0.05);
+      box-shadow: 0 15px 35px rgba(14, 31, 62, 0.03), 0 0 0 transparent;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .val-left:hover {
+      background: #FFFFFF;
+      border-color: rgba(11, 168, 211, 0.2);
+      box-shadow: 0 30px 70px rgba(11, 168, 211, 0.15), 0 0 30px rgba(11, 168, 211, 0.05);
     }
     .val-left .eyebrow { text-align: left; font-size: 13px; letter-spacing: 0.2em; margin-bottom: 20px; color: #0BA8D3; }
-    .val-left .stitle { text-align: left; margin-top: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.05; color: #0B2545; }
-    .val-left .ssub { text-align: left; margin-top: 24px; font-size: 18px; color: rgba(14, 31, 62, 0.6); line-height: 1.6; }
+    .val-left .stitle { text-align: left; margin-top: 0; font-size: clamp(38px, 4.5vw, 56px); line-height: 1.1; color: #0B2545; }
+    .val-left .ssub { text-align: left; margin-top: 24px; font-size: 16px; color: rgba(14, 31, 62, 0.6); line-height: 1.6; }
     
     .val-right { display: flex; flex-direction: column; margin-top: 0; }
     
@@ -353,43 +366,52 @@
     .cc.ft{
       font-weight:700; color:#0E1F3E !important;
     }
+    /* TABLE DEEP ANNOTATE COLUMN SHIELD HIGHLIGHT */
     .compr .cc:nth-child(2) {
-      background: rgba(11, 168, 211, 0.02);
-      font-weight: 600; color: #0E1F3E !important;
+      background: rgba(11, 168, 211, 0.07) !important;
+      font-weight: 700; color: #0B2545 !important;
+      border-left: 1px solid rgba(11, 168, 211, 0.12);
+      border-right: 1px solid rgba(11, 168, 211, 0.12);
     }
-    .compr .cc:nth-child(3) {
-      color: rgba(14, 31, 62, 0.4) !important;
-    }
-
-    .ck{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:24px; height:24px; border-radius:50%;
-      background: rgba(11,168,211,0.1) !important;
-      color: #0BA8D3 !important;
-      font-size:12px; font-weight:700; flex-shrink:0;
-      transition: all 0.3s;
-    }
-    .compr:hover .ck {
-      background: rgba(11,168,211,0.15) !important;
-      box-shadow: 0 0 12px rgba(11,168,211,0.2);
-      transform: scale(1.1);
-    }
-    .cx{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:24px; height:24px; border-radius:50%;
-      background: rgba(14, 31, 62, 0.04) !important;
-      color: rgba(14, 31, 62, 0.2) !important;
-      font-size:12px; flex-shrink:0;
+    .comph .chd.da {
+      background: rgba(11, 168, 211, 0.08) !important;
+      border-left: 1px solid rgba(11, 168, 211, 0.15);
+      border-right: 1px solid rgba(11, 168, 211, 0.15);
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
 
     /* STATS */
     #stats{background:var(--navy-panel);}
-    .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-sub);border-radius:24px;overflow:hidden;margin-top:64px;}
-    .si{background:var(--navy-panel);padding:56px 32px;text-align:center;position:relative;overflow:hidden;transition:background 0.3s;}
-    .si:hover{background:rgba(11,168,211,0.025);}
-    .sn{font-size:clamp(44px,5vw,68px);font-weight:900;letter-spacing:-0.06em;color:var(--amber);text-shadow:0 0 50px rgba(255,186,8,0.2);line-height:1;margin-bottom:10px;}
-    .sl{font-size:14px;font-weight:600;color:var(--grey);margin-bottom:6px;}
-    .sd{font-size:13px;color:var(--grey-dim);}
+    .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;background:transparent;border-radius:0;overflow:visible;margin-top:64px;}
+    .si{
+      background:#FFFFFF; padding:56px 32px; text-align:center; position:relative; overflow:hidden;
+      border-radius: 20px; border: 1px solid rgba(14, 31, 62, 0.05);
+      box-shadow: 0 10px 30px rgba(14, 31, 62, 0.02);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .si::before {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+      background: linear-gradient(90deg, #0BA8D3, #00D4FF);
+      transform: scaleX(0); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .si:hover{
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(11, 168, 211, 0.18);
+      border-color: rgba(11, 168, 211, 0.25);
+    }
+    .si:hover::before {
+      transform: scaleX(1);
+    }
+    .sn{
+      font-size:clamp(44px,5vw,68px); font-weight:900; letter-spacing:-0.06em;
+      background: linear-gradient(135deg, #0B2545, #0BA8D3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height:1; margin-bottom:10px;
+    }
+    .sl{font-size:14px;font-weight:700;color:#0B2545;margin-bottom:6px;}
+    .sd{font-size:13px;color:rgba(14, 31, 62, 0.6);}
 
     /* GLOBAL */
     #global{background:#FFFFFF;}
@@ -400,7 +422,7 @@
     }
     .gsvg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0.06; z-index: 1; pointer-events: none;
+      opacity: 1.0; z-index: 1; pointer-events: none;
     }
     #gcvs {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -737,14 +759,16 @@
     <div class="gc rev">
       <canvas id="gcvs" width="1200" height="420"></canvas>
       <svg class="gsvg" viewBox="0 0 1200 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="rgba(14,31,62,0.5)" stroke-width="1">
+        <!-- Ultra-light grid lines -->
+        <g stroke="#F1F5F9" stroke-width="1.2">
           <line x1="0" y1="84" x2="1200" y2="84"/><line x1="0" y1="168" x2="1200" y2="168"/>
           <line x1="0" y1="252" x2="1200" y2="252"/><line x1="0" y1="336" x2="1200" y2="336"/>
           <line x1="200" y1="0" x2="200" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/>
           <line x1="600" y1="0" x2="600" y2="420"/><line x1="800" y1="0" x2="800" y2="420"/>
           <line x1="1000" y1="0" x2="1000" y2="420"/>
         </g>
-        <g fill="none" stroke="rgba(14,31,62,0.8)" stroke-width="1.5">
+        <!-- Continent outlines (Styled with a clean light grey stroke matching the mockup) -->
+        <g fill="none" stroke="#E2E8F0" stroke-width="1.5">
           <path d="M120 70 L230 60 L275 95 L260 150 L215 185 L170 178 L130 148 L110 110 Z"/>
           <path d="M185 210 L245 200 L265 245 L248 325 L215 348 L182 318 L170 268 L178 228 Z"/>
           <path d="M472 60 L558 55 L578 90 L555 122 L505 132 L462 112 L452 82 Z"/>
@@ -945,21 +969,65 @@ revEls.forEach(el => ro.observe(el));
   if (!cv) return;
   const cx = cv.getContext('2d');
   let W, H, pts;
+  let mouse = { x: null, y: null };
+
   function rsz(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight; }
-  function init(){ pts = Array.from({length:90}, () => ({ x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.5+0.3, vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3, a:Math.random()*.5+0.1, c:Math.random()>.7 })); }
+  function init(){ 
+    pts = Array.from({length:85}, () => ({ 
+      x: Math.random()*W, 
+      y: Math.random()*H, 
+      r: Math.random()*2 + 0.8, 
+      vx: (Math.random()-.5)*0.25, 
+      vy: (Math.random()-.5)*0.25, 
+      a: Math.random()*0.5 + 0.25, 
+      c: Math.random() > 0.65 
+    })); 
+  }
+
+  // Monitor mouse positioning over the Hero area
+  cv.addEventListener('mousemove', (e) => {
+    const rect = cv.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  cv.addEventListener('mouseleave', () => {
+    mouse.x = null;
+    mouse.y = null;
+  });
+
   function draw(){
     cx.clearRect(0,0,W,H);
+    
+    // Animate particles (no visual circle rendering)
     pts.forEach(p => {
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-      cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      cx.fillStyle = p.c ? `rgba(11,168,211,${p.a})` : `rgba(255,186,8,${p.a*.35})`;
-      cx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0) p.x=W; if(p.x>W) p.x=0; if(p.y<0) p.y=H; if(p.y>H) p.y=0;
     });
+
+    // Draw particle-to-particle connections
     pts.forEach((p,i) => pts.slice(i+1).forEach(q => {
       const d = Math.hypot(p.x-q.x,p.y-q.y);
-      if(d<110){ cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); cx.strokeStyle=`rgba(11,168,211,${.08*(1-d/110)})`; cx.lineWidth=.5; cx.stroke(); }
+      if(d < 125){ 
+        cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); 
+        cx.strokeStyle=`rgba(11,168,211,${0.14 * (1-d/125)})`; 
+        cx.lineWidth=0.6; 
+        cx.stroke(); 
+      }
     }));
+
+    // Interactive mouse connections (Constellation web)
+    if (mouse.x !== null) {
+      pts.forEach(p => {
+        const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (d < 160) {
+          cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(mouse.x, mouse.y);
+          cx.strokeStyle = `rgba(11,168,211,${0.25 * (1 - d/160)})`;
+          cx.lineWidth = 0.8;
+          cx.stroke();
+        }
+      });
+    }
+
     requestAnimationFrame(draw);
   }
   window.addEventListener('resize',()=>{rsz();init();});
@@ -1030,7 +1098,8 @@ snEls.forEach(el=>co.observe(el));
     {x: 130, y: 140, name: "San Francisco"},
     {x: 487, y: 76,  name: "London"},
     {x: 680, y: 155, name: "Dubai"},
-    {x: 852, y: 242, name: "Singapore"}
+    {x: 852, y: 242, name: "Singapore"},
+    {x: 955, y: 120, name: "Tokyo"}
   ];
 
   let dots = [];
@@ -1091,18 +1160,18 @@ snEls.forEach(el=>co.observe(el));
     let phase = (time * 0.003) % 1; 
     let scanX = phase * CW;
     
-    // Draw dots
-    cx.fillStyle = '#0BA8D3';
+    // Draw dots (procedural continent map dots - light cyan)
+    cx.fillStyle = 'rgba(11, 168, 211, 0.4)';
     dots.forEach(d => {
       let dist = Math.abs(d.x - scanX);
-      let op = 0.03;
-      if (dist < 150) op = 0.2 * (1 - dist/150); // spike to 0.2
-      cx.globalAlpha = Math.max(0.03, op);
+      let op = 0.08;
+      if (dist < 150) op = 0.4 * (1 - dist/150); // spike to 0.4
+      cx.globalAlpha = Math.max(0.08, op);
       cx.beginPath(); cx.arc(d.x, d.y, 1.5, 0, Math.PI*2); cx.fill();
     });
     
-    // Draw swarm curves
-    cx.globalAlpha = 0.15;
+    // Draw swarm curves (light blue/cyan background network trails)
+    cx.globalAlpha = 0.2;
     cx.lineWidth = 0.5;
     cx.strokeStyle = '#0BA8D3';
     cx.fillStyle = '#0BA8D3';
@@ -1113,20 +1182,33 @@ snEls.forEach(el=>co.observe(el));
       cx.stroke();
       cx.beginPath(); cx.arc(n.x, n.y, 1, 0, Math.PI*2); cx.fill();
     });
+
+    // Draw main glowing transport pathways (bezier lines) connecting hubs to HQ (light cyan curves)
+    cx.globalAlpha = 0.4;
+    cx.lineWidth = 1.0;
+    cx.strokeStyle = 'rgba(11, 168, 211, 0.4)';
+    hubs.forEach(h => {
+      cx.beginPath();
+      cx.moveTo(h.x, h.y);
+      let cp1x = h.x + (hq.x - h.x) * 0.5;
+      let cp1y = h.y - 120;
+      cx.quadraticCurveTo(cp1x, cp1y, hq.x, hq.y);
+      cx.stroke();
+    });
     
     // Generate packets
-    if(time % 40 === 0) {
+    if(time % 30 === 0) {
       let src = hubs[Math.floor(Math.random()*hubs.length)];
       packets.push({x: src.x, y: src.y, tx: hq.x, ty: hq.y, p: 0, 
         cp1x: src.x + (hq.x - src.x)*0.5, cp1y: src.y - 120
       });
     }
     
-    // Draw packets using true quadratic bezier interpolation
+    // Draw packets using true quadratic bezier interpolation (light glowing balls flowing to HQ)
     cx.globalAlpha = 1.0;
     for(let i=packets.length-1; i>=0; i--) {
       let pk = packets[i];
-      pk.p += 0.01;
+      pk.p += 0.012;
       if(pk.p >= 1) { packets.splice(i, 1); continue; }
       
       let u = 1 - pk.p;
@@ -1134,22 +1216,24 @@ snEls.forEach(el=>co.observe(el));
       let px = u*u*pk.x + 2*u*pk.p*pk.cp1x + pk.p*pk.p*pk.tx;
       let py = u*u*pk.y + 2*u*pk.p*pk.cp1y + pk.p*pk.p*pk.ty;
       
-      cx.beginPath(); cx.arc(px, py, 2.5, 0, Math.PI*2); 
-      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 12; cx.shadowColor = '#0BA8D3'; 
+      cx.beginPath(); cx.arc(px, py, 3.5, 0, Math.PI*2); 
+      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 10; cx.shadowColor = '#0BA8D3'; 
       cx.fill(); cx.shadowBlur = 0;
     }
     
-    // Draw hubs
+    // Draw hubs (exactly matching the uploaded white background theme)
     cx.globalAlpha = 1.0;
     hubs.forEach(h => {
-      cx.beginPath(); cx.arc(h.x, h.y, 5, 0, Math.PI*2); cx.fillStyle = '#FFBA08'; cx.fill();
-      cx.fillStyle = '#0E1F3E'; cx.font = "bold 11px Inter"; cx.fillText(h.name, h.x + 12, h.y + 4);
+      cx.beginPath(); cx.arc(h.x, h.y, 6, 0, Math.PI*2); cx.fillStyle = '#FFBA08'; cx.fill();
+      cx.beginPath(); cx.arc(h.x, h.y, 11, 0, Math.PI*2); cx.strokeStyle = 'rgba(255, 186, 8, 0.4)'; cx.stroke();
+      cx.fillStyle = '#0B2545'; cx.font = "600 11px Inter"; cx.fillText(h.name, h.x + 15, h.y + 4);
     });
     
-    // Draw HQ
-    cx.beginPath(); cx.arc(hq.x, hq.y, 7, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
-    cx.beginPath(); cx.arc(hq.x, hq.y, 16, 0, Math.PI*2); cx.strokeStyle = 'rgba(11,168,211,0.5)'; cx.lineWidth=1; cx.stroke();
-    cx.fillStyle = '#0E1F3E'; cx.font = "bold 13px Inter"; cx.fillText(hq.name, hq.x + 18, hq.y + 5);
+    // Draw HQ (glowing double cyan rings exactly matching user reference image)
+    cx.beginPath(); cx.arc(hq.x, hq.y, 5, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 12, 0, Math.PI*2); cx.strokeStyle = '#0BA8D3'; cx.lineWidth = 3; cx.stroke();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 22, 0, Math.PI*2); cx.strokeStyle = 'rgba(11,168,211,0.2)'; cx.lineWidth=1; cx.stroke();
+    cx.fillStyle = '#0B2545'; cx.font = "bold 13px Inter"; cx.fillText(hq.name, hq.x + 26, hq.y + 5);
     
     // Reset transform before next frame just in case
     cx.setTransform(1, 0, 0, 1, 0, 0);
