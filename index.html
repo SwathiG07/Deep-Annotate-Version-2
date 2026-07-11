@@ -1427,7 +1427,7 @@
 
 
   <section class="scene-section" id="scene-4-section" data-scene="4">
-    <div style="height:400vh">
+    <div style="height:800vh">
       <div class="scene-sticky"><canvas class="scene-canvas" id="canvas-4"></canvas>
         <div class="scene-copy s-center" id="copy-4">
           <div class="scene-label">Scene 04 &#8212; Deconstruction</div>
@@ -1435,15 +1435,8 @@
           <p class="scene-sub">Deploy any module independently &#8212; perception, voice, spatial &#8212; or as one
             unified data pipeline.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="scene-section" id="scene-5-section" data-scene="5">
-    <div style="height:400vh">
-      <div class="scene-sticky"><canvas class="scene-canvas" id="canvas-5"></canvas>
-        <div class="scene-copy s-center" id="copy-5">
-          <div class="story-badge">Scene 04 &bull; Production Ready</div>
+        <div class="scene-copy s-center" id="copy-5" style="display:none;">
+          <div class="story-badge" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; color: var(--navy); background: transparent; border: 1px solid var(--navy); padding: 6px 14px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.06em; display: inline-block; margin-bottom: 12px;">Scene 04 &bull; Production Ready</div>
           <h2 class="scene-headline">Built. Verified.<br>Production Ready.</h2>
           <p class="scene-sub" style="margin-bottom: 24px;">Every dataset passes rigorous validation before powering
             enterprise AI systems.</p>
@@ -1615,8 +1608,9 @@
       const imgs = S.images[id];
       if (!imgs || !imgs[fi]) return;
       const img = imgs[fi];
-      const ctx = X[id];
-      const canvas = C[id];
+      const targetId = (id === 5) ? 4 : id;
+      const ctx = X[targetId];
+      const canvas = C[targetId];
 
       // Use parent container bounding size dynamically for responsive math
       const w_val = canvas.style.width ? parseInt(canvas.style.width) : innerWidth;
@@ -1675,60 +1669,120 @@
     function onScroll() { if (raf) return; raf = true; requestAnimationFrame(() => { raf = false; tick(); }); }
     function tick() {
       const sy = scrollY, wh = innerHeight; navbar.classList.toggle('scrolled', sy > 60); let active = 0;
-      SCENES.forEach(sc => {
-        const sec = SEC[sc.id];
-        if (!sec) return;
-        const st = sec.offsetTop, sh = sec.offsetHeight;
-        const p = Math.max(0, Math.min(1, (sy - st) / (sh - wh)));
-        if (S.images[sc.id]) {
-          let fi;
-          if (sc.id === 4) {
-            // Skip the early static stance frames and map scroll progress to frames 35-89
-            const startFrame = 35;
-            fi = startFrame + Math.min(Math.floor(p * (sc.frames - startFrame)), sc.frames - startFrame - 1);
+      
+      // Handle Combined Scene 4 & 5
+      const sec4 = SEC[4];
+      if (sec4) {
+        const st4 = sec4.offsetTop, sh4 = sec4.offsetHeight;
+        const pCombined = Math.max(0, Math.min(1, (sy - st4) / (sh4 - wh)));
+        
+        if (pCombined > 0 && pCombined < 1) {
+          if (pCombined < 0.5) {
+            active = 4;
           } else {
-            fi = Math.min(Math.floor(p * (sc.frames - 1)), sc.frames - 1);
+            active = 5;
           }
-          draw(sc.id, fi);
         }
-        if (COP[sc.id]) COP[sc.id].classList.toggle('visible', p > 0.07 && p < 0.90);
-        // Scene 6 left panel is always-visible and static — skip .visible toggle on its section
-        if (sc.id !== 6 && sec) sec.classList.toggle('visible', p > 0.07 && p < 0.90);
-        if (p > 0 && p < 1) active = sc.id;
-
-        // Progressive capabilities fade-in synchronized with deassembly scroll (Scene 4)
-        if (sc.id === 4) {
+        
+        if (pCombined < 0.5) {
+          // First half: Scene 4 Deconstruction
+          const p = pCombined * 2;
+          
+          if (!S.images[4]) {
+            preload(4, () => draw(4, 0));
+          } else {
+            const sc = SCENES.find(s => s.id === 4);
+            const startFrame = 35;
+            const fi = startFrame + Math.min(Math.floor(p * (sc.frames - startFrame)), sc.frames - startFrame - 1);
+            draw(4, fi);
+          }
+          
+          const showCopy = p > 0.07 && p < 0.90;
+          if (COP[4]) {
+            COP[4].style.display = 'block';
+            COP[4].classList.toggle('visible', showCopy);
+          }
+          if (COP[5]) {
+            COP[5].classList.remove('visible');
+            COP[5].style.display = 'none';
+          }
+          
           const chips = document.querySelectorAll('#s3-capability-pills .story-pill');
           chips.forEach((chip, idx) => {
-            const threshold = 0.1 + (idx * 0.07); // staggered thresholds from 0.1 to 0.8
+            const threshold = 0.1 + (idx * 0.07);
             chip.style.opacity = (p >= threshold) ? "1" : "0";
             chip.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
           });
-        }
-
-        // Progressive badges fade-in synchronized with reassembly scroll (Scene 5)
-        if (sc.id === 5) {
+        } else {
+          // Second half: Scene 5 Reassembly
+          const p = (pCombined - 0.5) * 2;
+          
+          if (!S.images[5]) {
+            preload(5, () => draw(5, 0));
+          } else {
+            const sc = SCENES.find(s => s.id === 5);
+            const fi = Math.min(Math.floor(p * (sc.frames - 1)), sc.frames - 1);
+            draw(5, fi);
+          }
+          
+          const showCopy = p > 0.07 && p < 0.90;
+          if (COP[4]) {
+            COP[4].classList.remove('visible');
+            COP[4].style.display = 'none';
+          }
+          if (COP[5]) {
+            COP[5].style.display = 'block';
+            COP[5].classList.toggle('visible', showCopy);
+          }
+          
           const badges = document.querySelectorAll('#s4-certification-badges .story-pill');
           badges.forEach((badge, idx) => {
-            const threshold = 0.1 + (idx * 0.12); // staggered thresholds from 0.1 to 0.7
+            const threshold = 0.1 + (idx * 0.12);
             badge.style.opacity = (p >= threshold) ? "1" : "0";
             badge.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
           });
         }
-
-        if (st - sy < wh * 2.5 && !S.images[sc.id]) preload(sc.id, () => draw(sc.id, 0));
-      });
+      }
+      
+      // Handle Scene 6
+      const sec6 = SEC[6];
+      if (sec6) {
+        const st6 = sec6.offsetTop, sh6 = sec6.offsetHeight;
+        const p = Math.max(0, Math.min(1, (sy - st6) / (sh6 - wh)));
+        if (p > 0 && p < 1) active = 6;
+        
+        if (S.images[6]) {
+          const sc = SCENES.find(s => s.id === 6);
+          const fi = Math.min(Math.floor(p * (sc.frames - 1)), sc.frames - 1);
+          draw(6, fi);
+        }
+        
+        if (st6 - sy < wh * 2.5 && !S.images[6]) preload(6, () => draw(6, 0));
+      }
+      
       dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.scene) === active));
     }
 
     function init() {
       resize();
       S.ready = true;
-      preload(4, () => { draw(4, 0); });
+      preload(4, () => {
+        draw(4, 0);
+        preload(5);
+      });
       tick();
       addEventListener('scroll', onScroll, { passive: true });
       addEventListener('resize', () => { resize(); tick(); });
-      dots.forEach(d => d.addEventListener('click', () => { const id = parseInt(d.dataset.scene); if (SEC[id]) scrollTo({ top: SEC[id].offsetTop + 50, behavior: 'smooth' }); }));
+      dots.forEach(d => d.addEventListener('click', () => {
+        const id = parseInt(d.dataset.scene);
+        if (id === 4) {
+          if (SEC[4]) scrollTo({ top: SEC[4].offsetTop + 50, behavior: 'smooth' });
+        } else if (id === 5) {
+          if (SEC[4]) scrollTo({ top: SEC[4].offsetTop + SEC[4].offsetHeight / 2 + 50, behavior: 'smooth' });
+        } else if (SEC[id]) {
+          scrollTo({ top: SEC[id].offsetTop + 50, behavior: 'smooth' });
+        }
+      }));
     }
 
     document.addEventListener('DOMContentLoaded', () => { init(); });
