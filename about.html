@@ -167,8 +167,10 @@
     .mvc:hover{transform:translateY(-16px);}
     
     /* Glowing shadows (Cyan for Mission, White for Vision) */
-    .mvc.m:hover{border-color:#0BA8D3 !important; box-shadow: 0 10px 40px rgba(11, 168, 211, 0.4), 0 0 25px rgba(11, 168, 211, 0.25);}
-    .mvc.v:hover{border-color:#FFFFFF !important; box-shadow: 0 10px 40px rgba(255, 255, 255, 0.5), 0 0 25px rgba(255, 255, 255, 0.35);}
+    .mvc.m{border: 1px solid rgba(11, 168, 211, 0.15) !important;}
+    .mvc.v{border: 1px solid rgba(255, 255, 255, 0.15) !important;}
+    .mvc.m:hover{border-color:#0BA8D3 !important; box-shadow: 0 15px 50px rgba(11, 168, 211, 0.5), 0 0 40px rgba(11, 168, 211, 0.4);}
+    .mvc.v:hover{border-color:#FFFFFF !important; box-shadow: 0 15px 50px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.5);}
     
     /* Sweeping Laser Reflection */
     .mvc::after{
@@ -227,8 +229,8 @@
     }
     .val-left:hover {
       background: #FFFFFF;
-      border-color: rgba(11, 168, 211, 0.2);
-      box-shadow: 0 30px 70px rgba(11, 168, 211, 0.15), 0 0 30px rgba(11, 168, 211, 0.05);
+      border-color: rgba(11, 168, 211, 0.4);
+      box-shadow: 0 30px 70px rgba(11, 168, 211, 0.25), 0 0 40px rgba(11, 168, 211, 0.2);
     }
     .val-left .eyebrow { text-align: left; font-size: 13px; letter-spacing: 0.2em; margin-bottom: 20px; color: #0BA8D3; }
     .val-left .stitle { text-align: left; margin-top: 0; font-size: clamp(38px, 4.5vw, 56px); line-height: 1.1; color: #0B2545; }
@@ -556,7 +558,6 @@
 
 <!-- 1. HERO -->
 <section id="hero">
-  <canvas id="hcvs"></canvas>
   <div class="hc">
     <h1 class="hh rev d1">Building the World's<br/><span class="gr">AI Data Infrastructure</span></h1>
     <p class="hsub rev d2">DeepAnnotate helps the world's leading AI companies build better models through enterprise-grade annotation, validation, and data operations.</p>
@@ -757,29 +758,11 @@
       <p class="ssub" style="margin:16px auto 0;">Headquartered at Hyderabad's T-Hub Innovation Campus. Delivering enterprise-grade data operations across every timezone.</p>
     </div>
     <div class="gc rev">
+      <div class="gsvg" style="background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_blank_without_borders.svg') center center / contain no-repeat; opacity: 0.18;"></div>
       <canvas id="gcvs" width="1200" height="420"></canvas>
-      <svg class="gsvg" viewBox="0 0 1200 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ultra-light grid lines -->
-        <g stroke="#F1F5F9" stroke-width="1.2">
-          <line x1="0" y1="84" x2="1200" y2="84"/><line x1="0" y1="168" x2="1200" y2="168"/>
-          <line x1="0" y1="252" x2="1200" y2="252"/><line x1="0" y1="336" x2="1200" y2="336"/>
-          <line x1="200" y1="0" x2="200" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/>
-          <line x1="600" y1="0" x2="600" y2="420"/><line x1="800" y1="0" x2="800" y2="420"/>
-          <line x1="1000" y1="0" x2="1000" y2="420"/>
-        </g>
-        <!-- Continent outlines (Styled with a clean light grey stroke matching the mockup) -->
-        <g fill="none" stroke="#E2E8F0" stroke-width="1.5">
-          <path d="M120 70 L230 60 L275 95 L260 150 L215 185 L170 178 L130 148 L110 110 Z"/>
-          <path d="M185 210 L245 200 L265 245 L248 325 L215 348 L182 318 L170 268 L178 228 Z"/>
-          <path d="M472 60 L558 55 L578 90 L555 122 L505 132 L462 112 L452 82 Z"/>
-          <path d="M482 152 L556 147 L576 192 L565 282 L535 322 L495 312 L464 262 L452 202 Z"/>
-          <path d="M572 52 L800 42 L840 92 L818 172 L758 200 L678 190 L615 162 L562 122 Z"/>
-          <path d="M818 268 L918 258 L938 308 L908 348 L856 348 L816 318 Z"/>
-        </g>
-      </svg>
       <div class="gleg">
         <div class="gli"><div class="gld" style="background:var(--cyan);"></div>Headquarters</div>
-        <div class="gli"><div class="gld" style="background:var(--amber);"></div>Regional Delivery Hub</div>
+        <div class="gli"><div class="gld" style="background:var(--cyan); border: 2px solid rgba(11,168,211,0.4); box-sizing: border-box; background-clip: padding-box;"></div>Regional Delivery Hub</div>
       </div>
     </div>
   </div>
@@ -963,76 +946,7 @@ const ro = new IntersectionObserver(entries => {
 }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
 revEls.forEach(el => ro.observe(el));
 
-// HERO CANVAS PARTICLES
-(function(){
-  const cv = document.getElementById('hcvs');
-  if (!cv) return;
-  const cx = cv.getContext('2d');
-  let W, H, pts;
-  let mouse = { x: null, y: null };
-
-  function rsz(){ W = cv.width = cv.offsetWidth; H = cv.height = cv.offsetHeight; }
-  function init(){ 
-    pts = Array.from({length:85}, () => ({ 
-      x: Math.random()*W, 
-      y: Math.random()*H, 
-      r: Math.random()*2 + 0.8, 
-      vx: (Math.random()-.5)*0.25, 
-      vy: (Math.random()-.5)*0.25, 
-      a: Math.random()*0.5 + 0.25, 
-      c: Math.random() > 0.65 
-    })); 
-  }
-
-  // Monitor mouse positioning over the Hero area
-  cv.addEventListener('mousemove', (e) => {
-    const rect = cv.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-  cv.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  function draw(){
-    cx.clearRect(0,0,W,H);
-    
-    // Animate particles (no visual circle rendering)
-    pts.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if(p.x<0) p.x=W; if(p.x>W) p.x=0; if(p.y<0) p.y=H; if(p.y>H) p.y=0;
-    });
-
-    // Draw particle-to-particle connections
-    pts.forEach((p,i) => pts.slice(i+1).forEach(q => {
-      const d = Math.hypot(p.x-q.x,p.y-q.y);
-      if(d < 125){ 
-        cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); 
-        cx.strokeStyle=`rgba(11,168,211,${0.14 * (1-d/125)})`; 
-        cx.lineWidth=0.6; 
-        cx.stroke(); 
-      }
-    }));
-
-    // Interactive mouse connections (Constellation web)
-    if (mouse.x !== null) {
-      pts.forEach(p => {
-        const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-        if (d < 160) {
-          cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(mouse.x, mouse.y);
-          cx.strokeStyle = `rgba(11,168,211,${0.25 * (1 - d/160)})`;
-          cx.lineWidth = 0.8;
-          cx.stroke();
-        }
-      });
-    }
-
-    requestAnimationFrame(draw);
-  }
-  window.addEventListener('resize',()=>{rsz();init();});
-  rsz(); init(); draw();
-})();
+// HERO CANVAS PARTICLES - REMOVED
 
 // CTA CANVAS
 (function(){
@@ -1221,11 +1135,11 @@ snEls.forEach(el=>co.observe(el));
       cx.fill(); cx.shadowBlur = 0;
     }
     
-    // Draw hubs (exactly matching the uploaded white background theme)
+    // Draw hubs (cyan styling, no amber)
     cx.globalAlpha = 1.0;
     hubs.forEach(h => {
-      cx.beginPath(); cx.arc(h.x, h.y, 6, 0, Math.PI*2); cx.fillStyle = '#FFBA08'; cx.fill();
-      cx.beginPath(); cx.arc(h.x, h.y, 11, 0, Math.PI*2); cx.strokeStyle = 'rgba(255, 186, 8, 0.4)'; cx.stroke();
+      cx.beginPath(); cx.arc(h.x, h.y, 4, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
+      cx.beginPath(); cx.arc(h.x, h.y, 9, 0, Math.PI*2); cx.strokeStyle = 'rgba(11, 168, 211, 0.4)'; cx.stroke();
       cx.fillStyle = '#0B2545'; cx.font = "600 11px Inter"; cx.fillText(h.name, h.x + 15, h.y + 4);
     });
     
