@@ -207,30 +207,24 @@
     .mvd{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.75; transition: all 0.4s;}
     .mvc:hover .mvd{color:rgba(255,255,255,0.85);}
 
-    /* VALUES - Editorial Accordion */
-    #values{background:#FFFFFF; position: relative;}
+    /* VALUES - Editorial Accordion (Premium Light) */
+    #values{background:var(--navy-panel); position: relative; padding-top: 60px; padding-bottom: 100px;}
     
     .val-split {
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; margin-top: 64px; align-items: start;
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 100px; align-items: start;
     }
     .val-left {
-      position: sticky; top: 40vh; transform: translateY(-50%);
+      position: sticky; top: calc(50vh - 160px);
+      padding-right: 20px;
     }
-    .val-left .eyebrow { text-align: left; }
-    .val-left .stitle { text-align: left; margin-top: 12px; }
-    .val-left .ssub { text-align: left; margin-top: 16px; }
+    .val-left .eyebrow { text-align: left; font-size: 13px; letter-spacing: 0.2em; margin-bottom: 20px; color: #0BA8D3; }
+    .val-left .stitle { text-align: left; margin-top: 0; font-size: clamp(42px, 5vw, 64px); line-height: 1.05; color: #0B2545; }
+    .val-left .ssub { text-align: left; margin-top: 24px; font-size: 18px; color: rgba(14, 31, 62, 0.6); line-height: 1.6; }
     
-    .val-num {
-      font-size: 72px; font-weight: 900; letter-spacing: -0.05em;
-      background: linear-gradient(135deg, #0BA8D3, #00D4FF);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1; margin-top: 24px;
-    }
-    
-    .val-right { display: flex; flex-direction: column; }
+    .val-right { display: flex; flex-direction: column; margin-top: 0; }
     
     .val-row {
-      position: relative; padding: 36px 24px 36px 80px;
+      position: relative; padding: 48px 32px 48px 100px;
       border-bottom: 1px solid rgba(14, 31, 62, 0.08);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: default; overflow: hidden;
@@ -240,56 +234,56 @@
     /* Watermark number */
     .val-row::before {
       content: attr(data-num);
-      position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
-      font-size: 28px; font-weight: 900; letter-spacing: -0.04em;
-      color: rgba(14, 31, 62, 0.06);
+      position: absolute; left: 24px; top: 48px;
+      font-size: 36px; font-weight: 900; letter-spacing: -0.04em;
+      color: rgba(14, 31, 62, 0.05);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      line-height: 1;
     }
     
     /* Hover glow line on left edge */
     .val-row::after {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
       background: linear-gradient(180deg, #0BA8D3, #00D4FF);
       opacity: 0; transition: opacity 0.4s;
-      border-radius: 0 2px 2px 0;
+      border-radius: 0 4px 4px 0;
     }
     
     .val-row:hover {
-      padding-left: 90px;
-      background: rgba(11, 168, 211, 0.02);
+      padding-left: 110px;
+      background: linear-gradient(90deg, rgba(11, 168, 211, 0.05), transparent);
     }
     .val-row:hover::before {
-      color: rgba(11, 168, 211, 0.15);
-      transform: translateY(-50%) scale(1.1);
+      color: rgba(11, 168, 211, 0.25);
+      transform: scale(1.1); left: 30px;
     }
-    .val-row:hover::after { opacity: 1; }
+    .val-row:hover::after { opacity: 1; box-shadow: 0 0 20px rgba(11,168,211,0.5); }
     
-    .val-header { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+    .val-header { display: flex; align-items: center; gap: 24px; margin-bottom: 16px; }
     
     .val-icon {
-      width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
-      background: rgba(14, 31, 62, 0.04); border: 1px solid rgba(14, 31, 62, 0.08);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #0E1F3E;
+      width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+      background: rgba(11, 168, 211, 0.05); border: 1px solid rgba(11, 168, 211, 0.15);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #0BA8D3;
     }
     .val-row:hover .val-icon {
-      background: rgba(11, 168, 211, 0.08); border-color: rgba(11, 168, 211, 0.25);
-      transform: scale(1.1); color: #0BA8D3;
-      box-shadow: 0 0 16px rgba(11, 168, 211, 0.15);
+      background: rgba(11, 168, 211, 0.15); border-color: rgba(11, 168, 211, 0.5);
+      transform: scale(1.15) rotate(5deg); box-shadow: 0 0 24px rgba(11, 168, 211, 0.4);
     }
     
     .val-header .vt {
-      font-size: 20px; font-weight: 700; color: #0E1F3E;
-      transition: color 0.4s; margin-bottom: 0;
+      font-size: 26px; font-weight: 800; color: #0B2545;
+      transition: color 0.4s; margin-bottom: 0; letter-spacing: -0.02em;
     }
-    .val-row:hover .val-header .vt { color: #0BA8D3; }
+    .val-row:hover .val-header .vt { color: #0BA8D3; text-shadow: 0 0 15px rgba(11,168,211,0.2); }
     
     .val-desc {
-      font-size: 14.5px; line-height: 1.7; color: rgba(14, 31, 62, 0.45);
+      font-size: 16.5px; line-height: 1.8; color: rgba(11, 37, 69, 0.75);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      padding-left: 58px;
+      padding-left: 76px;
     }
-    .val-row:hover .val-desc { color: rgba(14, 31, 62, 0.75); }
+    .val-row:hover .val-desc { color: rgba(11, 37, 69, 1); }
     
     @media (max-width: 1024px) {
       .val-split { grid-template-columns: 1fr; gap: 40px; }
@@ -398,13 +392,25 @@
     .sd{font-size:13px;color:var(--grey-dim);}
 
     /* GLOBAL */
-    #global{background:var(--navy-deep);}
-    .gc{margin-top:64px;border-radius:24px;overflow:hidden;background:rgba(11,168,211,0.02);border:1px solid var(--border-sub);}
-    .gsvg{width:100%;height:400px;display:block;}
-    .ldot circle.ring{animation:lp 3s ease-in-out infinite;}
-    @keyframes lp{0%,100%{r:8;opacity:0.4;}50%{r:14;opacity:0;}}
-    .gleg{display:flex;justify-content:center;gap:32px;padding:20px;border-top:1px solid var(--border-sub);}
-    .gli{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--grey-muted);}
+    #global{background:#FFFFFF;}
+    .gc {
+      position: relative; margin-top:64px; border-radius:24px; overflow:hidden;
+      background:#FFFFFF; border:1px solid rgba(14,31,62,0.08);
+      height: 420px;
+    }
+    .gsvg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.06; z-index: 1; pointer-events: none;
+    }
+    #gcvs {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 2; display: block;
+    }
+    .gleg{
+      position: relative; z-index: 3; display:flex; justify-content:center; gap:32px; padding:20px; 
+      border-top:1px solid rgba(14,31,62,0.08); background: #FFFFFF;
+    }
+    .gli{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0E1F3E;}
     .gld{width:10px;height:10px;border-radius:50%;}
 
     /* INDUSTRIES */
@@ -649,7 +655,6 @@
         <p class="eyebrow rev">What Drives Us</p>
         <h2 class="stitle rev d1">Our Core Values</h2>
         <p class="ssub rev d2">The principles that govern every annotation decision, every team hire, and every client relationship.</p>
-        <div class="val-num rev d3">06</div>
       </div>
       <div class="val-right">
         <div class="val-row rev d1" data-num="01">
@@ -730,62 +735,22 @@
       <p class="ssub" style="margin:16px auto 0;">Headquartered at Hyderabad's T-Hub Innovation Campus. Delivering enterprise-grade data operations across every timezone.</p>
     </div>
     <div class="gc rev">
-      <svg class="gsvg" viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="gg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(11,168,211,0.06)"/>
-            <stop offset="100%" stop-color="transparent"/>
-          </radialGradient>
-        </defs>
-        <rect width="1200" height="420" fill="url(#gg)"/>
-        <g stroke="rgba(255,255,255,0.035)" stroke-width="1">
+      <canvas id="gcvs" width="1200" height="420"></canvas>
+      <svg class="gsvg" viewBox="0 0 1200 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="rgba(14,31,62,0.5)" stroke-width="1">
           <line x1="0" y1="84" x2="1200" y2="84"/><line x1="0" y1="168" x2="1200" y2="168"/>
           <line x1="0" y1="252" x2="1200" y2="252"/><line x1="0" y1="336" x2="1200" y2="336"/>
           <line x1="200" y1="0" x2="200" y2="420"/><line x1="400" y1="0" x2="400" y2="420"/>
           <line x1="600" y1="0" x2="600" y2="420"/><line x1="800" y1="0" x2="800" y2="420"/>
           <line x1="1000" y1="0" x2="1000" y2="420"/>
         </g>
-        <g fill="rgba(11,168,211,0.055)" stroke="rgba(11,168,211,0.1)" stroke-width="1">
+        <g fill="none" stroke="rgba(14,31,62,0.8)" stroke-width="1.5">
           <path d="M120 70 L230 60 L275 95 L260 150 L215 185 L170 178 L130 148 L110 110 Z"/>
           <path d="M185 210 L245 200 L265 245 L248 325 L215 348 L182 318 L170 268 L178 228 Z"/>
           <path d="M472 60 L558 55 L578 90 L555 122 L505 132 L462 112 L452 82 Z"/>
           <path d="M482 152 L556 147 L576 192 L565 282 L535 322 L495 312 L464 262 L452 202 Z"/>
           <path d="M572 52 L800 42 L840 92 L818 172 L758 200 L678 190 L615 162 L562 122 Z"/>
           <path d="M818 268 L918 258 L938 308 L908 348 L856 348 L816 318 Z"/>
-        </g>
-        <g stroke="rgba(11,168,211,0.18)" stroke-width="1" fill="none" stroke-dasharray="4,4">
-          <path d="M776 152 Q660 90 512 90"/><path d="M776 152 Q850 185 1045 210"/><path d="M512 90 Q340 140 190 135"/>
-        </g>
-        <!-- HQ: Hyderabad -->
-        <g class="ldot" transform="translate(776,152)">
-          <circle class="ring" cx="0" cy="0" r="8" fill="rgba(11,168,211,0.15)" stroke="rgba(11,168,211,0.5)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="5" fill="var(--cyan)"/>
-          <circle cx="0" cy="0" r="2" fill="white"/>
-          <text x="12" y="-10" font-size="11" fill="rgba(241,245,249,0.85)" font-family="Inter,sans-serif" font-weight="700">Hyderabad HQ</text>
-        </g>
-        <!-- SF -->
-        <g class="ldot" transform="translate(130,140)">
-          <circle class="ring" cx="0" cy="0" r="6" fill="rgba(255,186,8,0.1)" stroke="rgba(255,186,8,0.35)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="4" fill="rgba(255,186,8,0.85)"/>
-          <text x="10" y="-8" font-size="10" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">San Francisco</text>
-        </g>
-        <!-- London -->
-        <g class="ldot" transform="translate(487,76)">
-          <circle class="ring" cx="0" cy="0" r="6" fill="rgba(255,186,8,0.1)" stroke="rgba(255,186,8,0.35)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="4" fill="rgba(255,186,8,0.85)"/>
-          <text x="10" y="-6" font-size="10" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">London</text>
-        </g>
-        <!-- Dubai -->
-        <g class="ldot" transform="translate(680,155)">
-          <circle class="ring" cx="0" cy="0" r="6" fill="rgba(255,186,8,0.1)" stroke="rgba(255,186,8,0.35)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="4" fill="rgba(255,186,8,0.85)"/>
-          <text x="10" y="-6" font-size="10" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">Dubai</text>
-        </g>
-        <!-- Singapore -->
-        <g class="ldot" transform="translate(852,242)">
-          <circle class="ring" cx="0" cy="0" r="6" fill="rgba(255,186,8,0.1)" stroke="rgba(255,186,8,0.35)" stroke-width="1"/>
-          <circle cx="0" cy="0" r="4" fill="rgba(255,186,8,0.85)"/>
-          <text x="10" y="-6" font-size="10" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">Singapore</text>
         </g>
       </svg>
       <div class="gleg">
@@ -1047,6 +1012,155 @@ const co = new IntersectionObserver(entries=>{
   });
 },{threshold:0.3});
 snEls.forEach(el=>co.observe(el));
+
+// GLOBAL MAP CANVAS REBUILD
+(function(){
+  const cv = document.getElementById('gcvs');
+  if (!cv) return;
+  const cx = cv.getContext('2d');
+  
+  const CW = 1200;
+  const CH = 420;
+  let time = 0;
+  let rectW = CW, rectH = CH;
+  let dpr = 1;
+  
+  const hq = {x: 776, y: 152, name: "Hyderabad HQ"};
+  const hubs = [
+    {x: 130, y: 140, name: "San Francisco"},
+    {x: 487, y: 76,  name: "London"},
+    {x: 680, y: 155, name: "Dubai"},
+    {x: 852, y: 242, name: "Singapore"}
+  ];
+
+  let dots = [];
+  let nodes = [];
+  let packets = [];
+  
+  function rsz() {
+    dpr = window.devicePixelRatio || 1;
+    // Get size of the container (gc) to scale canvas accurately
+    let rect = cv.parentElement.getBoundingClientRect();
+    rectW = rect.width;
+    rectH = rect.height;
+    cv.width = rectW * dpr;
+    cv.height = rectH * dpr;
+  }
+
+  function initMap() {
+    dots = [];
+    nodes = [];
+    packets = [];
+    
+    // Procedural continent dots (double for loop, 15px spacing)
+    for(let x=0; x<CW; x+=15) {
+      for(let y=0; y<CH; y+=15) {
+        let wave = Math.sin(x*0.02) * Math.cos(y*0.02) + Math.sin(x*0.01 + y*0.01);
+        let isLand = false;
+        if(x>100 && x<280 && y>50 && y<180) isLand = true; // NA
+        if(x>170 && x<270 && y>190 && y<350) isLand = true; // SA
+        if(x>450 && x<580 && y>50 && y<150) isLand = true; // EU
+        if(x>450 && x<570 && y>150 && y<320) isLand = true; // AF
+        if(x>570 && x<940 && y>40 && y<200) isLand = true; // AS
+        if(x>810 && x<920 && y>250 && y<340) isLand = true; // AU
+        
+        if (isLand && wave > 0.05) {
+          dots.push({x: x+7, y: y+7});
+        }
+      }
+    }
+    
+    // Edge node swarm (15-25 nodes per hub within 12% radius ~ 80px)
+    hubs.forEach(h => {
+      let count = 15 + Math.random()*10;
+      for(let i=0; i<count; i++) {
+        let a = Math.random() * Math.PI * 2;
+        let r = Math.random() * 80 + 10;
+        nodes.push({x: h.x + Math.cos(a)*r, y: h.y + Math.sin(a)*r, hx: h.x, hy: h.y});
+      }
+    });
+  }
+
+  function draw() {
+    cx.clearRect(0, 0, cv.width, cv.height);
+    
+    // Prevent compound scaling by resetting transform matrix explicitly each frame
+    cx.setTransform(rectW/CW * dpr, 0, 0, rectH/CH * dpr, 0, 0);
+    
+    time++;
+    let phase = (time * 0.003) % 1; 
+    let scanX = phase * CW;
+    
+    // Draw dots
+    cx.fillStyle = '#0BA8D3';
+    dots.forEach(d => {
+      let dist = Math.abs(d.x - scanX);
+      let op = 0.03;
+      if (dist < 150) op = 0.2 * (1 - dist/150); // spike to 0.2
+      cx.globalAlpha = Math.max(0.03, op);
+      cx.beginPath(); cx.arc(d.x, d.y, 1.5, 0, Math.PI*2); cx.fill();
+    });
+    
+    // Draw swarm curves
+    cx.globalAlpha = 0.15;
+    cx.lineWidth = 0.5;
+    cx.strokeStyle = '#0BA8D3';
+    cx.fillStyle = '#0BA8D3';
+    nodes.forEach(n => {
+      cx.beginPath();
+      cx.moveTo(n.x, n.y);
+      cx.quadraticCurveTo(n.x + (n.hx-n.x)/2, n.y + (n.hy-n.y)/2 - 15, n.hx, n.hy);
+      cx.stroke();
+      cx.beginPath(); cx.arc(n.x, n.y, 1, 0, Math.PI*2); cx.fill();
+    });
+    
+    // Generate packets
+    if(time % 40 === 0) {
+      let src = hubs[Math.floor(Math.random()*hubs.length)];
+      packets.push({x: src.x, y: src.y, tx: hq.x, ty: hq.y, p: 0, 
+        cp1x: src.x + (hq.x - src.x)*0.5, cp1y: src.y - 120
+      });
+    }
+    
+    // Draw packets using true quadratic bezier interpolation
+    cx.globalAlpha = 1.0;
+    for(let i=packets.length-1; i>=0; i--) {
+      let pk = packets[i];
+      pk.p += 0.01;
+      if(pk.p >= 1) { packets.splice(i, 1); continue; }
+      
+      let u = 1 - pk.p;
+      // Quadratic Bezier Formula: P = u^2*P0 + 2*u*t*P1 + t^2*P2
+      let px = u*u*pk.x + 2*u*pk.p*pk.cp1x + pk.p*pk.p*pk.tx;
+      let py = u*u*pk.y + 2*u*pk.p*pk.cp1y + pk.p*pk.p*pk.ty;
+      
+      cx.beginPath(); cx.arc(px, py, 2.5, 0, Math.PI*2); 
+      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 12; cx.shadowColor = '#0BA8D3'; 
+      cx.fill(); cx.shadowBlur = 0;
+    }
+    
+    // Draw hubs
+    cx.globalAlpha = 1.0;
+    hubs.forEach(h => {
+      cx.beginPath(); cx.arc(h.x, h.y, 5, 0, Math.PI*2); cx.fillStyle = '#FFBA08'; cx.fill();
+      cx.fillStyle = '#0E1F3E'; cx.font = "bold 11px Inter"; cx.fillText(h.name, h.x + 12, h.y + 4);
+    });
+    
+    // Draw HQ
+    cx.beginPath(); cx.arc(hq.x, hq.y, 7, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 16, 0, Math.PI*2); cx.strokeStyle = 'rgba(11,168,211,0.5)'; cx.lineWidth=1; cx.stroke();
+    cx.fillStyle = '#0E1F3E'; cx.font = "bold 13px Inter"; cx.fillText(hq.name, hq.x + 18, hq.y + 5);
+    
+    // Reset transform before next frame just in case
+    cx.setTransform(1, 0, 0, 1, 0, 0);
+    requestAnimationFrame(draw);
+  }
+  
+  window.addEventListener('resize', rsz);
+  rsz();
+  initMap();
+  draw();
+})();
 
 // FOOTER
 fetch('./components/footer.html').then(r=>r.text()).then(h=>{document.getElementById('footer-placeholder').innerHTML=h;});

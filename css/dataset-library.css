@@ -132,23 +132,212 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
+@keyframes dsGridCardBgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .ds-grid-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-sub);
+  background: linear-gradient(120deg, #ffffff, #f4fbff, #ffffff);
+  background-size: 200% 200%;
+  animation: dsGridCardBgShift 8s ease infinite;
+  border: 1px solid rgba(11, 168, 211, 0.1);
   border-radius: 24px;
   padding: 32px;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   contain: layout paint;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 380px;
-  box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
+  height: 440px !important; /* fixes crammed feeling */
+  box-shadow: 10px 10px 30px rgba(14, 31, 62, 0.03), -10px -10px 30px #ffffff;
+  position: relative;
+  z-index: 1;
 }
 .ds-grid-card:hover {
-  transform: translateY(-6px) translateZ(0);
-  border-color: var(--cyan);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+  border-color: rgba(11, 168, 211, 0.4);
+  box-shadow: 20px 20px 40px rgba(14, 31, 62, 0.08), -20px -20px 40px #ffffff, 0 10px 20px rgba(11, 168, 211, 0.1);
+  z-index: 10;
+}
+
+/* Glowing pseudo-border on hover */
+.ds-grid-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(45deg, #0BA8D3, transparent, #0E1F3E);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.ds-grid-card:hover::before { opacity: 1; }
+
+/* Internal Metrics styling (Targeting the 4 stat boxes) */
+.ds-grid-card .metric-chip {
+  background: rgba(14, 31, 62, 0.02) !important;
+  border: 1px solid rgba(14, 31, 62, 0.04) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 12px 16px !important;
+  cursor: default;
+}
+.ds-grid-card:hover .metric-chip {
+  background: rgba(11, 168, 211, 0.03) !important;
+  border-color: rgba(11, 168, 211, 0.15) !important;
+}
+.ds-grid-card .metric-chip:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: #ffffff !important;
+  border-color: #0BA8D3 !important;
+  box-shadow: 0 8px 20px rgba(11, 168, 211, 0.15) !important;
+  z-index: 2;
+  position: relative;
+}
+.ds-grid-card .metric-val {
+  transition: all 0.3s ease;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+.ds-grid-card .metric-chip:hover .metric-val {
+  background: linear-gradient(90deg, #0E1F3E, #0BA8D3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button & Link styling overrides */
+.ds-grid-card > div:last-child > a:first-child {
+  transition: all 0.4s ease;
+  display: inline-block;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+.ds-grid-card:hover > div:last-child > a:first-child {
+  transform: translateX(8px);
+  color: #0BA8D3 !important;
+  text-shadow: 0 0 10px rgba(11, 168, 211, 0.3);
+}
+
+.ds-grid-card > div:last-child > a:last-child {
+  transition: all 0.4s ease;
+  background: linear-gradient(135deg, #0E1F3E, #0BA8D3) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(14, 31, 62, 0.1) !important;
+  padding: 12px 24px !important;
+  font-size: 13px !important;
+}
+.ds-grid-card:hover > div:last-child > a:last-child {
+  box-shadow: 0 8px 25px rgba(11, 168, 211, 0.4) !important;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* --- ULTIMATE INTERIOR PREMIUM OVERRIDES --- */
+
+/* Top badges (Video / Category) */
+.ds-grid-card > div:first-child > div:first-child > span:first-child {
+  background: linear-gradient(135deg, #0BA8D3, #00D4FF) !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 4px 12px rgba(11, 168, 211, 0.3) !important;
+  padding: 6px 16px !important;
+  border-radius: 100px !important;
+  font-size: 11px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase;
+}
+.ds-grid-card > div:first-child > div:first-child > span:last-child {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #0E1F3E !important;
+  background: rgba(14, 31, 62, 0.04) !important;
+  padding: 6px 16px !important;
+  border-radius: 100px !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* The Title */
+.ds-grid-card .card-title {
+  background: linear-gradient(135deg, #0E1F3E 0%, #0BA8D3 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 21px !important;
+  font-weight: 900 !important;
+  margin-top: 24px !important;
+  margin-bottom: 16px !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.5px !important;
+  text-align: left !important;
+}
+
+/* The Description */
+.ds-grid-card .card-desc {
+  background: linear-gradient(to right, rgba(11, 168, 211, 0.05), transparent) !important;
+  border-left: 4px solid #0BA8D3 !important;
+  padding: 16px 20px !important;
+  border-radius: 0 16px 16px 0 !important;
+  margin-bottom: 28px !important;
+  font-size: 13.5px !important;
+  color: #334155 !important;
+  line-height: 1.6 !important;
+  text-align: left !important;
+}
+
+/* The Metric Grid & Chips */
+.ds-grid-card .metric-chip {
+  background: #ffffff !important;
+  border: none !important;
+  box-shadow: inset 0 2px 10px rgba(14, 31, 62, 0.03), 0 2px 5px rgba(14, 31, 62, 0.02) !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.ds-grid-card .metric-chip::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: #0BA8D3;
+  transition: width 0.3s ease;
+}
+.ds-grid-card .metric-lbl {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #64748B !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  margin-bottom: 8px !important;
+  position: relative;
+  z-index: 2;
+}
+.ds-grid-card .metric-val {
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #0E1F3E !important;
+  letter-spacing: -0.5px !important;
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease !important;
+}
+
+/* Interior Hover Effects */
+.ds-grid-card:hover .metric-chip {
+  box-shadow: 0 10px 20px rgba(11, 168, 211, 0.08) !important;
+  transform: translateY(-4px) !important;
+}
+.ds-grid-card:hover .metric-chip::before {
+  width: 100%;
+  opacity: 0.05;
+}
+.ds-grid-card:hover .metric-val {
+  color: #0BA8D3 !important;
 }
 
 /* DATASET DETAILS MODAL */
@@ -182,6 +371,34 @@ body {
   color: var(--text-secondary);
   font-size: 24px;
   cursor: pointer;
+}
+
+/* --- PREMIUM FILTER CHIP OVERRIDES --- */
+.filter-chip {
+  background: linear-gradient(135deg, #f8fafc, #ffffff) !important;
+  border: 1px solid rgba(14, 31, 62, 0.1) !important;
+  color: #475569 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 10px 24px !important;
+  border-radius: 100px !important;
+  box-shadow: 0 4px 10px rgba(14, 31, 62, 0.03), inset 0 2px 5px #ffffff !important;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* Bouncy spring transition */
+  cursor: pointer;
+}
+.filter-chip:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: #ffffff !important;
+  color: #0BA8D3 !important;
+  border-color: rgba(11, 168, 211, 0.3) !important;
+  box-shadow: 0 10px 25px rgba(11, 168, 211, 0.15), inset 0 2px 5px #ffffff !important;
+}
+.filter-chip.active {
+  background: linear-gradient(135deg, #0E1F3E, #050b14) !important;
+  border-color: #0BA8D3 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 30px rgba(11, 168, 211, 0.3) !important;
+  transform: translateY(-2px) scale(1.08);
 }
 
 @media(max-width: 900px) {

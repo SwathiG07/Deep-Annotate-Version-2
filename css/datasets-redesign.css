@@ -21,23 +21,106 @@ body {
 /* Category header adjustments */
 .category-header {
   border-bottom: 1px solid var(--border-sub);
+  position: relative;
+}
+.category-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, #0BA8D3, transparent);
+  animation: shimmerLine 3s infinite;
+}
+@keyframes shimmerLine {
+  0% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(200px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 0.8; }
+}
+
+@keyframes dsCardEntrance {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes dsCardBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Card hover transitions */
 .ds-card {
-  background: var(--navy-panel);
+  background: linear-gradient(120deg, #ffffff, #f4fbff, #ffffff);
+  background-size: 200% 200%;
+  animation: dsCardBg 8s ease infinite, dsCardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
   border: 1px solid var(--border-sub);
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 10px 10px 30px rgba(14, 31, 62, 0.03), -10px -10px 30px #ffffff;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   contain: layout paint;
   will-change: transform, box-shadow;
   backface-visibility: hidden;
+  /* Overrides for less crowded layout */
+  flex: 0 0 380px !important;
+  height: 440px !important;
+  padding: 32px !important;
+  margin-right: 16px; /* extra breathing room between cards */
+  position: relative;
+  z-index: 1;
 }
+.ds-card:nth-child(1) { animation-delay: 0.1s; }
+.ds-card:nth-child(2) { animation-delay: 0.25s; }
+.ds-card:nth-child(3) { animation-delay: 0.4s; }
+.ds-card:nth-child(4) { animation-delay: 0.55s; }
+.ds-card:nth-child(5) { animation-delay: 0.7s; }
+
+.carousel-track-wrapper {
+  gap: 32px !important;
+  padding: 10px 10px 40px !important;
+}
+
 .ds-card:hover {
-  transform: translateY(-5px) translateZ(0);
-  border-color: rgba(14, 31, 62, 0.2);
-  box-shadow: 0 16px 36px rgba(14, 31, 62, 0.08), 0 12px 32px rgba(14, 31, 62, 0.05);
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+  border-color: rgba(11, 168, 211, 0.4);
+  box-shadow: 20px 20px 40px rgba(14, 31, 62, 0.08), -20px -20px 40px #ffffff, 0 10px 20px rgba(11, 168, 211, 0.1);
+  z-index: 10;
+}
+
+/* Glowing pseudo-border on hover */
+.ds-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(45deg, #0BA8D3, transparent, #0E1F3E);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.ds-card:hover::before { opacity: 1; }
+
+/* Internal Card Animations */
+.ds-card h4 {
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+.ds-card:hover h4 {
+  color: #0BA8D3 !important;
+  transform: translateX(4px);
+}
+.ds-card .ds-card-link {
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+.ds-card:hover .ds-card-link {
+  transform: translateX(8px);
+  color: #0BA8D3 !important;
+  text-shadow: 0 0 10px rgba(11, 168, 211, 0.3);
 }
 
 /* Filter Chip controls */

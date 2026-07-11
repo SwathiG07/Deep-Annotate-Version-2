@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 /* css/services.css - Enterprise AI Services Page Stylesheet */
 
 /* Global resets and normalizations */
@@ -938,4 +939,170 @@ a {
   transform: translateY(-1px);
   background: #0c1c36;
   box-shadow: 0 6px 18px rgba(14, 31, 62, 0.25);
+}
+
+/* =========================================
+   NAVBAR CSS (Ensuring Stability)
+========================================= */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 68px;
+  background: #FFFFFF; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(14, 31, 62, 0.08);
+  transition: background .3s, border-color .3s;
+}
+#navbar.scrolled { background: rgba(255, 255, 255, 0.95); border-bottom-color: rgba(14, 31, 62, 0.12); }
+.nav-brand { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 700; letter-spacing: -.04em; }
+
+/* =========================================
+   PREMIUM ENHANCEMENTS & OVERRIDES
+========================================= */
+
+/* Deep Black Typography for White Themes */
+.theme-white .srv-title, 
+.theme-white .srv-feature-text strong {
+  color: #060e1c !important;
+}
+.theme-white .srv-desc,
+.theme-white .srv-feature-text {
+  color: rgba(6, 14, 28, 0.75) !important;
+}
+.theme-white .illustration-card {
+  box-shadow: 0 20px 40px rgba(14, 31, 62, 0.08) !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+.theme-white .illustration-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(11, 168, 211, 0.15) !important;
+  border-color: rgba(11, 168, 211, 0.4) !important;
+}
+
+/* Deep Black Glassmorphism for Dark Theme Cards */
+.theme-dark .illustration-card {
+  background-color: rgba(6, 14, 28, 0.6) !important;
+  backdrop-filter: blur(16px);
+  border-color: rgba(37, 224, 226, 0.15) !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+}
+.theme-dark .illustration-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(11, 168, 211, 0.15) !important;
+  border-color: rgba(11, 168, 211, 0.4) !important;
+}
+
+/* Zig-Zag Layout */
+#sec-physical .srv-grid, #sec-video .srv-grid, #sec-rlhf .srv-grid {
+  display: flex;
+  flex-direction: row-reverse;
+}
+#sec-physical .srv-visual, #sec-video .srv-visual, #sec-rlhf .srv-visual {
+  width: 45%;
+}
+#sec-physical .srv-content, #sec-video .srv-content, #sec-rlhf .srv-content {
+  width: 55%;
+}
+
+/* Hover Animations for Static Cards */
+.cap-card {
+  background-color: #060e1c !important; /* Deep Black */
+}
+.cap-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(11, 168, 211, 0.15) !important;
+}
+
+.sector-card {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px);
+}
+.sector-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(11, 168, 211, 0.1) !important;
+}
+
+.format-card {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px);
+}
+.format-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(11, 168, 211, 0.1) !important;
+}
+
+.quality-card {
+  background-color: #060e1c !important; /* Deep Black */
+}
+.quality-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 32px rgba(11, 168, 211, 0.15) !important;
+}
+
+
+
+/* Levitating Animation for SVGs (Colors untouched!) */
+@keyframes float-svg {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+.illustration-svg-container svg {
+  animation: float-svg 6s ease-in-out infinite;
+}
+
+/* =========================================
+   PREMIUM FONTS FOR MODALITY SECTIONS
+========================================= */
+.srv-title {
+  font-family: 'Outfit', sans-serif !important;
+  letter-spacing: -0.02em !important;
+}
+.srv-desc,
+.srv-feature-text {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+/* =========================================
+   EXTREME CSS ANIMATIONS (NO-JS)
+========================================= */
+
+/* 1. Moving "Matrix" Grid Background */
+@keyframes pan-matrix {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 80px 80px; }
+}
+.grid-bg {
+  animation: pan-matrix 6s linear infinite !important;
+}
+
+
+
+
+
+/* 4. Radar Ripple on Workflow Badges */
+@keyframes radar-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(11, 168, 211, 0.5); }
+  70% { box-shadow: 0 0 0 25px rgba(11, 168, 211, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(11, 168, 211, 0); }
+}
+.workflow-badge {
+  animation: radar-pulse 2.5s infinite !important;
+}
+
+/* 5. Intense Magnetic Hover on All Cards */
+.cap-card, .sector-card, .format-card, .quality-card {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.cap-card:hover, .sector-card:hover, .format-card:hover, .quality-card:hover {
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 24px 48px rgba(11, 168, 211, 0.2), inset 0 0 20px rgba(11, 168, 211, 0.05) !important;
+  border-color: #25E0E2 !important;
+}
+
+/* 6. Fix Section Spacing & Faint Borders */
+.srv-capabilities, .srv-sectors, .srv-workflow, .srv-formats, .srv-quality {
+  border-top: none !important;
+}
+.srv-sectors, .srv-workflow {
+  padding-top: 20px !important;
 }

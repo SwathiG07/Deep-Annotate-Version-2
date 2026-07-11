@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepAnnotate &#8212; Full-Time Careers</title>
+  <meta name="theme-color" content="#060e1c"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/footer.css"/>
+  <style>
+    :root {
+      --navy: #0E1F3E;
+      --navy-deep: #060e1c;
+      --cyan: #0BA8D3;
+      --cyan-light: #25E0E2;
+      --grey: #F1F5F9;
+      --grey-muted: rgba(241, 245, 249, 0.7);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy-deep);color:var(--grey);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    a{text-decoration:none;color:inherit;}
+
+    /* NAVBAR */
+    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:#FFFFFF;backdrop-filter:blur(24px);border-bottom:1px solid rgba(14,31,62,0.08);}
+    
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+    }
+    .nav-brand img {
+      height: 46px;
+      width: auto;
+      display: block;
+    }
+    .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+    .nav-links a{font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);transition:color .25s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--cyan);}
+    .nav-cta{display:inline-flex;align-items:center;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow:0 4px 12px rgba(14,31,62,0.1); border: 1px solid #0E1F3E;}
+    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(14,31,62,0.2); background:transparent; color:#0E1F3E;}
+
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 48px;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, rgba(37, 224, 226, 0.1), transparent 60%);
+      text-align: center;
+    }
+
+    .msg-wrap {
+      max-width: 600px;
+    }
+    
+    .msg-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+    }
+
+    .msg-headline {
+      font-family: "Outfit", sans-serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .msg-sub {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--grey-muted);
+      margin-bottom: 48px;
+    }
+
+    .msg-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 40px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cyan-light);
+      border: 1px solid rgba(37, 224, 226, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+    }
+    .msg-btn:hover {
+      background: rgba(37, 224, 226, 0.1);
+      border-color: var(--cyan-light);
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="./index.html" class="nav-brand"><img src="./DeepAnnototate-1.png" alt="DeepAnnotate Logo" style="height: 52px; width: auto;" /></a>
+    <ul class="nav-links">
+      <li><a href="./services.html">Services</a></li>
+      <li><a href="./how-it-works.html">How It Works</a></li>
+      <li><a href="./datasets.html">Datasets</a></li>
+      <li><a href="./case-studies.html">Case Studies</a></li>
+      <li><a href="./blog.html">Blog</a></li>
+      <li><a href="./careers.html" class="active">Careers</a></li>
+      <li><a href="./about.html">About</a></li>
+    </ul>
+    <a href="./contact.html" class="nav-cta">Connect to us</a>
+  </nav>
+
+  <section id="hero">
+    <div class="msg-wrap">
+      <div class="msg-icon">🏢</div>
+      <h1 class="msg-headline">No Current Opportunities</h1>
+      <p class="msg-sub">We are fully staffed for our corporate and engineering teams at this time. However, our Data Forage network is always looking for new domain experts.</p>
+      <a href="./careers.html" class="msg-btn">&larr; Back to Careers</a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('./components/footer.html').then(r=>r.text()).then(h=>{document.getElementById('footer-placeholder').innerHTML=h;});
+  </script>
+
+</body>
+</html>

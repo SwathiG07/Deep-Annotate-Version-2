@@ -1,6 +1,7 @@
 // dataset-library.js - Premium Dataset Library Interaction Engine
 export function initDatasetLibrary() {
   initSearch();
+  initFilters();
   initModalDetails();
   initCategoryAnchors();
 }
@@ -14,30 +15,57 @@ function initSearch() {
   if (!searchInput) return;
 
   searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
+    applyAllFilters();
+  });
+}
 
-    sections.forEach(sec => {
-      let visibleInSec = 0;
-      const secCards = sec.querySelectorAll('.ds-grid-card');
+// 1.5 Handle Filter Chips
+function initFilters() {
+  const chips = document.querySelectorAll('.filter-chip');
+  if (!chips.length) return;
+  
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      applyAllFilters();
+    });
+  });
+}
+
+function applyAllFilters() {
+  const searchInput = document.getElementById('lib-search');
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+  const activeChip = document.querySelector('.filter-chip.active');
+  const filterVal = activeChip ? activeChip.getAttribute('data-filter') : 'all';
+  
+  const sections = document.querySelectorAll('.dataset-section');
+  
+  sections.forEach(sec => {
+    let visibleInSec = 0;
+    const secCards = sec.querySelectorAll('.ds-grid-card');
+    
+    secCards.forEach(card => {
+      const title = card.querySelector('.card-title').textContent.toLowerCase();
+      const desc = card.querySelector('.card-desc').textContent.toLowerCase();
+      const tags = card.getAttribute('data-tags') || '';
       
-      secCards.forEach(card => {
-        const title = card.querySelector('.card-title').textContent.toLowerCase();
-        const desc = card.querySelector('.card-desc').textContent.toLowerCase();
-        
-        if (title.includes(query) || desc.includes(query)) {
-          card.style.display = 'flex';
-          visibleInSec++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (visibleInSec > 0 || !query) {
-        sec.style.display = 'block';
+      const matchesSearch = title.includes(query) || desc.includes(query);
+      const matchesFilter = filterVal === 'all' || tags.includes(filterVal);
+      
+      if (matchesSearch && matchesFilter) {
+        card.style.display = 'flex';
+        visibleInSec++;
       } else {
-        sec.style.display = 'none';
+        card.style.display = 'none';
       }
     });
+
+    if (visibleInSec > 0) {
+      sec.style.display = 'block';
+    } else {
+      sec.style.display = 'none';
+    }
   });
 }
 

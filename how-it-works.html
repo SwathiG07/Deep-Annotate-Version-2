@@ -34,7 +34,17 @@
       padding: 6px 16px;
       border-radius: 100px;
     }
-  </style>
+  
+    /* DROPDOWN MENU */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: rgba(6, 14, 28, 0.95); min-width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 0; z-index: 1000; backdrop-filter: blur(24px); margin-top: 10px; }
+    .nav-dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block; animation: fadeUp 0.3s ease; }
+    .nav-dropdown-content a { color: #F1F5F9 !important; padding: 10px 20px !important; display: block; font-size: 13.5px !important; transition: all 0.2s; font-weight: 500 !important; }
+    .nav-dropdown-content a:hover { background: rgba(255,255,255,0.05); color: #25E0E2 !important; padding-left: 24px !important; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
 </head>
 <body>
 
@@ -47,7 +57,9 @@
     <li><a href="./datasets.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Datasets</a></li>
     <li><a href="./case-studies.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Case Studies</a></li>
     <li><a href="./blog.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">Blog</a></li>
-    <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">About</a></li>
+    
+      <li><a href="./careers.html">Careers</a></li>
+      <li><a href="./about.html" style="font-size:13.5px;font-weight:500;color:rgba(14, 31, 62, 0.75);">About</a></li>
   </ul>
   <a href="./contact.html" class="nav-cta" style="display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow: 0 4px 12px rgba(14,31,62,0.15); border:1px solid #0E1F3E;">Connect to us</a>
 </nav>
@@ -60,20 +72,32 @@
   <div class="section-wrap">
     <!-- Rotating cube illustration -->
     <div class="wireframe-cube">
-      <div class="cube-face face-front"></div>
-      <div class="cube-face face-back"></div>
-      <div class="cube-face face-left"></div>
-      <div class="cube-face face-right"></div>
-      <div class="cube-face face-top"></div>
-      <div class="cube-face face-bottom"></div>
+      <div class="cube-face face-front">
+        <img class="cube-media logo-face" src="./DeepAnnototate-1-removebg-preview.png" alt="Brand Logo" />
+      </div>
+      <div class="cube-face face-back">
+        <img class="cube-media" src="./hero_robot.png" alt="Robotics" />
+      </div>
+      <div class="cube-face face-left">
+        <img class="cube-media" src="./airbus_a380.png" alt="Aviation and Manufacturing" />
+      </div>
+      <div class="cube-face face-right">
+        <img class="cube-media" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80" alt="Healthcare AI" />
+      </div>
+      <div class="cube-face face-top">
+        <img class="cube-media" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&q=80" alt="Automotive AI" />
+      </div>
+      <div class="cube-face face-bottom">
+        <img class="cube-media" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="Neural Networks" />
+      </div>
     </div>
     
     <div class="story-badge" style="margin-bottom:20px;">OUR PROCESS</div>
     <h1 class="hiw-hero-title">From Brief to Dataset<br><span>in 5 Days.</span></h1>
     <p class="hiw-hero-sub">Every enterprise dataset follows the same structured workflow to ensure predictable quality, complete transparency, and rapid delivery.</p>
     <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-      <a href="./contact.html" class="btn btn-amber" style="padding:14px 32px;font-size:15px;">Start Your 5-Day Pilot</a>
-      <a href="./contact.html" class="btn btn-outline-cyan" style="padding:14px 32px;font-size:15px;">Book a Call</a>
+      <a href="./contact.html" class="btn-primary-b2b" style="background:#0BA8D3;color:#fff;border-radius:100px;padding:14px 32px;font-weight:700;text-decoration:none;">Start Your 5-Day Pilot</a>
+      <a href="./contact.html" class="btn-secondary-b2b" style="border:2px solid #0BA8D3;color:#0BA8D3;border-radius:100px;padding:14px 32px;font-weight:700;text-decoration:none;">Book a Call</a>
     </div>
   </div>
 </header>
@@ -369,20 +393,20 @@
       <p class="story-badge" style="margin-bottom:12px;">SLA AT A GLANCE</p>
       <h2 style="font-size:36px;font-weight:800;">Enterprise Commitments</h2>
     </div>
-    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:40px;text-align:center;">
-      <div>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:30px;text-align:center;">
+      <div class="metric-card">
         <div class="metric-num" data-metric="accuracy" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0%</div>
         <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">QA Accuracy</p>
       </div>
-      <div>
+      <div class="metric-card">
         <div class="metric-num" data-metric="delivery" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0</div>
-        <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">Pilot Delivery</p>
+        <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">Pilot Delivery (Days)</p>
       </div>
-      <div>
+      <div class="metric-card">
         <div class="metric-num" data-metric="response" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0</div>
-        <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">SLA Response</p>
+        <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">SLA Response (Hrs)</p>
       </div>
-      <div>
+      <div class="metric-card">
         <div class="metric-num" data-metric="reannotation" style="font-size:54px;font-weight:800;color:var(--cyan);margin-bottom:8px;">0%</div>
         <p style="font-size:14px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.04em;">Reannotation Guarantee</p>
       </div>

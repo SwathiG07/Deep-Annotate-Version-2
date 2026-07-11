@@ -200,48 +200,63 @@
 
     /* FEATURED BOX */
     .featured-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-sub);
-      border-radius: 24px;
-      padding: 44px;
+      background: linear-gradient(135deg, #ffffff, #f4fbff);
+      border: 1px solid rgba(11, 168, 211, 0.2);
+      border-radius: 32px;
+      padding: 48px 56px;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--shadow-premium);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+      box-shadow: 0 20px 40px rgba(14, 31, 62, 0.05);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       text-align: left;
-      will-change: transform, box-shadow;
     }
     .featured-box::before {
       content: '';
       position: absolute;
       top: -50px;
       right: -50px;
-      width: 200px;
-      height: 200px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(11, 168, 211, 0.12), transparent 70%);
+      background: radial-gradient(circle, rgba(11, 168, 211, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+    .featured-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      padding: 2px;
+      background: linear-gradient(45deg, var(--cyan), transparent, var(--navy));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.5s ease;
       pointer-events: none;
     }
     .featured-box:hover {
-      transform: translateY(-6px) translateZ(0);
-      box-shadow: 0 20px 40px rgba(14, 31, 62, 0.08), var(--shadow-glow);
-      border-color: rgba(11, 168, 211, 0.3);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 30px 60px rgba(11, 168, 211, 0.12);
     }
+    .featured-box:hover::after { opacity: 1; }
     .featured-title {
-      font-size: clamp(22px, 2.5vw, 28px);
-      font-weight: 800;
-      line-height: 1.25;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 900;
+      line-height: 1.2;
       color: var(--navy);
-      margin: 12px 0 14px;
-      letter-spacing: -0.02em;
+      margin: 16px 0 20px;
+      letter-spacing: -0.03em;
     }
     .featured-desc {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--text-secondary);
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      border-left: 4px solid var(--cyan);
+      padding-left: 20px;
     }
 
     /* STICKY FILTER CAPSULE */
@@ -252,41 +267,53 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(14, 31, 62, 0.08);
-      padding: 10px 24px;
+      padding: 8px 16px;
       border-radius: 100px;
       box-shadow: 0 10px 30px rgba(14, 31, 62, 0.04);
       margin-bottom: 56px;
-      gap: 20px;
+      gap: 12px;
     }
     .chips-wrapper {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 6px;
+      flex: 1;
+      align-items: center;
+    }
+    .chips-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
     .filter-chip {
-      padding: 8px 18px;
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+      border: 1px solid rgba(14, 31, 62, 0.1);
+      color: #475569;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 8px 14px;
       border-radius: 100px;
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(14, 31, 62, 0.03), inset 0 2px 5px #ffffff;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .filter-chip:hover {
-      color: var(--navy);
-      background: rgba(14, 31, 62, 0.05);
+      transform: translateY(-4px) scale(1.05);
+      background: #ffffff;
+      color: var(--cyan);
+      border-color: rgba(11, 168, 211, 0.3);
+      box-shadow: 0 10px 25px rgba(11, 168, 211, 0.15), inset 0 2px 5px #ffffff;
     }
     .filter-chip.active {
-      background: var(--navy);
-      border-color: var(--navy);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(14, 31, 62, 0.1);
+      background: linear-gradient(135deg, var(--navy), #050b14);
+      border-color: var(--cyan);
+      color: #ffffff;
+      box-shadow: 0 8px 30px rgba(11, 168, 211, 0.3);
+      transform: translateY(-2px) scale(1.08);
     }
     
     /* SEARCH INPUT */
@@ -294,7 +321,8 @@
       position: relative;
       display: flex;
       align-items: center;
-      min-width: 240px;
+      min-width: 180px;
+      max-width: 240px;
     }
     .search-input {
       width: 100%;
@@ -302,7 +330,7 @@
       border-radius: 100px;
       border: 1px solid rgba(14, 31, 62, 0.12);
       background: rgba(255, 255, 255, 0.6);
-      font-size: 13.5px;
+      font-size: 12px;
       color: var(--navy);
       outline: none;
       transition: all 0.25s;
@@ -348,7 +376,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 310px;
+      min-height: 340px; /* Replaced fixed height so it can grow */
       box-shadow: var(--shadow-premium);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
       will-change: transform, box-shadow;
@@ -358,7 +386,7 @@
     /* Highlight card (spans 3 columns, horizontal style) */
     .blog-card.highlight {
       grid-column: span 3;
-      height: 310px;
+      min-height: 340px;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(11, 168, 211, 0.05));
       border-color: rgba(11, 168, 211, 0.15);
     }
@@ -366,7 +394,7 @@
     /* Double size highlight card (spans 4 columns) */
     .blog-card.double-wide {
       grid-column: span 4;
-      height: 310px;
+      min-height: 340px;
     }
 
     .blog-card:hover {
@@ -377,33 +405,46 @@
     .blog-tag {
       font-size: 11px;
       font-weight: 800;
-      color: var(--cyan);
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--navy), var(--cyan));
+      padding: 6px 16px;
+      border-radius: 100px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
-      display: inline-block;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(11, 168, 211, 0.3);
     }
     .blog-tag-red {
-      color: var(--red);
+      background: linear-gradient(135deg, var(--cyan), var(--navy));
     }
     .blog-title {
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.35;
-      color: var(--navy);
-      margin: 0 0 12px 0;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.3;
+      background: linear-gradient(135deg, var(--navy) 30%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 16px 0;
       text-align: left;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
     }
     .blog-card.highlight .blog-title {
-      font-size: 21px;
+      font-size: 24px;
     }
     .blog-desc {
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-secondary);
-      line-height: 1.55;
-      margin: 0 0 20px 0;
+      line-height: 1.6;
+      margin: 0 0 24px 0;
       text-align: left;
+      border-left: 3px solid rgba(11, 168, 211, 0.3);
+      padding-left: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .blog-link {
       font-size: 13.5px;
@@ -447,50 +488,73 @@
 
     /* NEWSLETTER SECTION */
     .newsletter-sec {
-      padding: 80px 0;
-      background: rgba(255, 255, 255, 0.5);
-      border-top: 1px solid var(--border-sub);
-      border-bottom: 1px solid var(--border-sub);
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--navy), #050b14);
+      position: relative;
+      overflow: hidden;
       text-align: center;
+    }
+    .newsletter-sec::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(11, 168, 211, 0.1), transparent 50%);
+      pointer-events: none;
     }
     .newsletter-form {
       display: flex;
-      gap: 12px;
-      max-width: 480px;
-      margin: 24px auto 0;
+      gap: 16px;
+      max-width: 500px;
+      margin: 32px auto 0;
+      position: relative;
+      z-index: 2;
     }
     .newsletter-input {
       flex-grow: 1;
-      padding: 14px 20px;
+      padding: 16px 24px;
       border-radius: 100px;
-      background: #FFFFFF;
-      border: 1.5px solid rgba(14, 31, 62, 0.15);
-      color: var(--navy);
-      font-size: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(11, 168, 211, 0.3);
+      color: #ffffff;
+      font-size: 15px;
       outline: none;
-      transition: border-color 0.25s;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
+    .newsletter-input::placeholder { color: rgba(255, 255, 255, 0.5); }
     .newsletter-input:focus {
+      background: rgba(255, 255, 255, 0.1);
       border-color: var(--cyan);
+      box-shadow: 0 0 20px rgba(11, 168, 211, 0.3);
     }
     .newsletter-btn {
-      padding: 14px 28px;
-      background: var(--navy);
-      color: #FFFFFF;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--cyan), #00D4FF);
+      color: var(--navy);
       border: none;
       border-radius: 100px;
-      font-weight: 700;
-      font-size: 14px;
+      font-weight: 800;
+      font-size: 15px;
       cursor: pointer;
-      transition: background 0.25s, transform 0.25s;
-      box-shadow: 0 4px 12px rgba(14, 31, 62, 0.1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(11, 168, 211, 0.4);
     }
     .newsletter-btn:hover {
-      background: var(--cyan);
-      color: var(--navy);
-      transform: translateY(-1px);
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(11, 168, 211, 0.6);
     }
-  </style>
+  
+    /* DROPDOWN MENU */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: rgba(6, 14, 28, 0.95); min-width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px 0; z-index: 1000; backdrop-filter: blur(24px); margin-top: 10px; }
+    .nav-dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; }
+    .nav-dropdown:hover .nav-dropdown-content { display: block; animation: fadeUp 0.3s ease; }
+    .nav-dropdown-content a { color: #F1F5F9 !important; padding: 10px 20px !important; display: block; font-size: 13.5px !important; transition: all 0.2s; font-weight: 500 !important; }
+    .nav-dropdown-content a:hover { background: rgba(255,255,255,0.05); color: #25E0E2 !important; padding-left: 24px !important; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+</style>
 </head>
 <body>
 
@@ -503,7 +567,9 @@
     <li><a href="./datasets.html">Datasets</a></li>
     <li><a href="./case-studies.html">Case Studies</a></li>
     <li><a href="./blog.html" class="active">Blog</a></li>
-    <li><a href="./about.html">About</a></li>
+    
+      <li><a href="./careers.html">Careers</a></li>
+      <li><a href="./about.html">About</a></li>
   </ul>
   <a href="./contact.html" class="nav-cta">Connect to us</a>
 </nav>
@@ -547,9 +613,9 @@
 
 <!-- Newsletter capture -->
 <section class="newsletter-sec">
-  <div class="sw" style="max-width: 600px;">
-    <h3 style="font-size: 26px; font-weight: 800; color: var(--navy); letter-spacing: -0.02em;">Stay Ahead of the Curve</h3>
-    <p style="color: var(--text-secondary); font-size: 15px; margin-top: 8px;">Get the latest insights on machine learning dataset operations delivered directly to your inbox.</p>
+  <div class="sw" style="max-width: 640px; position: relative; z-index: 2;">
+    <h3 style="font-size: 32px; font-weight: 900; color: #ffffff; letter-spacing: -0.03em;">Stay Ahead of the Curve</h3>
+    <p style="color: rgba(255, 255, 255, 0.7); font-size: 16px; margin-top: 12px; line-height: 1.6;">Get the latest insights on machine learning dataset operations delivered directly to your inbox. No spam, just pure signal.</p>
     <form class="newsletter-form">
       <input type="email" placeholder="Enter your business email" class="newsletter-input" required/>
       <button type="submit" class="newsletter-btn">Subscribe</button>
