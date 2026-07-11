@@ -420,19 +420,21 @@
     .gc {
       position: relative; margin-top:64px; border-radius:24px; overflow:hidden;
       background:#FFFFFF; border:1px solid rgba(14,31,62,0.08);
-      height: 420px;
+      height: 480px;
     }
     .gsvg {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 1.0; z-index: 1; pointer-events: none;
+      z-index: 1; pointer-events: none;
     }
     #gcvs {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 2; display: block;
     }
     .gleg{
-      position: relative; z-index: 3; display:flex; justify-content:center; gap:32px; padding:20px; 
-      border-top:1px solid rgba(14,31,62,0.08); background: #FFFFFF;
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 3; display:flex; justify-content:center; gap:32px; padding:10px 28px;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
+      border-radius: 100px; border: 1px solid rgba(14,31,62,0.08);
     }
     .gli{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0E1F3E;}
     .gld{width:10px;height:10px;border-radius:50%;}
@@ -758,11 +760,11 @@
       <p class="ssub" style="margin:16px auto 0;">Headquartered at Hyderabad's T-Hub Innovation Campus. Delivering enterprise-grade data operations across every timezone.</p>
     </div>
     <div class="gc rev">
-      <div class="gsvg" style="background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_blank_without_borders.svg') center center / contain no-repeat; opacity: 0.18;"></div>
-      <canvas id="gcvs" width="1200" height="420"></canvas>
+      <div class="gsvg" style="background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_blank_without_borders.svg') center center / 90% auto no-repeat; opacity: 0.12;"></div>
+      <canvas id="gcvs" width="1200" height="480"></canvas>
       <div class="gleg">
-        <div class="gli"><div class="gld" style="background:var(--cyan);"></div>Headquarters</div>
-        <div class="gli"><div class="gld" style="background:var(--cyan); border: 2px solid rgba(11,168,211,0.4); box-sizing: border-box; background-clip: padding-box;"></div>Regional Delivery Hub</div>
+        <div class="gli"><div class="gld" style="background:#0BA8D3;"></div>Headquarters</div>
+        <div class="gli"><div class="gld" style="background:#0BA8D3; opacity:0.5;"></div>Regional Delivery Hub</div>
       </div>
     </div>
   </div>
@@ -1002,7 +1004,7 @@ snEls.forEach(el=>co.observe(el));
   const cx = cv.getContext('2d');
   
   const CW = 1200;
-  const CH = 420;
+  const CH = 480;
   let time = 0;
   let rectW = CW, rectH = CH;
   let dpr = 1;
