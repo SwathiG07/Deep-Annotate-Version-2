@@ -996,7 +996,7 @@ const co = new IntersectionObserver(entries=>{
 },{threshold:0.3});
 snEls.forEach(el=>co.observe(el));
 
-// GLOBAL MAP CANVAS
+// GLOBAL MAP CANVAS — Premium White Theme
 (function(){
   const cv = document.getElementById('gcvs');
   if (!cv) return;
@@ -1008,7 +1008,6 @@ snEls.forEach(el=>co.observe(el));
   let rectW = CW, rectH = CH;
   let dpr = 1;
   
-  // Hub positions matching a Mercator-style projection
   const hq = {x: 700, y: 210, name: "Hyderabad HQ"};
   const hubs = [
     {x: 165, y: 175, name: "San Francisco"},
@@ -1019,6 +1018,8 @@ snEls.forEach(el=>co.observe(el));
   ];
 
   let packets = [];
+  let nodes = [];   // particle swarm dots
+  let bgDots = [];   // background dot grid
   
   function rsz() {
     dpr = window.devicePixelRatio || 1;
@@ -1029,219 +1030,325 @@ snEls.forEach(el=>co.observe(el));
     cv.height = rectH * dpr;
   }
 
-  // Draw continent shapes as filled paths
-  function drawContinents() {
-    cx.globalAlpha = 1.0;
-    cx.fillStyle = 'rgba(14, 31, 62, 0.06)';
+  function init() {
+    packets = [];
+    nodes = [];
+    bgDots = [];
     
-    // North America
-    cx.beginPath();
-    cx.moveTo(80, 60); cx.lineTo(120, 45); cx.lineTo(200, 40); cx.lineTo(250, 55);
-    cx.lineTo(280, 80); cx.lineTo(290, 110); cx.lineTo(275, 130); cx.lineTo(260, 155);
-    cx.lineTo(240, 180); cx.lineTo(225, 200); cx.lineTo(205, 215); cx.lineTo(185, 210);
-    cx.lineTo(175, 195); cx.lineTo(160, 210); cx.lineTo(145, 225); cx.lineTo(140, 240);
-    cx.lineTo(155, 255); cx.lineTo(170, 260); cx.lineTo(190, 255); cx.lineTo(200, 245);
-    cx.lineTo(195, 230); cx.lineTo(210, 220); cx.lineTo(220, 230);
-    cx.lineTo(215, 245); cx.lineTo(210, 255); cx.lineTo(195, 268);
-    cx.lineTo(175, 275); cx.lineTo(155, 270); cx.lineTo(130, 255);
-    cx.lineTo(115, 235); cx.lineTo(108, 210); cx.lineTo(100, 190);
-    cx.lineTo(85, 165); cx.lineTo(70, 135); cx.lineTo(65, 105); cx.lineTo(70, 80);
-    cx.closePath(); cx.fill();
+    // Subtle background dot grid
+    for(let x = 0; x < CW; x += 24) {
+      for(let y = 0; y < CH; y += 24) {
+        bgDots.push({x: x + 12, y: y + 12});
+      }
+    }
     
-    // Greenland
+    // Particle swarm nodes around each hub & HQ
+    const allPoints = [...hubs, hq];
+    allPoints.forEach(h => {
+      let count = 12 + Math.floor(Math.random() * 8);
+      for(let i = 0; i < count; i++) {
+        let a = Math.random() * Math.PI * 2;
+        let r = Math.random() * 55 + 12;
+        nodes.push({
+          ox: h.x + Math.cos(a) * r,
+          oy: h.y + Math.sin(a) * r,
+          hx: h.x, hy: h.y,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.005 + Math.random() * 0.01,
+          drift: 3 + Math.random() * 5
+        });
+      }
+    });
+  }
+
+  // ── Continent Silhouettes (detailed paths) ──
+  function poly(pts) {
     cx.beginPath();
-    cx.moveTo(310, 25); cx.lineTo(350, 20); cx.lineTo(380, 30); cx.lineTo(375, 65);
-    cx.lineTo(355, 80); cx.lineTo(325, 75); cx.lineTo(310, 55);
-    cx.closePath(); cx.fill();
-    
-    // South America
-    cx.beginPath();
-    cx.moveTo(230, 275); cx.lineTo(260, 270); cx.lineTo(285, 280); cx.lineTo(300, 300);
-    cx.lineTo(305, 325); cx.lineTo(300, 350); cx.lineTo(290, 375); cx.lineTo(275, 395);
-    cx.lineTo(260, 410); cx.lineTo(250, 420); cx.lineTo(245, 435);
-    cx.lineTo(240, 445); cx.lineTo(230, 440); cx.lineTo(225, 425);
-    cx.lineTo(230, 400); cx.lineTo(235, 380); cx.lineTo(240, 355);
-    cx.lineTo(235, 335); cx.lineTo(228, 315); cx.lineTo(220, 295);
-    cx.closePath(); cx.fill();
-    
-    // Europe
-    cx.beginPath();
-    cx.moveTo(455, 50); cx.lineTo(480, 45); cx.lineTo(510, 50); cx.lineTo(530, 55);
-    cx.lineTo(555, 65); cx.lineTo(570, 80); cx.lineTo(565, 95); cx.lineTo(555, 110);
-    cx.lineTo(540, 120); cx.lineTo(525, 130); cx.lineTo(510, 135);
-    cx.lineTo(495, 140); cx.lineTo(480, 145); cx.lineTo(470, 140);
-    cx.lineTo(460, 130); cx.lineTo(450, 115); cx.lineTo(445, 100);
-    cx.lineTo(440, 85); cx.lineTo(445, 65);
-    cx.closePath(); cx.fill();
-    
-    // UK/Ireland
-    cx.beginPath();
-    cx.moveTo(445, 75); cx.lineTo(455, 70); cx.lineTo(460, 80); cx.lineTo(458, 95);
-    cx.lineTo(450, 100); cx.lineTo(442, 90);
-    cx.closePath(); cx.fill();
-    
-    // Africa
-    cx.beginPath();
-    cx.moveTo(470, 165); cx.lineTo(500, 155); cx.lineTo(535, 155); cx.lineTo(560, 165);
-    cx.lineTo(580, 180); cx.lineTo(595, 200); cx.lineTo(605, 225); cx.lineTo(605, 250);
-    cx.lineTo(600, 275); cx.lineTo(590, 300); cx.lineTo(575, 325); cx.lineTo(560, 345);
-    cx.lineTo(545, 360); cx.lineTo(530, 370); cx.lineTo(520, 365);
-    cx.lineTo(515, 350); cx.lineTo(510, 330); cx.lineTo(500, 310);
-    cx.lineTo(490, 290); cx.lineTo(480, 265); cx.lineTo(470, 240);
-    cx.lineTo(465, 215); cx.lineTo(462, 190);
-    cx.closePath(); cx.fill();
-    
-    // Middle East / Arabian Peninsula
-    cx.beginPath();
-    cx.moveTo(580, 160); cx.lineTo(610, 155); cx.lineTo(640, 170); cx.lineTo(650, 190);
-    cx.lineTo(645, 210); cx.lineTo(630, 225); cx.lineTo(615, 225); cx.lineTo(600, 215);
-    cx.lineTo(590, 195); cx.lineTo(580, 175);
-    cx.closePath(); cx.fill();
-    
-    // India / South Asia
-    cx.beginPath();
-    cx.moveTo(650, 145); cx.lineTo(680, 135); cx.lineTo(720, 130); cx.lineTo(740, 140);
-    cx.lineTo(745, 160); cx.lineTo(735, 185); cx.lineTo(720, 210); cx.lineTo(705, 235);
-    cx.lineTo(690, 255); cx.lineTo(680, 268); cx.lineTo(670, 260);
-    cx.lineTo(665, 240); cx.lineTo(660, 215); cx.lineTo(652, 190);
-    cx.lineTo(648, 165);
-    cx.closePath(); cx.fill();
-    
-    // Russia / Central & East Asia
-    cx.beginPath();
-    cx.moveTo(565, 45); cx.lineTo(620, 35); cx.lineTo(700, 30); cx.lineTo(780, 28);
-    cx.lineTo(850, 32); cx.lineTo(920, 40); cx.lineTo(960, 55); cx.lineTo(975, 75);
-    cx.lineTo(970, 95); cx.lineTo(955, 110); cx.lineTo(940, 120);
-    cx.lineTo(920, 125); cx.lineTo(890, 120); cx.lineTo(860, 110);
-    cx.lineTo(830, 105); cx.lineTo(800, 100); cx.lineTo(770, 95);
-    cx.lineTo(740, 90); cx.lineTo(710, 85); cx.lineTo(680, 82);
-    cx.lineTo(650, 78); cx.lineTo(620, 72); cx.lineTo(595, 68);
-    cx.lineTo(575, 60);
-    cx.closePath(); cx.fill();
-    
-    // China / SE Asia mainland
-    cx.beginPath();
-    cx.moveTo(770, 120); cx.lineTo(810, 110); cx.lineTo(850, 115); cx.lineTo(880, 130);
-    cx.lineTo(900, 150); cx.lineTo(910, 175); cx.lineTo(900, 195);
-    cx.lineTo(880, 210); cx.lineTo(855, 225); cx.lineTo(830, 240);
-    cx.lineTo(810, 255); cx.lineTo(795, 268); cx.lineTo(780, 275);
-    cx.lineTo(770, 265); cx.lineTo(765, 245); cx.lineTo(760, 225);
-    cx.lineTo(755, 200); cx.lineTo(752, 175); cx.lineTo(755, 150);
-    cx.lineTo(760, 135);
-    cx.closePath(); cx.fill();
-    
-    // Japan
-    cx.beginPath();
-    cx.moveTo(925, 120); cx.lineTo(935, 115); cx.lineTo(945, 125); cx.lineTo(948, 145);
-    cx.lineTo(942, 165); cx.lineTo(935, 175); cx.lineTo(925, 170); cx.lineTo(920, 155);
-    cx.lineTo(918, 140);
-    cx.closePath(); cx.fill();
-    
-    // Indonesia / Philippines
-    cx.beginPath();
-    cx.moveTo(820, 280); cx.lineTo(840, 275); cx.lineTo(870, 280); cx.lineTo(900, 290);
-    cx.lineTo(920, 300); cx.lineTo(935, 310); cx.lineTo(925, 320);
-    cx.lineTo(900, 318); cx.lineTo(870, 312); cx.lineTo(845, 305);
-    cx.lineTo(825, 295);
-    cx.closePath(); cx.fill();
-    
-    // Australia
-    cx.beginPath();
-    cx.moveTo(860, 340); cx.lineTo(900, 330); cx.lineTo(940, 330); cx.lineTo(975, 340);
-    cx.lineTo(1000, 355); cx.lineTo(1010, 375); cx.lineTo(1005, 400);
-    cx.lineTo(990, 420); cx.lineTo(970, 430); cx.lineTo(945, 435);
-    cx.lineTo(920, 430); cx.lineTo(900, 420); cx.lineTo(880, 405);
-    cx.lineTo(865, 385); cx.lineTo(855, 365);
+    cx.moveTo(pts[0][0], pts[0][1]);
+    for(let i = 1; i < pts.length; i++) cx.lineTo(pts[i][0], pts[i][1]);
     cx.closePath(); cx.fill();
   }
 
+  function drawContinents() {
+    cx.fillStyle = '#E8ECF2';
+    cx.globalAlpha = 1.0;
+
+    // ─ North America (Alaska → Canada → US → Mexico → Central America) ─
+    poly([
+      [30,52],[42,40],[60,32],[82,28],[105,30],[115,38],[108,48],[100,58],
+      [98,68],[102,75],[108,82],[115,88],[122,95],[128,102],[135,110],
+      [140,118],[148,128],[155,138],[160,148],[164,158],[168,168],[172,178],
+      [175,188],[180,198],[188,210],[196,218],[205,228],[212,235],[220,242],
+      [228,248],[232,255],[230,262],[225,268],[218,272],
+      [212,268],[205,262],[198,258],[190,252],[182,248],[175,242],
+      [168,238],[162,235],[158,230],[160,222],
+      [172,215],[178,208],[175,198],[168,188],
+      [158,180],[148,175],[140,172],
+      [132,168],[125,162],[120,155],[118,148],
+      [120,140],[125,135],[132,128],[138,118],
+      [140,108],[138,100],[132,95],[125,92],
+      [120,88],[118,82],[122,75],
+      [130,68],[140,62],[148,55],[155,48],
+      [160,42],[168,38],[178,35],[192,32],
+      [208,30],[225,28],[240,26],[255,25],
+      [268,28],[278,32],[288,38],[296,46],
+      [302,55],[306,65],[308,78],[305,88],
+      [298,95],[290,100],[282,108],[278,118],
+      [275,128],[272,138],[268,148],[262,158],
+      [255,165],[248,168],[240,165],[232,158],
+      [225,148],[218,140],[210,132],
+      [202,125],[195,118],[188,112],
+      [180,105],[172,98],[165,90],
+      [155,82],[145,75],[132,68],[118,62],
+      [105,58],[90,55],[72,52],[55,48],[40,48]
+    ]);
+    
+    // ─ Greenland ─
+    poly([
+      [320,18],[338,12],[358,10],[375,14],[385,22],[390,35],[388,50],
+      [382,62],[372,72],[360,78],[345,80],[332,75],[322,65],[315,52],
+      [312,38],[315,25]
+    ]);
+
+    // ─ South America ─
+    poly([
+      [222,272],[232,268],[245,265],[258,268],[270,275],[280,282],
+      [290,292],[298,305],[302,318],[304,332],[302,348],[298,362],
+      [292,375],[285,388],[278,398],[270,408],[262,418],[256,428],
+      [250,438],[245,445],[240,448],[235,445],[232,438],[230,428],
+      [228,418],[228,405],[230,392],[234,378],[238,362],[240,348],
+      [240,332],[238,318],[234,305],[228,292],[222,282]
+    ]);
+
+    // ─ Europe (Scandinavia + mainland + Iberian + Italy) ─
+    poly([
+      [440,58],[448,48],[458,42],[470,38],[482,36],[495,38],[508,42],
+      [518,48],[528,55],[538,62],[548,68],[558,72],[565,78],
+      [568,88],[565,98],[558,108],[548,115],[538,122],[528,128],
+      [518,132],[508,136],[498,140],[488,142],[478,142],
+      [470,140],[462,135],[455,128],[448,120],[442,112],
+      [438,102],[436,92],[436,82],[438,72],[440,62]
+    ]);
+
+    // ─ UK & Ireland ─
+    poly([[435,72],[442,65],[450,62],[456,68],[458,78],[456,88],[452,95],[445,98],[438,92],[434,82]]);
+    poly([[428,78],[432,72],[436,75],[435,82],[430,85]]);
+
+    // ─ Scandinavia ─
+    poly([
+      [478,28],[488,22],[498,20],[508,22],[515,28],[520,38],[518,50],
+      [512,58],[505,62],[498,58],[492,52],[488,45],[482,38]
+    ]);
+
+    // ─ Africa ─
+    poly([
+      [458,172],[468,165],[480,160],[492,155],[505,152],[518,152],[530,155],
+      [542,160],[555,168],[565,178],[572,188],[578,200],[582,215],
+      [585,230],[588,248],[590,265],[588,282],[585,298],[580,312],
+      [572,325],[565,335],[555,345],[545,355],[535,362],[525,368],
+      [518,370],[512,368],[508,362],[505,352],[502,340],[498,328],
+      [495,315],[490,302],[485,288],[480,275],[475,262],
+      [470,248],[465,235],[462,222],[458,208],[455,195],[455,182]
+    ]);
+
+    // ─ Madagascar ─
+    poly([[592,322],[598,318],[602,325],[600,338],[595,345],[590,340],[588,332]]);
+
+    // ─ Arabian Peninsula ─
+    poly([
+      [575,162],[588,158],[600,158],[612,162],[622,170],[630,180],
+      [635,192],[638,205],[635,218],[628,228],[618,232],[608,228],
+      [598,220],[590,210],[585,198],[580,185],[575,172]
+    ]);
+
+    // ─ India (triangle) ─
+    poly([
+      [645,142],[658,135],[672,130],[688,128],[702,130],[715,135],
+      [728,142],[738,152],[742,165],[740,180],[735,195],
+      [725,210],[715,225],[705,238],[695,250],[685,260],
+      [678,265],[672,262],[668,252],[665,240],[662,228],
+      [658,215],[655,202],[652,188],[648,175],[645,162],[644,152]
+    ]);
+
+    // ─ Sri Lanka ─
+    poly([[695,272],[702,268],[706,275],[704,282],[698,285],[694,280]]);
+
+    // ─ Russia / Northern Asia ─
+    poly([
+      [560,48],[580,42],[605,35],[632,30],[660,26],[690,24],[720,22],
+      [752,20],[785,20],[818,22],[848,25],[878,30],[905,38],
+      [928,45],[948,55],[962,68],[972,82],[975,95],[970,105],
+      [960,112],[948,118],[935,120],[920,118],[905,115],
+      [888,112],[870,108],[852,105],[832,102],[812,100],
+      [792,98],[772,95],[752,92],[732,88],[712,85],
+      [692,82],[672,78],[652,75],[632,72],[612,68],
+      [592,65],[575,60],[565,55]
+    ]);
+
+    // ─ China / East Asia mainland ─
+    poly([
+      [745,128],[762,118],[780,112],[800,108],[820,110],[840,115],
+      [858,122],[875,132],[888,145],[898,160],[905,178],[905,195],
+      [898,210],[888,225],[875,238],[858,250],[842,260],
+      [825,268],[810,272],[798,270],[788,265],[778,258],
+      [770,248],[762,238],[758,225],[755,210],[752,195],
+      [750,180],[748,165],[745,150],[742,138]
+    ]);
+
+    // ─ SE Asia mainland (Vietnam, Thailand, Myanmar) ─
+    poly([
+      [762,245],[772,238],[782,242],[790,252],[795,265],[798,278],
+      [795,290],[788,298],[778,302],[770,298],[765,288],[762,275],[760,260]
+    ]);
+
+    // ─ Japan (4 islands) ─
+    poly([[912,112],[920,108],[928,112],[932,122],[935,135],[938,148],[935,162],[930,172],[922,175],[916,168],[912,155],[910,142],[910,128]]);
+    poly([[940,125],[948,120],[952,128],[950,138],[945,142],[940,135]]);
+
+    // ─ Philippines ─
+    poly([[892,258],[898,252],[904,258],[905,270],[900,278],[894,275],[890,268]]);
+
+    // ─ Indonesia archipelago (multiple islands) ─
+    poly([[808,298],[822,292],[838,290],[855,295],[868,302],[880,308],[888,315],[882,322],[868,320],[852,315],[838,310],[822,305],[812,302]]);
+    poly([[892,312],[905,308],[918,312],[925,320],[918,325],[905,322],[895,318]]);
+    poly([[932,318],[942,315],[950,320],[948,328],[940,330],[932,325]]);
+
+    // ─ Australia ─
+    poly([
+      [855,345],[872,338],[892,332],[912,328],[932,328],[952,332],
+      [970,340],[985,350],[998,362],[1005,378],[1008,395],
+      [1005,410],[998,422],[988,432],[975,438],[960,442],
+      [945,442],[930,438],[915,432],[902,422],[892,412],
+      [882,400],[875,388],[868,375],[862,362],[858,352]
+    ]);
+
+    // ─ New Zealand ─
+    poly([[1018,408],[1025,402],[1030,410],[1028,420],[1022,425],[1016,418]]);
+    poly([[1022,428],[1028,425],[1032,432],[1030,440],[1025,442],[1020,435]]);
+  }
+
+  // ── Draw ──
   function draw() {
     cx.clearRect(0, 0, cv.width, cv.height);
     cx.setTransform(rectW/CW * dpr, 0, 0, rectH/CH * dpr, 0, 0);
-    
     time++;
-    
-    // 1. Draw continents as background
+
+    // 1. Subtle dot grid background
+    cx.globalAlpha = 0.25;
+    cx.fillStyle = '#CBD5E1';
+    bgDots.forEach(d => {
+      cx.beginPath(); cx.arc(d.x, d.y, 0.8, 0, Math.PI*2); cx.fill();
+    });
+
+    // 2. Continent silhouettes
     drawContinents();
-    
-    // 2. Draw curved connection lines from hubs to HQ
-    cx.globalAlpha = 0.5;
-    cx.lineWidth = 1.2;
-    cx.strokeStyle = 'rgba(11, 168, 211, 0.45)';
+
+    // 3. Particle swarm nodes around hubs (subtle floating dots)
+    cx.globalAlpha = 0.35;
+    cx.fillStyle = '#0BA8D3';
+    nodes.forEach(n => {
+      let x = n.ox + Math.sin(time * n.speed + n.phase) * n.drift;
+      let y = n.oy + Math.cos(time * n.speed * 0.8 + n.phase) * n.drift * 0.6;
+      cx.beginPath(); cx.arc(x, y, 1.2, 0, Math.PI*2); cx.fill();
+      // Faint trail line to hub
+      cx.beginPath(); cx.moveTo(x, y);
+      cx.lineTo(n.hx + (x - n.hx) * 0.3, n.hy + (y - n.hy) * 0.3);
+      cx.strokeStyle = 'rgba(11,168,211,0.08)'; cx.lineWidth = 0.5; cx.stroke();
+    });
+
+    // 4. Glowing cyan bezier arcs connecting hubs → HQ
     hubs.forEach(h => {
-      cx.beginPath();
-      cx.moveTo(h.x, h.y);
       let cp1x = h.x + (hq.x - h.x) * 0.4;
       let cp1y = Math.min(h.y, hq.y) - 80 - Math.abs(h.x - hq.x) * 0.08;
-      cx.quadraticCurveTo(cp1x, cp1y, hq.x, hq.y);
-      cx.stroke();
+      // Outer glow
+      cx.globalAlpha = 0.12;
+      cx.lineWidth = 4;
+      cx.strokeStyle = '#0BA8D3';
+      cx.beginPath(); cx.moveTo(h.x, h.y);
+      cx.quadraticCurveTo(cp1x, cp1y, hq.x, hq.y); cx.stroke();
+      // Core line
+      cx.globalAlpha = 0.55;
+      cx.lineWidth = 1.2;
+      cx.strokeStyle = '#0BA8D3';
+      cx.beginPath(); cx.moveTo(h.x, h.y);
+      cx.quadraticCurveTo(cp1x, cp1y, hq.x, hq.y); cx.stroke();
     });
-    
-    // 3. Generate data packets
-    if(time % 35 === 0) {
+
+    // 5. Generate data packets
+    if(time % 40 === 0) {
       let src = hubs[Math.floor(Math.random()*hubs.length)];
       let cp1x = src.x + (hq.x - src.x)*0.4;
       let cp1y = Math.min(src.y, hq.y) - 80 - Math.abs(src.x - hq.x) * 0.08;
       packets.push({x: src.x, y: src.y, tx: hq.x, ty: hq.y, p: 0, cp1x, cp1y});
     }
-    
-    // 4. Draw flowing packets
+
+    // 6. Animated flowing packets along arcs
     cx.globalAlpha = 1.0;
-    for(let i=packets.length-1; i>=0; i--) {
+    for(let i = packets.length - 1; i >= 0; i--) {
       let pk = packets[i];
-      pk.p += 0.01;
+      pk.p += 0.008;
       if(pk.p >= 1) { packets.splice(i, 1); continue; }
-      
       let u = 1 - pk.p;
       let px = u*u*pk.x + 2*u*pk.p*pk.cp1x + pk.p*pk.p*pk.tx;
       let py = u*u*pk.y + 2*u*pk.p*pk.cp1y + pk.p*pk.p*pk.ty;
-      
-      cx.beginPath(); cx.arc(px, py, 3, 0, Math.PI*2); 
-      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 12; cx.shadowColor = '#0BA8D3'; 
+      // Glow
+      cx.beginPath(); cx.arc(px, py, 6, 0, Math.PI*2);
+      cx.fillStyle = 'rgba(11,168,211,0.15)'; cx.fill();
+      // Core
+      cx.beginPath(); cx.arc(px, py, 2.5, 0, Math.PI*2);
+      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 10; cx.shadowColor = '#0BA8D3';
       cx.fill(); cx.shadowBlur = 0;
     }
-    
-    // 5. Draw regional hubs (amber/yellow dots like reference)
+
+    // 7. Regional hub markers (bright yellow with glow — matching reference)
     cx.globalAlpha = 1.0;
     cx.shadowBlur = 0;
     hubs.forEach(h => {
-      // Outer glow ring
-      cx.beginPath(); cx.arc(h.x, h.y, 10, 0, Math.PI*2);
-      cx.fillStyle = 'rgba(255, 186, 8, 0.15)'; cx.fill();
-      // Hub dot
-      cx.beginPath(); cx.arc(h.x, h.y, 5, 0, Math.PI*2);
-      cx.fillStyle = '#FFBA08'; cx.fill();
+      // Outer glow
+      cx.beginPath(); cx.arc(h.x, h.y, 12, 0, Math.PI*2);
+      cx.fillStyle = 'rgba(255, 186, 8, 0.12)'; cx.fill();
+      // Middle ring
+      cx.beginPath(); cx.arc(h.x, h.y, 7, 0, Math.PI*2);
+      cx.fillStyle = 'rgba(255, 186, 8, 0.25)'; cx.fill();
+      // Core dot
+      cx.beginPath(); cx.arc(h.x, h.y, 4, 0, Math.PI*2);
+      cx.fillStyle = '#FFBA08'; cx.shadowBlur = 8; cx.shadowColor = 'rgba(255,186,8,0.6)';
+      cx.fill(); cx.shadowBlur = 0;
       // Label
-      cx.fillStyle = 'rgba(14, 31, 62, 0.7)'; cx.font = "600 11px Inter";
-      cx.fillText(h.name, h.x + 14, h.y + 4);
+      cx.fillStyle = '#0B2545'; cx.font = "600 11px Inter";
+      cx.fillText(h.name, h.x + 16, h.y + 4);
     });
-    
-    // 6. Draw HQ (large glowing cyan dot like reference)
+
+    // 8. HQ dot (large pulsing cyan — matching reference)
     cx.globalAlpha = 1.0;
+    let pulse = 0.5 + 0.5 * Math.sin(time * 0.04);
     // Outer pulse ring
-    let pulse = 0.3 + 0.2 * Math.sin(time * 0.05);
-    cx.beginPath(); cx.arc(hq.x, hq.y, 22, 0, Math.PI*2);
-    cx.fillStyle = `rgba(11, 168, 211, ${pulse * 0.15})`; cx.fill();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 24 + pulse * 4, 0, Math.PI*2);
+    cx.fillStyle = `rgba(11, 168, 211, ${0.06 + pulse * 0.04})`; cx.fill();
     // Middle ring
-    cx.beginPath(); cx.arc(hq.x, hq.y, 14, 0, Math.PI*2);
-    cx.fillStyle = 'rgba(11, 168, 211, 0.2)'; cx.fill();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 16, 0, Math.PI*2);
+    cx.fillStyle = 'rgba(11, 168, 211, 0.15)'; cx.fill();
+    // Inner ring
+    cx.beginPath(); cx.arc(hq.x, hq.y, 10, 0, Math.PI*2);
+    cx.fillStyle = 'rgba(11, 168, 211, 0.3)'; cx.fill();
     // Core dot
-    cx.beginPath(); cx.arc(hq.x, hq.y, 7, 0, Math.PI*2);
-    cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 15; cx.shadowColor = '#0BA8D3'; cx.fill();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 6, 0, Math.PI*2);
+    cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 18; cx.shadowColor = '#0BA8D3'; cx.fill();
     cx.shadowBlur = 0;
     // White center
-    cx.beginPath(); cx.arc(hq.x, hq.y, 3, 0, Math.PI*2);
+    cx.beginPath(); cx.arc(hq.x, hq.y, 2.5, 0, Math.PI*2);
     cx.fillStyle = '#FFFFFF'; cx.fill();
     // Label
-    cx.fillStyle = 'rgba(14, 31, 62, 0.85)'; cx.font = "bold 13px Inter";
-    cx.fillText(hq.name, hq.x + 28, hq.y + 5);
-    
+    cx.fillStyle = '#0B2545'; cx.font = "bold 13px Inter";
+    cx.fillText(hq.name, hq.x + 30, hq.y + 5);
+
     cx.setTransform(1, 0, 0, 1, 0, 0);
     requestAnimationFrame(draw);
   }
   
-  window.addEventListener('resize', rsz);
+  window.addEventListener('resize', () => { rsz(); init(); });
   rsz();
+  init();
   draw();
 })();
 
