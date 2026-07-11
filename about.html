@@ -416,27 +416,24 @@
     .sd{font-size:13px;color:rgba(14, 31, 62, 0.6);}
 
     /* GLOBAL */
-    #global{background:#FFFFFF;}
+    #global{background:#0B1829;}
+    #global .stitle{color:#FFFFFF !important;}
+    #global .eyebrow{color:#0BA8D3 !important;}
+    #global .ssub{color:rgba(255,255,255,0.55) !important;}
     .gc {
       position: relative; margin-top:64px; border-radius:24px; overflow:hidden;
-      background:#FFFFFF; border:1px solid rgba(14,31,62,0.08);
+      background:#0B1829; border:1px solid rgba(11,168,211,0.08);
       height: 480px;
-    }
-    .gsvg {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 1; pointer-events: none;
     }
     #gcvs {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 2; display: block;
     }
     .gleg{
-      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-      z-index: 3; display:flex; justify-content:center; gap:32px; padding:10px 28px;
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
-      border-radius: 100px; border: 1px solid rgba(14,31,62,0.08);
+      position: absolute; bottom: 24px; left: 32px;
+      z-index: 3; display:flex; gap:24px; padding:0;
     }
-    .gli{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#0E1F3E;}
+    .gli{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);}
     .gld{width:10px;height:10px;border-radius:50%;}
 
     /* INDUSTRIES */
@@ -760,11 +757,10 @@
       <p class="ssub" style="margin:16px auto 0;">Headquartered at Hyderabad's T-Hub Innovation Campus. Delivering enterprise-grade data operations across every timezone.</p>
     </div>
     <div class="gc rev">
-      <div class="gsvg" style="background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_blank_without_borders.svg') center center / 90% auto no-repeat; opacity: 0.12;"></div>
       <canvas id="gcvs" width="1200" height="480"></canvas>
       <div class="gleg">
-        <div class="gli"><div class="gld" style="background:#0BA8D3;"></div>Headquarters</div>
-        <div class="gli"><div class="gld" style="background:#0BA8D3; opacity:0.5;"></div>Regional Delivery Hub</div>
+        <div class="gli"><div class="gld" style="background:#0BA8D3; box-shadow:0 0 8px rgba(11,168,211,0.6);"></div>HQ (Hyderabad)</div>
+        <div class="gli"><div class="gld" style="background:#FFBA08;"></div>Regional Hubs</div>
       </div>
     </div>
   </div>
@@ -997,7 +993,7 @@ const co = new IntersectionObserver(entries=>{
 },{threshold:0.3});
 snEls.forEach(el=>co.observe(el));
 
-// GLOBAL MAP CANVAS REBUILD
+// GLOBAL MAP CANVAS — DARK THEME WITH CONTINENT SILHOUETTES
 (function(){
   const cv = document.getElementById('gcvs');
   if (!cv) return;
@@ -1009,22 +1005,19 @@ snEls.forEach(el=>co.observe(el));
   let rectW = CW, rectH = CH;
   let dpr = 1;
   
-  const hq = {x: 776, y: 152, name: "Hyderabad HQ"};
+  const hq = {x: 776, y: 172, name: "Hyderabad HQ"};
   const hubs = [
-    {x: 130, y: 140, name: "San Francisco"},
-    {x: 487, y: 76,  name: "London"},
-    {x: 680, y: 155, name: "Dubai"},
-    {x: 852, y: 242, name: "Singapore"},
-    {x: 955, y: 120, name: "Tokyo"}
+    {x: 135, y: 155, name: "San Francisco"},
+    {x: 500, y: 85,  name: "London"},
+    {x: 670, y: 175, name: "Dubai"},
+    {x: 870, y: 265, name: "Singapore"},
+    {x: 975, y: 125, name: "Tokyo"}
   ];
 
-  let dots = [];
-  let nodes = [];
   let packets = [];
   
   function rsz() {
     dpr = window.devicePixelRatio || 1;
-    // Get size of the container (gc) to scale canvas accurately
     let rect = cv.parentElement.getBoundingClientRect();
     rectW = rect.width;
     rectH = rect.height;
@@ -1032,133 +1025,200 @@ snEls.forEach(el=>co.observe(el));
     cv.height = rectH * dpr;
   }
 
-  function initMap() {
-    dots = [];
-    nodes = [];
-    packets = [];
+  // Draw filled continent silhouettes
+  function drawContinents() {
+    cx.fillStyle = 'rgba(255,255,255,0.055)';
     
-    // Procedural continent dots (double for loop, 15px spacing)
-    for(let x=0; x<CW; x+=15) {
-      for(let y=0; y<CH; y+=15) {
-        let wave = Math.sin(x*0.02) * Math.cos(y*0.02) + Math.sin(x*0.01 + y*0.01);
-        let isLand = false;
-        if(x>100 && x<280 && y>50 && y<180) isLand = true; // NA
-        if(x>170 && x<270 && y>190 && y<350) isLand = true; // SA
-        if(x>450 && x<580 && y>50 && y<150) isLand = true; // EU
-        if(x>450 && x<570 && y>150 && y<320) isLand = true; // AF
-        if(x>570 && x<940 && y>40 && y<200) isLand = true; // AS
-        if(x>810 && x<920 && y>250 && y<340) isLand = true; // AU
-        
-        if (isLand && wave > 0.05) {
-          dots.push({x: x+7, y: y+7});
-        }
-      }
-    }
+    // North America
+    cx.beginPath();
+    cx.moveTo(85,60); cx.bezierCurveTo(110,40,165,30,220,35);
+    cx.bezierCurveTo(260,38,290,55,300,80);
+    cx.bezierCurveTo(308,100,300,125,285,145);
+    cx.bezierCurveTo(270,162,250,175,230,185);
+    cx.bezierCurveTo(210,195,190,200,175,210);
+    cx.bezierCurveTo(165,218,158,225,150,225);
+    cx.bezierCurveTo(138,222,125,200,115,185);
+    cx.bezierCurveTo(100,165,88,140,80,115);
+    cx.bezierCurveTo(72,90,75,70,85,60);
+    cx.fill();
     
-    // Edge node swarm (15-25 nodes per hub within 12% radius ~ 80px)
-    hubs.forEach(h => {
-      let count = 15 + Math.random()*10;
-      for(let i=0; i<count; i++) {
-        let a = Math.random() * Math.PI * 2;
-        let r = Math.random() * 80 + 10;
-        nodes.push({x: h.x + Math.cos(a)*r, y: h.y + Math.sin(a)*r, hx: h.x, hy: h.y});
-      }
-    });
+    // Greenland
+    cx.beginPath();
+    cx.moveTo(280,18); cx.bezierCurveTo(310,12,340,18,345,35);
+    cx.bezierCurveTo(350,52,340,65,315,62);
+    cx.bezierCurveTo(290,60,270,45,275,28);
+    cx.fill();
+
+    // South America
+    cx.beginPath();
+    cx.moveTo(195,235); cx.bezierCurveTo(215,225,245,222,260,235);
+    cx.bezierCurveTo(278,250,288,275,285,305);
+    cx.bezierCurveTo(282,330,270,355,255,375);
+    cx.bezierCurveTo(240,392,222,400,210,395);
+    cx.bezierCurveTo(195,388,185,365,178,340);
+    cx.bezierCurveTo(172,315,170,285,175,260);
+    cx.bezierCurveTo(178,245,185,238,195,235);
+    cx.fill();
+    
+    // Europe
+    cx.beginPath();
+    cx.moveTo(455,55); cx.bezierCurveTo(475,42,510,35,545,38);
+    cx.bezierCurveTo(575,40,600,52,610,68);
+    cx.bezierCurveTo(618,82,615,98,605,110);
+    cx.bezierCurveTo(592,122,570,130,548,132);
+    cx.bezierCurveTo(520,134,495,128,478,118);
+    cx.bezierCurveTo(460,108,448,92,448,75);
+    cx.bezierCurveTo(448,65,450,58,455,55);
+    cx.fill();
+    
+    // UK/Ireland
+    cx.beginPath();
+    cx.moveTo(450,60); cx.bezierCurveTo(458,52,470,50,475,58);
+    cx.bezierCurveTo(480,65,478,78,470,82);
+    cx.bezierCurveTo(462,86,452,80,450,72);
+    cx.fill();
+    
+    // Africa
+    cx.beginPath();
+    cx.moveTo(478,155); cx.bezierCurveTo(505,142,540,138,565,148);
+    cx.bezierCurveTo(588,158,605,178,610,205);
+    cx.bezierCurveTo(615,235,608,270,595,300);
+    cx.bezierCurveTo(582,325,562,348,538,358);
+    cx.bezierCurveTo(515,368,492,362,475,345);
+    cx.bezierCurveTo(458,328,448,302,445,275);
+    cx.bezierCurveTo(442,248,448,218,458,195);
+    cx.bezierCurveTo(465,178,472,162,478,155);
+    cx.fill();
+    
+    // Asia (main mass)
+    cx.beginPath();
+    cx.moveTo(605,40); cx.bezierCurveTo(660,25,730,18,800,22);
+    cx.bezierCurveTo(860,25,910,38,945,55);
+    cx.bezierCurveTo(965,65,975,80,968,95);
+    cx.bezierCurveTo(960,108,940,118,915,128);
+    cx.bezierCurveTo(885,140,855,152,830,165);
+    cx.bezierCurveTo(810,175,795,188,785,205);
+    cx.bezierCurveTo(775,220,762,232,745,235);
+    cx.bezierCurveTo(725,238,710,228,700,212);
+    cx.bezierCurveTo(688,195,678,178,660,170);
+    cx.bezierCurveTo(640,162,618,158,605,148);
+    cx.bezierCurveTo(590,138,582,122,580,105);
+    cx.bezierCurveTo(578,85,585,62,600,48);
+    cx.fill();
+    
+    // India peninsula
+    cx.beginPath();
+    cx.moveTo(745,235); cx.bezierCurveTo(760,228,780,225,795,235);
+    cx.bezierCurveTo(808,245,812,262,805,280);
+    cx.bezierCurveTo(798,295,782,305,768,300);
+    cx.bezierCurveTo(752,295,742,278,740,260);
+    cx.bezierCurveTo(738,248,740,240,745,235);
+    cx.fill();
+    
+    // SE Asia / Indonesia
+    cx.beginPath();
+    cx.moveTo(840,240); cx.bezierCurveTo(865,232,895,235,912,248);
+    cx.bezierCurveTo(928,260,930,278,918,292);
+    cx.bezierCurveTo(905,305,882,310,862,302);
+    cx.bezierCurveTo(842,295,832,275,835,255);
+    cx.fill();
+    
+    // Japan
+    cx.beginPath();
+    cx.moveTo(975,80); cx.bezierCurveTo(985,72,998,75,1002,88);
+    cx.bezierCurveTo(1005,100,1000,118,992,128);
+    cx.bezierCurveTo(985,138,975,135,970,125);
+    cx.bezierCurveTo(965,112,968,95,975,80);
+    cx.fill();
+    
+    // Australia
+    cx.beginPath();
+    cx.moveTo(850,310); cx.bezierCurveTo(882,295,920,292,952,305);
+    cx.bezierCurveTo(978,315,995,335,992,358);
+    cx.bezierCurveTo(990,378,972,395,948,400);
+    cx.bezierCurveTo(920,405,890,398,868,382);
+    cx.bezierCurveTo(848,368,838,348,840,330);
+    cx.bezierCurveTo(842,318,845,312,850,310);
+    cx.fill();
   }
 
   function draw() {
     cx.clearRect(0, 0, cv.width, cv.height);
-    
-    // Prevent compound scaling by resetting transform matrix explicitly each frame
     cx.setTransform(rectW/CW * dpr, 0, 0, rectH/CH * dpr, 0, 0);
     
     time++;
-    let phase = (time * 0.003) % 1; 
-    let scanX = phase * CW;
     
-    // Draw dots (procedural continent map dots - light cyan)
-    cx.fillStyle = 'rgba(11, 168, 211, 0.4)';
-    dots.forEach(d => {
-      let dist = Math.abs(d.x - scanX);
-      let op = 0.08;
-      if (dist < 150) op = 0.4 * (1 - dist/150); // spike to 0.4
-      cx.globalAlpha = Math.max(0.08, op);
-      cx.beginPath(); cx.arc(d.x, d.y, 1.5, 0, Math.PI*2); cx.fill();
-    });
+    // Dark navy background
+    cx.fillStyle = '#0B1829';
+    cx.fillRect(0, 0, CW, CH);
     
-    // Draw swarm curves (light blue/cyan background network trails)
-    cx.globalAlpha = 0.2;
-    cx.lineWidth = 0.5;
-    cx.strokeStyle = '#0BA8D3';
-    cx.fillStyle = '#0BA8D3';
-    nodes.forEach(n => {
-      cx.beginPath();
-      cx.moveTo(n.x, n.y);
-      cx.quadraticCurveTo(n.x + (n.hx-n.x)/2, n.y + (n.hy-n.y)/2 - 15, n.hx, n.hy);
-      cx.stroke();
-      cx.beginPath(); cx.arc(n.x, n.y, 1, 0, Math.PI*2); cx.fill();
-    });
-
-    // Draw main glowing transport pathways (bezier lines) connecting hubs to HQ (light cyan curves)
-    cx.globalAlpha = 0.4;
-    cx.lineWidth = 1.0;
-    cx.strokeStyle = 'rgba(11, 168, 211, 0.4)';
+    // Draw continent silhouettes
+    cx.globalAlpha = 1.0;
+    drawContinents();
+    
+    // Draw curved connection lines from hubs to HQ
+    cx.globalAlpha = 0.6;
+    cx.lineWidth = 1.2;
+    cx.strokeStyle = 'rgba(11, 168, 211, 0.5)';
     hubs.forEach(h => {
       cx.beginPath();
       cx.moveTo(h.x, h.y);
       let cp1x = h.x + (hq.x - h.x) * 0.5;
-      let cp1y = h.y - 120;
+      let cp1y = Math.min(h.y, hq.y) - 80;
       cx.quadraticCurveTo(cp1x, cp1y, hq.x, hq.y);
       cx.stroke();
     });
     
-    // Generate packets
-    if(time % 30 === 0) {
+    // Generate data packets
+    if(time % 35 === 0) {
       let src = hubs[Math.floor(Math.random()*hubs.length)];
-      packets.push({x: src.x, y: src.y, tx: hq.x, ty: hq.y, p: 0, 
-        cp1x: src.x + (hq.x - src.x)*0.5, cp1y: src.y - 120
-      });
+      let cp1x = src.x + (hq.x - src.x)*0.5;
+      let cp1y = Math.min(src.y, hq.y) - 80;
+      packets.push({x: src.x, y: src.y, tx: hq.x, ty: hq.y, p: 0, cp1x, cp1y});
     }
     
-    // Draw packets using true quadratic bezier interpolation (light glowing balls flowing to HQ)
+    // Draw travelling data packets
     cx.globalAlpha = 1.0;
     for(let i=packets.length-1; i>=0; i--) {
       let pk = packets[i];
-      pk.p += 0.012;
+      pk.p += 0.01;
       if(pk.p >= 1) { packets.splice(i, 1); continue; }
-      
       let u = 1 - pk.p;
-      // Quadratic Bezier Formula: P = u^2*P0 + 2*u*t*P1 + t^2*P2
       let px = u*u*pk.x + 2*u*pk.p*pk.cp1x + pk.p*pk.p*pk.tx;
       let py = u*u*pk.y + 2*u*pk.p*pk.cp1y + pk.p*pk.p*pk.ty;
-      
-      cx.beginPath(); cx.arc(px, py, 3.5, 0, Math.PI*2); 
-      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 10; cx.shadowColor = '#0BA8D3'; 
+      cx.beginPath(); cx.arc(px, py, 3, 0, Math.PI*2); 
+      cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 12; cx.shadowColor = '#0BA8D3'; 
       cx.fill(); cx.shadowBlur = 0;
     }
     
-    // Draw hubs (cyan styling, no amber)
+    // Draw regional hubs (AMBER like reference)
     cx.globalAlpha = 1.0;
     hubs.forEach(h => {
-      cx.beginPath(); cx.arc(h.x, h.y, 4, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
-      cx.beginPath(); cx.arc(h.x, h.y, 9, 0, Math.PI*2); cx.strokeStyle = 'rgba(11, 168, 211, 0.4)'; cx.stroke();
-      cx.fillStyle = '#0B2545'; cx.font = "600 11px Inter"; cx.fillText(h.name, h.x + 15, h.y + 4);
+      cx.beginPath(); cx.arc(h.x, h.y, 5, 0, Math.PI*2); 
+      cx.fillStyle = '#FFBA08'; cx.fill();
+      cx.beginPath(); cx.arc(h.x, h.y, 10, 0, Math.PI*2); 
+      cx.strokeStyle = 'rgba(255, 186, 8, 0.35)'; cx.lineWidth = 1; cx.stroke();
+      cx.fillStyle = 'rgba(255,255,255,0.75)'; cx.font = "600 11px Inter"; 
+      cx.fillText(h.name, h.x + 15, h.y + 4);
     });
     
-    // Draw HQ (glowing double cyan rings exactly matching user reference image)
-    cx.beginPath(); cx.arc(hq.x, hq.y, 5, 0, Math.PI*2); cx.fillStyle = '#0BA8D3'; cx.fill();
-    cx.beginPath(); cx.arc(hq.x, hq.y, 12, 0, Math.PI*2); cx.strokeStyle = '#0BA8D3'; cx.lineWidth = 3; cx.stroke();
-    cx.beginPath(); cx.arc(hq.x, hq.y, 22, 0, Math.PI*2); cx.strokeStyle = 'rgba(11,168,211,0.2)'; cx.lineWidth=1; cx.stroke();
-    cx.fillStyle = '#0B2545'; cx.font = "bold 13px Inter"; cx.fillText(hq.name, hq.x + 26, hq.y + 5);
+    // Draw HQ (cyan glowing rings — matching reference)
+    cx.beginPath(); cx.arc(hq.x, hq.y, 7, 0, Math.PI*2); 
+    cx.fillStyle = '#0BA8D3'; cx.shadowBlur = 25; cx.shadowColor = '#0BA8D3';
+    cx.fill(); cx.shadowBlur = 0;
+    cx.beginPath(); cx.arc(hq.x, hq.y, 15, 0, Math.PI*2); 
+    cx.strokeStyle = 'rgba(11,168,211,0.45)'; cx.lineWidth = 2.5; cx.stroke();
+    cx.beginPath(); cx.arc(hq.x, hq.y, 25, 0, Math.PI*2); 
+    cx.strokeStyle = 'rgba(11,168,211,0.15)'; cx.lineWidth = 1; cx.stroke();
+    cx.fillStyle = '#FFFFFF'; cx.font = "bold 14px Inter"; 
+    cx.fillText(hq.name, hq.x + 32, hq.y + 5);
     
-    // Reset transform before next frame just in case
     cx.setTransform(1, 0, 0, 1, 0, 0);
     requestAnimationFrame(draw);
   }
   
   window.addEventListener('resize', rsz);
   rsz();
-  initMap();
   draw();
 })();
 
