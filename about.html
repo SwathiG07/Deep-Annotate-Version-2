@@ -631,35 +631,51 @@
     .animate-wf .wftl { animation: wfLoopText 7s infinite ease-in-out; }
     .wfts { font-size: 13px; color: rgba(14,31,62,0.65); line-height: 1.5; }
 
-    /* LEADERSHIP - Premium CSS-only Upgrade */
-    #lead { background: var(--navy-panel); }
-    .teg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
-    .tec {
-      background: #FFFFFF; border: 1px solid rgba(11,37,69,0.3);
-      border-radius: 28px; padding: 48px 32px; text-align: center;
-      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-      box-shadow: 0 24px 48px rgba(14,31,62,0.06);
+    /* LEADERSHIP - Premium Look */
+    #lead { background: #FFFFFF; border-top: 1px solid rgba(14,31,62,0.05); }
+    #lead .stitle { color: #0E1F3E; }
+    #lead .eyebrow { color: #0B2545; }
+    .lead-premium-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
+    .lead-card {
+      background: #FFFFFF; border: 1px solid rgba(11,37,69,0.08); border-radius: 28px;
+      padding: 48px 32px; position: relative; overflow: hidden;
+      box-shadow: 0 10px 40px rgba(11,37,69,0.03); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex; flex-direction: column; align-items: center; text-align: center;
     }
-    .tav {
-      width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 24px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px; font-weight: 900;
-      border: 2px solid #0B2545;
-      transition: all 0.4s;
-      background: #0B2545; color: #FFFFFF; 
-      box-shadow: 0 8px 24px rgba(11,37,69,0.3);
+    .lead-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 140px;
+      background: linear-gradient(180deg, rgba(11,37,69,0.04) 0%, rgba(255,255,255,0) 100%); z-index: 0;
     }
-    .tnm { font-size: 19px; font-weight: 900; color: #0E1F3E; margin-bottom: 6px; }
-    .trl { font-size: 12px; font-weight: 700; color: #0B2545; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .tbi { font-size: 14px; color: rgba(14,31,62,0.65); line-height: 1.65; }
-    .tls { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
-    .tlk {
+    .lead-card:hover {
+      transform: translateY(-8px); border-color: rgba(11,168,211,0.3);
+      box-shadow: 0 24px 64px rgba(11,37,69,0.08);
+    }
+    .lead-avatar-wrap { position: relative; width: 110px; height: 110px; margin-bottom: 32px; z-index: 1; }
+    @keyframes lead-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .lead-avatar-wrap::after {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #0B2545 50%, transparent 100%);
+      animation: lead-spin 6s linear infinite; opacity: 0; transition: opacity 0.5s;
+    }
+    .lead-card:hover .lead-avatar-wrap::after { opacity: 1; }
+    .lead-avatar {
+      position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF;
+      border: 2px solid #0B2545; display: flex; align-items: center; justify-content: center;
+      z-index: 2; box-shadow: 0 8px 24px rgba(11,37,69,0.1);
+    }
+    .lead-initial { font-size: 36px; font-weight: 900; color: #0B2545; }
+    .lead-info { position: relative; z-index: 1; }
+    .lead-name { font-size: 20px; font-weight: 900; color: #0E1F3E; margin-bottom: 6px; }
+    .lead-role { font-size: 12px; font-weight: 800; color: #0B2545; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .lead-bio { font-size: 14.5px; color: rgba(14,31,62,0.65); line-height: 1.65; margin-bottom: 32px; }
+    .lead-social { display: flex; justify-content: center; gap: 12px; }
+    .lead-social-link {
       width: 38px; height: 38px; border-radius: 50%;
-      background: #0B2545; border: 1px solid #0B2545;
+      background: rgba(11,37,69,0.04); border: 1px solid rgba(11,37,69,0.1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700; color: #FFFFFF;
-      transition: all 0.3s; text-decoration: none;
+      font-size: 13px; font-weight: 700; color: #0B2545; text-decoration: none; transition: all 0.3s;
     }
+    .lead-social-link:hover { background: #0B2545; color: #FFFFFF; border-color: #0B2545; }
 
     /* TESTIMONIALS - Premium CSS-only Upgrade */
     #test { background: #FFFFFF; border-top: 1px solid rgba(14,31,62,0.05); }
@@ -766,7 +782,7 @@
     /* RESPONSIVE */
     @media(max-width:1024px){
       .vg,.ig,.trg{grid-template-columns:repeat(2,1fr);}
-      .teg,.ttg{grid-template-columns:1fr 1fr;}
+      .lead-premium-grid,.teg,.ttg{grid-template-columns:1fr 1fr;}
       .sg{grid-template-columns:repeat(2,1fr);}
       .trust-split { grid-template-columns: 1fr; gap: 40px; }
       .trust-visual { position: static; padding: 32px; }
@@ -777,7 +793,7 @@
       .tl{padding:0 16px;}.tl::before{left:24px;}.tli{grid-template-columns:48px 1fr;grid-template-rows:auto auto;}.tlc{padding:0 0 0 16px;text-align:left!important;}.tli:nth-child(odd) .tlc:first-child{text-align:left!important;}
       .comph,.compr{grid-template-columns:1fr 1fr 1fr;}.cc{padding:12px 12px;font-size:12px;}
       .vg,.ig,.trg,.cug,.trust-split{grid-template-columns:1fr;}.cui.lg{grid-column:span 1;}
-      .teg,.ttg{grid-template-columns:1fr;}.wft{flex-direction:column;gap:20px;}.wfs::after{display:none;}
+      .lead-premium-grid,.teg,.ttg{grid-template-columns:1fr;}.wft{flex-direction:column;gap:20px;}.wfs::after{display:none;}
     }
   </style>
 </head>
@@ -1309,10 +1325,49 @@
       <h2 class="stitle">Meet the Leadership</h2>
       <p class="ssub" style="margin:16px auto 0;">Built by people who've seen what bad data does to great models — and decided to fix it.</p>
     </div>
-    <div class="teg">
-      <div class="tec rev d1"><div class="tav">S</div><h3 class="tnm">Founder &amp; CEO</h3><p class="trl">Strategy &amp; Enterprise Growth</p><p class="tbi">Leads DeepAnnotate's vision to become the world's most trusted AI data infrastructure company. Background in enterprise AI deployment and data operations at scale.</p><div class="tls"><a href="#" class="tlk">in</a><a href="mailto:hello@deepannotate.ai" class="tlk">&#9993;</a></div></div>
-      <div class="tec rev d2"><div class="tav" style="background:linear-gradient(135deg,rgba(255,186,8,0.2),rgba(11,168,211,0.1));">A</div><h3 class="tnm">Head of Annotation Ops</h3><p class="trl">Quality &amp; Delivery</p><p class="tbi">Oversees all annotation pipelines across Computer Vision, NLP, Audio, and Physical AI. 8+ years in data operations for autonomous systems.</p><div class="tls"><a href="#" class="tlk">in</a><a href="mailto:hello@deepannotate.ai" class="tlk">&#9993;</a></div></div>
-      <div class="tec rev d3"><div class="tav" style="background:linear-gradient(135deg,rgba(11,168,211,0.15),rgba(255,186,8,0.15));">R</div><h3 class="tnm">Head of Technology</h3><p class="trl">Platform &amp; AI Infrastructure</p><p class="tbi">Architects the annotation tooling, QA automation, and data pipeline systems that power DeepAnnotate's enterprise delivery at scale.</p><div class="tls"><a href="#" class="tlk">in</a><a href="#" class="tlk">gh</a></div></div>
+    <div class="lead-premium-grid">
+      <div class="lead-card rev d1">
+        <div class="lead-avatar-wrap">
+          <div class="lead-avatar"><span class="lead-initial">S</span></div>
+        </div>
+        <div class="lead-info">
+          <h3 class="lead-name">Founder &amp; CEO</h3>
+          <p class="lead-role">Strategy &amp; Enterprise Growth</p>
+          <p class="lead-bio">Leads DeepAnnotate's vision to become the world's most trusted AI data infrastructure company. Background in enterprise AI deployment and data operations at scale.</p>
+          <div class="lead-social">
+            <a href="#" class="lead-social-link">in</a>
+            <a href="mailto:hello@deepannotate.ai" class="lead-social-link">&#9993;</a>
+          </div>
+        </div>
+      </div>
+      <div class="lead-card rev d2">
+        <div class="lead-avatar-wrap">
+          <div class="lead-avatar"><span class="lead-initial">A</span></div>
+        </div>
+        <div class="lead-info">
+          <h3 class="lead-name">Head of Annotation Ops</h3>
+          <p class="lead-role">Quality &amp; Delivery</p>
+          <p class="lead-bio">Oversees all annotation pipelines across Computer Vision, NLP, Audio, and Physical AI. 8+ years in data operations for autonomous systems.</p>
+          <div class="lead-social">
+            <a href="#" class="lead-social-link">in</a>
+            <a href="mailto:hello@deepannotate.ai" class="lead-social-link">&#9993;</a>
+          </div>
+        </div>
+      </div>
+      <div class="lead-card rev d3">
+        <div class="lead-avatar-wrap">
+          <div class="lead-avatar"><span class="lead-initial">R</span></div>
+        </div>
+        <div class="lead-info">
+          <h3 class="lead-name">Head of Technology</h3>
+          <p class="lead-role">Platform &amp; AI Infrastructure</p>
+          <p class="lead-bio">Architects the annotation tooling, QA automation, and data pipeline systems that power DeepAnnotate's enterprise delivery at scale.</p>
+          <div class="lead-social">
+            <a href="#" class="lead-social-link">in</a>
+            <a href="#" class="lead-social-link">gh</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
