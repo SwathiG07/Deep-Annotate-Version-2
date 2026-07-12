@@ -637,45 +637,45 @@
     #lead .eyebrow { color: #0B2545; }
     .lead-premium-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
     .lead-card {
-      background: #0B2545; border: 1px solid rgba(14,31,62,0.6); border-radius: 28px;
+      background: #FFFFFF; border: 1px solid rgba(11,37,69,0.08); border-radius: 28px;
       padding: 48px 32px; position: relative; overflow: hidden;
-      box-shadow: 0 16px 40px rgba(11,37,69,0.15); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 10px 40px rgba(11,37,69,0.03); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .lead-card::before {
       content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 140px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); z-index: 0;
+      background: linear-gradient(180deg, rgba(11,168,211,0.12) 0%, rgba(11,37,69,0.04) 50%, rgba(255,255,255,0) 100%); z-index: 0;
     }
     .lead-card:hover {
-      transform: translateY(-8px); border-color: #0BA8D3;
-      box-shadow: 0 24px 64px rgba(11,37,69,0.2);
+      transform: translateY(-8px); border-color: rgba(11,168,211,0.3);
+      box-shadow: 0 24px 64px rgba(11,37,69,0.08);
     }
     .lead-avatar-wrap { position: relative; width: 110px; height: 110px; margin-bottom: 32px; z-index: 1; }
     @keyframes lead-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .lead-avatar-wrap::after {
       content: ''; position: absolute; inset: -6px; border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #FFFFFF 50%, transparent 100%);
+      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #0B2545 50%, transparent 100%);
       animation: lead-spin 6s linear infinite; opacity: 0; transition: opacity 0.5s;
     }
     .lead-card:hover .lead-avatar-wrap::after { opacity: 1; }
     .lead-avatar {
-      position: absolute; inset: 0; border-radius: 50%; background: #0E1F3E;
-      border: 2px solid #0BA8D3; display: flex; align-items: center; justify-content: center;
-      z-index: 2; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF;
+      border: 2px solid #0B2545; display: flex; align-items: center; justify-content: center;
+      z-index: 2; box-shadow: 0 8px 24px rgba(11,37,69,0.1);
     }
-    .lead-initial { font-size: 36px; font-weight: 900; color: #FFFFFF; }
+    .lead-initial { font-size: 36px; font-weight: 900; color: #0B2545; }
     .lead-info { position: relative; z-index: 1; }
-    .lead-name { font-size: 20px; font-weight: 900; color: #FFFFFF; margin-bottom: 6px; }
-    .lead-role { font-size: 12px; font-weight: 800; color: #0BA8D3; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
-    .lead-bio { font-size: 14.5px; color: rgba(255,255,255,0.7); line-height: 1.65; margin-bottom: 32px; }
+    .lead-name { font-size: 20px; font-weight: 900; color: #0E1F3E; margin-bottom: 6px; }
+    .lead-role { font-size: 12px; font-weight: 800; color: #0B2545; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .lead-bio { font-size: 14.5px; color: rgba(14,31,62,0.65); line-height: 1.65; margin-bottom: 32px; }
     .lead-social { display: flex; justify-content: center; gap: 12px; }
     .lead-social-link {
       width: 38px; height: 38px; border-radius: 50%;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(11,37,69,0.04); border: 1px solid rgba(11,37,69,0.1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 700; color: #FFFFFF; text-decoration: none; transition: all 0.3s;
+      font-size: 13px; font-weight: 700; color: #0B2545; text-decoration: none; transition: all 0.3s;
     }
-    .lead-social-link:hover { background: #0BA8D3; border-color: #0BA8D3; }
+    .lead-social-link:hover { background: #0B2545; color: #FFFFFF; border-color: #0B2545; }
 
     /* TESTIMONIALS - Premium CSS-only Upgrade */
     #test { background: #FFFFFF; border-top: 1px solid rgba(14,31,62,0.05); }
@@ -683,38 +683,38 @@
     #test .eyebrow { color: #0B2545; }
     .ttg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; }
     .ttc {
-      background: #0B2545; border: 1px solid rgba(14,31,62,0.6); border-radius: 28px;
+      background: #FFFFFF; border: 1px solid rgba(11,37,69,0.08); border-radius: 28px;
       padding: 48px 40px; position: relative; overflow: hidden;
-      box-shadow: 0 16px 40px rgba(11,37,69,0.15); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 10px 40px rgba(11,37,69,0.03); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .ttc::before {
       content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 140px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); z-index: 0;
+      background: linear-gradient(180deg, rgba(11,168,211,0.12) 0%, rgba(11,37,69,0.04) 50%, rgba(255,255,255,0) 100%); z-index: 0;
     }
     .ttc:hover {
-      transform: translateY(-8px); border-color: #0BA8D3;
-      box-shadow: 0 24px 64px rgba(11,37,69,0.2);
+      transform: translateY(-8px); border-color: rgba(11,168,211,0.3);
+      box-shadow: 0 24px 64px rgba(11,37,69,0.08);
     }
-    .tq { position: relative; z-index: 1; font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.8; margin-bottom: 32px; font-style: normal; }
+    .tq { position: relative; z-index: 1; font-size: 15px; color: rgba(14,31,62,0.7); line-height: 1.8; margin-bottom: 32px; font-style: normal; }
     .tq::before {
-      content: '\201C'; font-family: Georgia, serif; font-size: 64px; color: #FFFFFF;
-      opacity: 0.08; line-height: 0; vertical-align: -24px; display: inline-block; margin-right: 8px;
+      content: '\201C'; font-family: Georgia, serif; font-size: 64px; color: #0B2545;
+      opacity: 0.15; line-height: 0; vertical-align: -24px; display: inline-block; margin-right: 8px;
     }
     .tau { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
     .taa-wrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
     .taa-wrap::after {
       content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #FFFFFF 50%, transparent 100%);
+      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #0B2545 50%, transparent 100%);
       animation: lead-spin 6s linear infinite; opacity: 0; transition: opacity 0.5s; z-index: 0;
     }
     .ttc:hover .taa-wrap::after { opacity: 1; }
     .taa {
-      position: absolute; inset: 0; border-radius: 50%; background: #0E1F3E;
-      border: 2px solid #0BA8D3; display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 900; color: #FFFFFF; z-index: 1;
+      position: absolute; inset: 0; border-radius: 50%; background: #FFFFFF;
+      border: 2px solid #0B2545; display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900; color: #0B2545; z-index: 1;
     }
-    .tan { font-size: 15px; font-weight: 800; color: #FFFFFF; margin-bottom: 2px; }
-    .tat { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .tan { font-size: 15px; font-weight: 800; color: #0E1F3E; margin-bottom: 2px; }
+    .tat { font-size: 13px; color: rgba(14,31,62,0.5); }
 
     /* AWARDS - Premium CSS-only Upgrade */
     #aw { background: var(--navy-panel); border-top: 1px solid rgba(14,31,62,0.04); }
@@ -733,25 +733,25 @@
     #cult .eyebrow { color: #0B2545; }
     .cug { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 64px; }
     .cui {
-      border-radius: 28px; position: relative; background: #0E1F3E;
-      border: 1px solid rgba(14,31,62,0.6); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-      box-shadow: 0 16px 40px rgba(11,37,69,0.15); padding: 1px; overflow: hidden;
+      border-radius: 28px; position: relative; background: #FFFFFF;
+      border: 1px solid rgba(11,37,69,0.08); transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 10px 40px rgba(11,37,69,0.03); padding: 1px; overflow: hidden;
     }
     .cui::before {
       content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #FFFFFF 50%, transparent 100%);
+      background: conic-gradient(from 0deg, transparent 0%, rgba(11,168,211,0.6) 25%, #0B2545 50%, transparent 100%);
       animation: lead-spin 6s linear infinite; opacity: 0; transition: opacity 0.5s; z-index: 0;
     }
-    .cui:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(11,37,69,0.2); border-color: transparent; }
+    .cui:hover { transform: translateY(-8px); box-shadow: 0 24px 64px rgba(11,37,69,0.08); border-color: transparent; }
     .cui:hover::before { opacity: 1; }
     .cuin {
-      position: relative; z-index: 1; background: #0B2545; border-radius: 27px;
+      position: relative; z-index: 1; background: #FFFFFF; border-radius: 27px;
       padding: 40px 32px; min-height: 220px; display: flex; flex-direction: column; justify-content: flex-end; height: 100%;
     }
     .cui.lg { grid-column: span 2; }
     .cuic { font-size: 36px; margin-bottom: 16px; display: inline-block; transition: transform 0.4s; }
-    .cuit { font-size: 18px; font-weight: 800; color: #FFFFFF; margin-bottom: 8px; }
-    .cuis { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .cuit { font-size: 18px; font-weight: 800; color: #0E1F3E; margin-bottom: 8px; }
+    .cuis { font-size: 14px; color: rgba(14,31,62,0.65); line-height: 1.6; }
 
     /* FINAL CTA - Premium CSS-only Upgrade */
     #ctaf {
