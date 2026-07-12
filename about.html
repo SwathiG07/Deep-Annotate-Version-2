@@ -446,7 +446,25 @@
       background: #FFFFFF; border: 1px solid rgba(14,31,62,0.1);
       border-radius: 24px; overflow: hidden;
       box-shadow: 0 20px 40px rgba(14,31,62,0.03);
+      position: relative;
     }
+    
+    /* Grid Scanner Laser */
+    .ig::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(11,168,211,0.8), #0BA8D3, rgba(11,168,211,0.8), transparent);
+      box-shadow: 0 0 10px #0BA8D3, 0 0 20px #0BA8D3;
+      animation: scan 6s infinite cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 5; pointer-events: none;
+    }
+    @keyframes scan {
+      0% { top: 0%; opacity: 0; }
+      5% { opacity: 1; }
+      45% { top: 100%; opacity: 1; }
+      50% { top: 100%; opacity: 0; }
+      100% { top: 100%; opacity: 0; }
+    }
+
     .ic {
       padding: 48px 32px; background: #FFFFFF;
       border-right: 1px solid rgba(14,31,62,0.1);
@@ -454,7 +472,6 @@
       position: relative; z-index: 1; overflow: hidden;
       transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    /* Remove borders for last items to keep grid seamless */
     .ic:nth-child(4n) { border-right: none; }
     .ic:nth-child(n+5) { border-bottom: none; }
 
@@ -463,29 +480,43 @@
       content: ''; position: absolute;
       top: 50px; left: 40px; width: 10px; height: 10px;
       background: #0BA8D3; border-radius: 50%;
-      z-index: -1; opacity: 0;
+      z-index: -2; opacity: 0;
       transform: scale(1);
       transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.3s;
     }
 
+    /* Glossy Glass Reflection on Hover */
+    .ic::after {
+      content: ''; position: absolute;
+      top: 0; left: -150%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: skewX(-25deg); z-index: -1;
+    }
+
     .ic:hover {
-      box-shadow: 0 30px 60px rgba(14,31,62,0.15);
+      box-shadow: 0 30px 60px rgba(14,31,62,0.15), inset 0 0 0 2px rgba(255,255,255,0.4);
       z-index: 10;
       transform: scale(1.02);
       border-radius: 24px;
       border-color: transparent;
     }
     .ic:hover::before {
-      opacity: 1; transform: scale(80); /* expands to cover card */
+      opacity: 1; transform: scale(80);
+    }
+    .ic:hover::after {
+      animation: glass-shine 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes glass-shine {
+      100% { left: 150%; }
     }
 
-    .ici { font-size: 32px; margin-bottom: 20px; display: inline-block; transition: transform 0.5s; filter: grayscale(100%); }
-    .ic:hover .ici { transform: translateY(-8px) scale(1.1); filter: grayscale(0%); }
+    .ici { font-size: 32px; margin-bottom: 20px; display: inline-block; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.5s; filter: grayscale(100%); }
+    .ic:hover .ici { transform: translateY(-8px) scale(1.2) rotate(6deg); filter: grayscale(0%) drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
 
     .icn { font-size: 17px; font-weight: 800; color: #0E1F3E; margin-bottom: 12px; transition: color 0.4s; }
     .icd { font-size: 14px; color: rgba(14,31,62,0.65); line-height: 1.6; transition: color 0.4s; }
     
-    .ic:hover .icn { color: #FFFFFF; }
+    .ic:hover .icn { color: #FFFFFF; text-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     .ic:hover .icd { color: rgba(255,255,255,0.9); }
 
     /* TECH */
