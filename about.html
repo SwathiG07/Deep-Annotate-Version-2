@@ -486,10 +486,42 @@
     .ic:hover .icd { color: rgba(14,31,62,0.85); transform: translateX(6px); }
 
     /* TECH */
-    #tech{background:var(--navy-deep);}
-    .tsvg{width:100%;height:480px;display:block;margin-top:64px;}
-    .tline{stroke:rgba(11,168,211,0.12);stroke-width:1;animation:tlp 3s ease-in-out infinite;}
-    @keyframes tlp{0%,100%{stroke-opacity:0.12;}50%{stroke-opacity:0.3;}}
+    #tech{background:var(--navy-deep); overflow:hidden;}
+    .tsvg{width:100%; height:auto; max-height:500px; display:block; margin-top:64px; overflow:visible;}
+    
+    .tech-node {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .tech-node:hover {
+      transform: translateY(-5px);
+    }
+    .tech-node rect {
+      fill: #FFFFFF;
+      stroke: rgba(14,31,62,0.08);
+      stroke-width: 1.5;
+      transition: fill 0.4s, stroke 0.4s, filter 0.4s;
+    }
+    .tech-node:hover rect {
+      stroke: #0BA8D3;
+      filter: drop-shadow(0 15px 30px rgba(11,168,211,0.15));
+    }
+    .tech-node text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      fill: #0E1F3E;
+      letter-spacing: 0.8px;
+      transition: fill 0.4s;
+    }
+    .tech-node:hover text {
+      fill: #0BA8D3;
+    }
+    
+    /* Hover effect for connecting lines */
+    .tech-node:hover ~ path {
+      stroke-width: 3px;
+      stroke: #0BA8D3;
+    }
 
     /* TRUST */
     #trust{background:var(--navy-panel);}
@@ -832,35 +864,160 @@
       <h2 class="stitle">Full-Stack Data Capabilities</h2>
       <p class="ssub" style="margin:16px auto 0;">From raw sensor streams to RLHF-ready preference datasets — we handle every modality.</p>
     </div>
-    <svg class="tsvg rev" viewBox="0 0 1000 460" xmlns="http://www.w3.org/2000/svg">
-      <line class="tline" x1="500" y1="230" x2="180" y2="85" style="animation-delay:0s"/>
-      <line class="tline" x1="500" y1="230" x2="500" y2="55" style="animation-delay:0.3s"/>
-      <line class="tline" x1="500" y1="230" x2="820" y2="85" style="animation-delay:0.6s"/>
-      <line class="tline" x1="500" y1="230" x2="140" y2="230" style="animation-delay:0.9s"/>
-      <line class="tline" x1="500" y1="230" x2="860" y2="230" style="animation-delay:1.2s"/>
-      <line class="tline" x1="500" y1="230" x2="180" y2="375" style="animation-delay:1.5s"/>
-      <line class="tline" x1="500" y1="230" x2="500" y2="405" style="animation-delay:1.8s"/>
-      <line class="tline" x1="500" y1="230" x2="820" y2="375" style="animation-delay:2.1s"/>
-      <line class="tline" x1="500" y1="230" x2="90" y2="375" style="animation-delay:2.4s"/>
-      <line class="tline" x1="500" y1="230" x2="910" y2="375" style="animation-delay:2.7s"/>
-      <!-- Center -->
-      <g transform="translate(500,230)">
-        <circle r="54" fill="rgba(11,168,211,0.1)"/>
-        <circle r="36" fill="rgba(11,168,211,0.12)" stroke="rgba(11,168,211,0.55)" stroke-width="1.5"/>
-        <text text-anchor="middle" y="4" font-size="11" fill="var(--cyan)" font-family="Inter,sans-serif" font-weight="700">DeepAnnotate</text>
-        <text text-anchor="middle" y="56" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">AI Data Hub</text>
+    <svg class="tsvg rev" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Definitions for markers/gradients -->
+      <defs>
+        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0BA8D3" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#0E1F3E" stop-opacity="0.05"/>
+        </linearGradient>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="8" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      <!-- Connecting Bezier Paths -->
+      <path id="p-img" d="M 500,240 Q 320,130 230,105" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-vid" d="M 500,240 L 500,120" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-aud" d="M 500,240 Q 680,130 770,105" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-lid" d="M 500,240 L 180,240" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-rlhf" d="M 500,240 L 820,240" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-nlp" d="M 500,240 Q 320,350 280,355" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-cv" d="M 500,240 L 500,360" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+      <path id="p-syn" d="M 500,240 Q 680,350 720,355" fill="none" stroke="url(#lineGrad)" stroke-width="2"/>
+
+      <!-- Flowing Data Packets -->
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.5s" repeatCount="indefinite" path="M 500,240 Q 320,130 230,105"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="1.8s" repeatCount="indefinite" path="M 500,240 L 500,120"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.8s" repeatCount="indefinite" path="M 500,240 Q 680,130 770,105"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.2s" repeatCount="indefinite" path="M 500,240 L 180,240"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.4s" repeatCount="indefinite" path="M 500,240 L 820,240"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.6s" repeatCount="indefinite" path="M 500,240 Q 320,350 280,355"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="1.9s" repeatCount="indefinite" path="M 500,240 L 500,360"/></circle>
+      <circle r="3" fill="#0BA8D3"><animateMotion dur="2.7s" repeatCount="indefinite" path="M 500,240 Q 680,350 720,355"/></circle>
+
+      <!-- Center Hub -->
+      <g transform="translate(500,240)" style="cursor:default;">
+        <circle r="72" fill="none" stroke="rgba(11,168,211,0.15)" stroke-width="1.5" stroke-dasharray="5 5">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="60" fill="rgba(11,168,211,0.06)" stroke="#0BA8D3" stroke-width="2" filter="url(#glow)"/>
+        <circle r="54" fill="#0E1F3E"/>
+        <text text-anchor="middle" y="-6" font-size="10" font-weight="900" fill="#FFFFFF" letter-spacing="1.5">DEEPANNOTATE</text>
+        <text text-anchor="middle" y="12" font-size="9" font-weight="700" fill="#0BA8D3" letter-spacing="0.5">AI DATA HUB</text>
       </g>
-      <!-- Nodes -->
-      <g transform="translate(180,85)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#128444;&#65039;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">Image</text></g>
-      <g transform="translate(500,55)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#127916;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">Video</text></g>
-      <g transform="translate(820,85)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#127908;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">Audio</text></g>
-      <g transform="translate(140,230)"><circle r="34" fill="rgba(255,186,8,0.08)" stroke="rgba(255,186,8,0.2)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#128225;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">LiDAR 3D</text></g>
-      <g transform="translate(860,230)"><circle r="34" fill="rgba(255,186,8,0.08)" stroke="rgba(255,186,8,0.2)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#129504;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">RLHF</text></g>
-      <g transform="translate(180,375)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#127760;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">NLP/LLM</text></g>
-      <g transform="translate(500,405)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#128065;&#65039;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">Computer Vision</text></g>
-      <g transform="translate(820,375)"><circle r="34" fill="rgba(11,168,211,0.08)" stroke="rgba(11,168,211,0.22)" stroke-width="1"/><text text-anchor="middle" y="-4" font-size="13">&#128301;</text><text text-anchor="middle" y="50" font-size="11" fill="rgba(241,245,249,0.7)" font-family="Inter,sans-serif">Synthetic Data</text></g>
-      <g transform="translate(90,375)"><circle r="26" fill="rgba(255,186,8,0.08)" stroke="rgba(255,186,8,0.2)" stroke-width="1"/><text text-anchor="middle" y="5" font-size="11" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">3D Vision</text></g>
-      <g transform="translate(910,375)"><circle r="26" fill="rgba(255,186,8,0.08)" stroke="rgba(255,186,8,0.2)" stroke-width="1"/><text text-anchor="middle" y="5" font-size="11" fill="rgba(241,245,249,0.6)" font-family="Inter,sans-serif">Evaluation</text></g>
+
+      <!-- Capability Cards -->
+      <!-- 1. IMAGE -->
+      <g class="tech-node" transform="translate(110,35)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Layers -->
+          <path d="M-15,-5 L15,-5 L5,5 L-25,5 Z" fill="none" stroke="#0E1F3E" stroke-width="1.5"/>
+          <path d="M-10,-12 L20,-12 L10,-2 L-20,-2 Z" fill="none" stroke="#0BA8D3" stroke-width="1.5"/>
+          <path d="M-5,-19 L25,-19 L15,-9 L-15,-9 Z" fill="none" stroke="#0E1F3E" stroke-width="1.5"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">IMAGE</text>
+      </g>
+
+      <!-- 2. VIDEO -->
+      <g class="tech-node" transform="translate(435,10)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Filmstrip -->
+          <rect x="-16" y="-18" width="32" height="24" rx="3" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <polygon points="-4,-10 -4,2 6,-4" fill="#0BA8D3"/>
+          <rect x="-12" y="-14" width="4" height="3" fill="#0E1F3E" opacity="0.3"/>
+          <rect x="8" y="-14" width="4" height="3" fill="#0E1F3E" opacity="0.3"/>
+          <rect x="-12" y="1" width="4" height="3" fill="#0E1F3E" opacity="0.3"/>
+          <rect x="8" y="1" width="4" height="3" fill="#0E1F3E" opacity="0.3"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">VIDEO</text>
+      </g>
+
+      <!-- 3. AUDIO -->
+      <g class="tech-node" transform="translate(760,35)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Equalizer -->
+          <line x1="-16" y1="0" x2="-16" y2="-12" stroke="#0E1F3E" stroke-width="3" stroke-linecap="round"/>
+          <line x1="-8" y1="4" x2="-8" y2="-20" stroke="#0BA8D3" stroke-width="3" stroke-linecap="round"/>
+          <line x1="0" y1="8" x2="0" y2="-26" stroke="#0E1F3E" stroke-width="3" stroke-linecap="round"/>
+          <line x1="8" y1="2" x2="8" y2="-16" stroke="#0BA8D3" stroke-width="3" stroke-linecap="round"/>
+          <line x1="16" y1="6" x2="16" y2="-8" stroke="#0E1F3E" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">AUDIO</text>
+      </g>
+
+      <!-- 4. LIDAR 3D -->
+      <g class="tech-node" transform="translate(30,190)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Point Cloud -->
+          <circle cx="-14" cy="-5" r="2" fill="#0BA8D3"/>
+          <circle cx="-2" cy="-14" r="2.5" fill="#0E1F3E"/>
+          <circle cx="12" cy="-2" r="1.5" fill="#0BA8D3"/>
+          <circle cx="-6" cy="6" r="2" fill="#0E1F3E"/>
+          <circle cx="8" cy="-12" r="2" fill="#0BA8D3"/>
+          <line x1="-14" y1="-5" x2="-2" y2="-14" stroke="#0E1F3E" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.4"/>
+          <line x1="-2" y1="-14" x2="8" y2="-12" stroke="#0E1F3E" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.4"/>
+          <line x1="8" y1="-12" x2="12" y2="-2" stroke="#0E1F3E" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.4"/>
+          <line x1="-14" y1="-5" x2="-6" y2="6" stroke="#0E1F3E" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.4"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">LIDAR 3D</text>
+      </g>
+
+      <!-- 5. RLHF -->
+      <g class="tech-node" transform="translate(840,190)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Feedback / Sparkle -->
+          <circle cx="-6" cy="-12" r="7" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <path d="M-18,6 A12,12 0 0,1 6,6" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <path d="M12,-18 L14,-13 L19,-13 L15,-10 L17,-5 L12,-8 L7,-5 L9,-10 L5,-13 L10,-13 Z" fill="#0BA8D3"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">RLHF</text>
+      </g>
+
+      <!-- 6. NLP / LLM -->
+      <g class="tech-node" transform="translate(130,345)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Chat Bubble -->
+          <rect x="-16" y="-18" width="32" height="22" rx="5" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <polygon points="-8,4 -8,10 -2,4" fill="#0E1F3E"/>
+          <circle cx="-8" cy="-7" r="1.8" fill="#0BA8D3"/>
+          <circle cx="0" cy="-7" r="1.8" fill="#0BA8D3"/>
+          <circle cx="8" cy="-7" r="1.8" fill="#0BA8D3"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">NLP / LLM</text>
+      </g>
+
+      <!-- 7. COMPUTER VISION -->
+      <g class="tech-node" transform="translate(435,370)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Eye / Lens -->
+          <circle cx="0" cy="-7" r="15" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <circle cx="0" cy="-7" r="8" fill="#0BA8D3"/>
+          <circle cx="3" cy="-10" r="2.5" fill="#FFFFFF"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">COMPUTER VISION</text>
+      </g>
+
+      <!-- 8. SYNTHETIC DATA -->
+      <g class="tech-node" transform="translate(740,345)">
+        <rect width="130" height="100" rx="16"/>
+        <g transform="translate(65, 38)">
+          <!-- Custom Icon: Cylinder stack -->
+          <ellipse cx="0" cy="-14" rx="15" ry="5" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <path d="M-15,-14 L-15,-4 A15,5 0 0,0 15,-4 L15,-14 Z" fill="rgba(11,168,211,0.2)" stroke="#0E1F3E" stroke-width="2"/>
+          <path d="M-15,-4 L-15,6 A15,5 0 0,0 15,6 L15,-4 Z" fill="none" stroke="#0E1F3E" stroke-width="2"/>
+          <ellipse cx="0" cy="-4" rx="15" ry="5" fill="none" stroke="#0BA8D3" stroke-width="1.5" stroke-dasharray="2 2"/>
+        </g>
+        <text x="65" y="76" text-anchor="middle" font-size="11">SYNTHETIC DATA</text>
+      </g>
     </svg>
   </div>
 </section>
