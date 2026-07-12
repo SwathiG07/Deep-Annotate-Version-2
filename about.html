@@ -490,30 +490,25 @@
     .tsvg{width:100%; height:auto; max-height:500px; display:block; margin-top:64px; overflow:visible;}
     
     .tech-node {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
-      transform-box: fill-box;
-      transform-origin: center;
-    }
-    .tech-node:hover {
-      transform: scale(1.03);
     }
     .tech-node rect {
       fill: #FFFFFF;
       stroke: rgba(14,31,62,0.08);
       stroke-width: 1.5;
-      transition: fill 0.4s, stroke 0.4s, filter 0.4s;
+      transition: fill 0.3s, stroke 0.3s, filter 0.3s;
     }
     .tech-node:hover rect {
       stroke: #0BA8D3;
-      filter: drop-shadow(0 15px 30px rgba(11,168,211,0.15));
+      stroke-width: 2;
+      filter: drop-shadow(0 0 12px rgba(11,168,211,0.5));
     }
     .tech-node text {
       font-family: 'Inter', sans-serif;
       font-weight: 800;
       fill: #0E1F3E;
       letter-spacing: 0.8px;
-      transition: fill 0.4s;
+      transition: fill 0.3s;
     }
     .tech-node:hover text {
       fill: #0BA8D3;
