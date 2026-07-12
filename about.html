@@ -581,12 +581,33 @@
     /* WORKFLOW - Premium CSS-only Upgrade */
     #wf { background: #FFFFFF; position: relative; }
     .wft { display: flex; gap: 0; margin-top: 64px; }
+    
+    @keyframes wfLoopBg {
+      0%, 20%, 100% { background: transparent; transform: translateY(0); }
+      10% { background: rgba(11,37,69,0.04); transform: translateY(-4px); }
+    }
+    @keyframes wfLoopBadge {
+      0%, 20%, 100% { background: #FFFFFF; color: #0B2545; border-color: rgba(11,37,69,0.3); box-shadow: 0 4px 16px rgba(11,37,69,0.1); transform: scale(1); }
+      10% { background: #0B2545; color: #FFFFFF; border-color: #0B2545; box-shadow: 0 8px 24px rgba(11,37,69,0.4); transform: scale(1.1); }
+    }
+    @keyframes wfLoopText {
+      0%, 20%, 100% { color: #0E1F3E; }
+      10% { color: #0B2545; }
+    }
+
     .wfs {
       flex: 1; text-align: center; position: relative;
       padding: 24px 8px; border-radius: 20px;
-      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-      background: rgba(11,37,69,0.04);
+      animation: wfLoopBg 7s infinite ease-in-out;
     }
+    .wfs:nth-child(1), .wfs:nth-child(1) .wfn, .wfs:nth-child(1) .wftl { animation-delay: 0s; }
+    .wfs:nth-child(2), .wfs:nth-child(2) .wfn, .wfs:nth-child(2) .wftl { animation-delay: 1s; }
+    .wfs:nth-child(3), .wfs:nth-child(3) .wfn, .wfs:nth-child(3) .wftl { animation-delay: 2s; }
+    .wfs:nth-child(4), .wfs:nth-child(4) .wfn, .wfs:nth-child(4) .wftl { animation-delay: 3s; }
+    .wfs:nth-child(5), .wfs:nth-child(5) .wfn, .wfs:nth-child(5) .wftl { animation-delay: 4s; }
+    .wfs:nth-child(6), .wfs:nth-child(6) .wfn, .wfs:nth-child(6) .wftl { animation-delay: 5s; }
+    .wfs:nth-child(7), .wfs:nth-child(7) .wfn, .wfs:nth-child(7) .wftl { animation-delay: 6s; }
+
     /* Upgraded line */
     .wfs::after {
       content: ''; position: absolute; top: 51px; left: 50%;
@@ -598,15 +619,15 @@
     /* Upgraded number badge */
     .wfn {
       width: 56px; height: 56px; border-radius: 50%;
-      border: 2px solid #0B2545;
+      border: 2px solid rgba(11,37,69,0.3);
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; font-weight: 900; 
       margin: 0 auto 20px; position: relative; z-index: 1;
-      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-      background: #0B2545; color: #FFFFFF;
-      box-shadow: 0 8px 24px rgba(11,37,69,0.4);
+      background: #FFFFFF; color: #0B2545;
+      box-shadow: 0 4px 16px rgba(11,37,69,0.1);
+      animation: wfLoopBadge 7s infinite ease-in-out;
     }
-    .wftl { font-size: 15px; font-weight: 800; color: #0B2545; margin-bottom: 8px; transition: color 0.3s; }
+    .wftl { font-size: 15px; font-weight: 800; color: #0E1F3E; margin-bottom: 8px; animation: wfLoopText 7s infinite ease-in-out; }
     .wfts { font-size: 13px; color: rgba(14,31,62,0.65); line-height: 1.5; }
 
     /* LEADERSHIP - Premium CSS-only Upgrade */
