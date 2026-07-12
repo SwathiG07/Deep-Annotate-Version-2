@@ -514,14 +514,69 @@
       fill: #0BA8D3;
     }
 
-    /* TRUST */
-    #trust{background:var(--navy-panel);}
-    .trg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:64px;}
-    .trc{background:rgba(255,255,255,0.02);border:1px solid var(--border-sub);border-radius:16px;padding:28px 22px;transition:all 0.3s;}
-    .trc:hover{border-color:var(--border-cyan);transform:translateY(-4px);}
-    .tri{font-size:24px;margin-bottom:14px;}
-    .trt{font-size:15px;font-weight:700;color:var(--grey);margin-bottom:8px;}
-    .trd{font-size:13px;color:var(--grey-dim);line-height:1.6;}
+    /* TRUST - PREMIUM SPLIT LAYOUT */
+    #trust { background: var(--navy-panel); padding-bottom: 140px; }
+    .trust-split {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start;
+    }
+    .trust-visual {
+      position: sticky; top: 120px; text-align: center;
+      padding: 48px; background: #FFFFFF; border-radius: 32px;
+      border: 1px solid rgba(14,31,62,0.06);
+      box-shadow: 0 20px 40px rgba(14,31,62,0.03);
+    }
+    .shield-container {
+      position: relative; width: 180px; height: 180px; margin: 0 auto 32px;
+    }
+    .shield-svg {
+      width: 100%; height: 100%; overflow: visible;
+    }
+    .spin-slow {
+      transform-origin: center; transform-box: fill-box;
+      animation: spin-r 20s infinite linear;
+    }
+    .spin-fast {
+      transform-origin: center; transform-box: fill-box;
+      animation: spin-r 8s infinite linear;
+    }
+    @keyframes spin-r { 100% { transform: rotate(360deg); } }
+
+    .trust-list {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .trc {
+      position: relative; padding: 24px 32px; background: #FFFFFF;
+      border-radius: 20px; border: 1px solid rgba(14,31,62,0.06);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px rgba(14,31,62,0.02);
+      cursor: default;
+    }
+    .trc-indicator {
+      position: absolute; left: -1px; top: 25%; height: 50%; width: 4px;
+      background: rgba(14,31,62,0.1); border-radius: 10px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trc:hover {
+      border-color: rgba(11,168,211,0.3);
+      transform: translateX(10px);
+      box-shadow: 0 15px 35px rgba(14,31,62,0.06);
+    }
+    .trc:hover .trc-indicator {
+      background: #0BA8D3; height: 70%; top: 15%;
+    }
+    .trc:hover .trt {
+      color: #0BA8D3;
+    }
+    .tri {
+      font-size: 20px;
+    }
+    .trt {
+      font-size: 16px; font-weight: 800; color: #0E1F3E; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 12px; transition: color 0.3s;
+    }
+    .trd {
+      font-size: 13.5px; color: rgba(14,31,62,0.65); line-height: 1.6;
+    }
 
     /* WORKFLOW */
     #wf{background:var(--navy-deep);}
@@ -1016,16 +1071,68 @@
 <!-- 10. TRUST -->
 <section id="trust" class="sp">
   <div class="sw">
-    <div class="rev" style="text-align:center;"><p class="eyebrow">Enterprise Security</p><h2 class="stitle">Why Enterprises Trust Us</h2></div>
-    <div class="trg">
-      <div class="trc rev d1"><div class="tri">&#128737;&#65039;</div><h4 class="trt">ISO-Ready Process</h4><p class="trd">Annotation pipelines designed to meet ISO 9001 quality management standards from day one.</p></div>
-      <div class="trc rev d2"><div class="tri">&#128101;</div><h4 class="trt">Dedicated Teams</h4><p class="trd">Annotators assigned exclusively to your project. No context switching. No cross-client exposure.</p></div>
-      <div class="trc rev d3"><div class="tri">&#128202;</div><h4 class="trt">Daily QA Reports</h4><p class="trd">Real-time accuracy dashboards and daily quality reports for your engineering leadership.</p></div>
-      <div class="trc rev d4"><div class="tri">&#128272;</div><h4 class="trt">Private Infrastructure</h4><p class="trd">Your data never touches shared annotation platforms. Private VPC, encrypted at rest and in transit.</p></div>
-      <div class="trc rev d1"><div class="tri">&#128683;</div><h4 class="trt">Zero Data Reuse</h4><p class="trd">Your training data is never used to build competing models or shared with third parties. Period.</p></div>
-      <div class="trc rev d2"><div class="tri">&#128196;</div><h4 class="trt">NDA Protected</h4><p class="trd">Enterprise NDA executed before any data is shared. Every annotator signs project-level confidentiality.</p></div>
-      <div class="trc rev d3"><div class="tri">&#128273;</div><h4 class="trt">Role-Based Access</h4><p class="trd">Granular access controls ensure annotators only see the data they need for their assigned tasks.</p></div>
-      <div class="trc rev d4"><div class="tri">&#128203;</div><h4 class="trt">Full Audit Trails</h4><p class="trd">Every annotation decision logged with annotator ID, timestamp, and QA review status.</p></div>
+    <div class="trust-split">
+      <div class="trust-visual rev">
+        <div class="shield-container">
+          <svg class="shield-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(11,168,211,0.15)" stroke-width="1.5" stroke-dasharray="5 5" class="spin-slow"/>
+            <circle cx="100" cy="100" r="76" fill="none" stroke="rgba(14,31,62,0.06)" stroke-width="1" />
+            <circle cx="100" cy="100" r="64" fill="none" stroke="#0BA8D3" stroke-width="1.5" stroke-dasharray="35 150" class="spin-fast"/>
+            <!-- Shield Graphic -->
+            <path d="M100,50 L145,65 L145,115 C145,145 125,165 100,175 C75,165 55,145 55,115 L55,65 Z" fill="#0E1F3E" stroke="#0BA8D3" stroke-width="3"/>
+            <path d="M100,56 L137,68 L137,112 C137,137 121,154 100,163 Z" fill="#0BA8D3" opacity="0.2"/>
+            <!-- Tick -->
+            <path d="M88,108 L97,117 L115,99" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="shield-text">
+          <p class="eyebrow" style="margin-bottom:8px;">Enterprise Security</p>
+          <h2 class="stitle" style="font-size:38px; line-height:1.15;">Why Enterprises Trust Us</h2>
+          <p class="ssub" style="font-size:14.5px; margin-top:16px; margin-left:auto; margin-right:auto;">Military-grade data compliance, dedicated infrastructure, and bulletproof confidentiality agreements.</p>
+        </div>
+      </div>
+      <div class="trust-list">
+        <div class="trc rev d1">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128737;&#65039;</span> ISO-Ready Process</h4>
+          <p class="trd">Annotation pipelines designed to meet ISO 9001 quality management standards from day one.</p>
+        </div>
+        <div class="trc rev d2">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128101;</span> Dedicated Teams</h4>
+          <p class="trd">Annotators assigned exclusively to your project. No context switching. No cross-client exposure.</p>
+        </div>
+        <div class="trc rev d3">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128202;</span> Daily QA Reports</h4>
+          <p class="trd">Real-time accuracy dashboards and daily quality reports for your engineering leadership.</p>
+        </div>
+        <div class="trc rev d4">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128272;</span> Private Infrastructure</h4>
+          <p class="trd">Your data never touches shared annotation platforms. Private VPC, encrypted at rest and in transit.</p>
+        </div>
+        <div class="trc rev d1">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128683;</span> Zero Data Reuse</h4>
+          <p class="trd">Your training data is never used to build competing models or shared with third parties. Period.</p>
+        </div>
+        <div class="trc rev d2">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128196;</span> NDA Protected</h4>
+          <p class="trd">Enterprise NDA executed before any data is shared. Every annotator signs project-level confidentiality.</p>
+        </div>
+        <div class="trc rev d3">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128273;</span> Role-Based Access</h4>
+          <p class="trd">Granular access controls ensure annotators only see the data they need for their assigned tasks.</p>
+        </div>
+        <div class="trc rev d4">
+          <div class="trc-indicator"></div>
+          <h4 class="trt"><span class="tri">&#128203;</span> Full Audit Trails</h4>
+          <p class="trd">Every annotation decision logged with annotator ID, timestamp, and QA review status.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
