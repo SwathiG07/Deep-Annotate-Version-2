@@ -1585,6 +1585,9 @@
     const dots = document.querySelectorAll('.s-dot');
     const C = {}, X = {}, SEC = {}, COP = {};
     SCENES.forEach(sc => { C[sc.id] = document.getElementById('canvas-' + sc.id); X[sc.id] = C[sc.id].getContext('2d'); SEC[sc.id] = document.getElementById('scene-' + sc.id + '-section'); COP[sc.id] = document.getElementById('copy-' + sc.id); });
+    // Manual fix for merged scene 5
+    COP[5] = document.getElementById('copy-5');
+    SEC[5] = { offsetTop: SEC[4] ? SEC[4].offsetTop + (SEC[4].offsetHeight / 2) : 0 };
 
     function resize() {
       const dpr = window.devicePixelRatio || 1;
@@ -1682,10 +1685,18 @@
           }
           draw(sc.id, fi);
         }
-        if (COP[sc.id]) COP[sc.id].classList.toggle('visible', p > 0.07 && p < 0.90);
+        if (sc.id === 4) {
+          if (COP[4]) COP[4].classList.toggle('visible', p > 0.05 && p < 0.45);
+          if (COP[5]) COP[5].classList.toggle('visible', p > 0.55 && p < 0.95);
+        } else if (COP[sc.id]) {
+          COP[sc.id].classList.toggle('visible', p > 0.07 && p < 0.90);
+        }
         // Scene 6 left panel is always-visible and static — skip .visible toggle on its section
         if (sc.id !== 6 && sec) sec.classList.toggle('visible', p > 0.07 && p < 0.90);
-        if (p > 0 && p < 1) active = sc.id;
+        if (p > 0 && p < 1) {
+          if (sc.id === 4 && p > 0.5) active = 5;
+          else active = sc.id;
+        }
 
         // Progressive capabilities fade-in synchronized with deassembly scroll (Scene 4)
         if (sc.id === 4) {
@@ -1698,10 +1709,10 @@
         }
 
         // Progressive badges fade-in synchronized with reassembly scroll (Scene 5)
-        if (sc.id === 5) {
+        if (sc.id === 4) {
           const badges = document.querySelectorAll('#s4-certification-badges .story-pill');
           badges.forEach((badge, idx) => {
-            const threshold = 0.1 + (idx * 0.12); // staggered thresholds from 0.1 to 0.7
+            const threshold = 0.55 + (idx * 0.08); // staggered thresholds in the second half
             badge.style.opacity = (p >= threshold) ? "1" : "0";
             badge.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
           });
