@@ -5,370 +5,399 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DeepAnnotate &#8212; Careers | Build the Future of AI</title>
   <meta name="description" content="Careers at DeepAnnotate. Join us in building world-class AI infrastructure."/>
-  <meta name="theme-color" content="#060e1c"/>
+  <meta name="theme-color" content="#0E1F3E"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="./css/footer.css"/>
   <style>
     :root {
-      --navy: #0E1F3E;
-      --navy-deep: #060e1c;
-      --navy-panel: #0a1830;
-      --cyan: #0BA8D3;
+      --navy:       #0E1F3E;
+      --navy-deep:  #060e1c;
+      --cyan:       #0BA8D3;
       --cyan-light: #25E0E2;
-      --amber: #FFBA08;
-      --amber-light: #FFD44D;
-      --purple: #7C3AED;
-      --purple-light: #A78BFA;
-      --teal: #0D9488;
-      --teal-light: #2DD4BF;
-      --grey: #F1F5F9;
-      --grey-muted: rgba(241, 245, 249, 0.7);
-      --grey-dim: rgba(241, 245, 249, 0.4);
-      --border-sub: rgba(255, 255, 255, 0.1);
-      --glass-nav: rgba(6, 14, 28, 0.85);
+      --white:      #FFFFFF;
+      --off-white:  #F7F9FC;
+      --border:     rgba(14,31,62,0.09);
+      --text-main:  #0E1F3E;
+      --text-muted: rgba(14,31,62,0.6);
+      --text-dim:   rgba(14,31,62,0.38);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--navy-deep);color:var(--grey);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    a{text-decoration:none;color:inherit;}
-    ::-webkit-scrollbar{width:4px;}
-    ::-webkit-scrollbar-track{background:var(--navy-deep);}
-    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg, var(--cyan), var(--purple));border-radius:2px;}
+
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--white);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration:none; color:inherit; }
+
+    ::-webkit-scrollbar { width:4px; }
+    ::-webkit-scrollbar-track { background: var(--off-white); }
+    ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius:2px; }
 
     /* ── NAVBAR ── */
-    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:#FFFFFF;backdrop-filter:blur(24px);border-bottom:1px solid rgba(14,31,62,0.08);}
-    .nav-brand{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:700;letter-spacing:-.04em;}
-    .nav-brand img{height:46px;width:auto;display:block;}
-    .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
-    .nav-links a{font-size:13.5px;font-weight:500;color:rgba(14,31,62,0.75);transition:color .25s;}
-    .nav-links a:hover,.nav-links a.active{color:var(--cyan);}
-    .nav-cta{display:inline-flex;align-items:center;padding:10px 22px;border-radius:100px;font-size:13.5px;font-weight:600;color:#FFFFFF;background:#0E1F3E;transition:all 0.3s;box-shadow:0 4px 12px rgba(14,31,62,0.1);border:1px solid #0E1F3E;}
-    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(14,31,62,0.2);background:transparent;color:#0E1F3E;}
+    #navbar {
+      position: fixed; top:0; left:0; right:0; z-index:1000;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 0 48px; height: 68px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display:flex; align-items:center; gap:9px; font-size:16px; font-weight:700; letter-spacing:-.04em; }
+    .nav-brand img { height:46px; width:auto; display:block; }
+    .nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+    .nav-links a { font-size:13.5px; font-weight:500; color:var(--text-muted); transition:color .25s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--cyan); }
+    .nav-cta {
+      display:inline-flex; align-items:center; padding:10px 22px;
+      border-radius:100px; font-size:13.5px; font-weight:600;
+      color:#fff; background:var(--navy);
+      border:1px solid var(--navy); transition:all 0.3s;
+      box-shadow: 0 4px 12px rgba(14,31,62,0.12);
+    }
+    .nav-cta:hover { background:transparent; color:var(--navy); transform:translateY(-1px); }
 
-    /* ── CAREERS HERO ── */
+    /* ── HERO ── */
     #hero {
       position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 48px 80px;
+      padding: 160px 48px 100px;
+      background: var(--white);
       overflow: hidden;
     }
 
-    /* Multi-colour ambient blobs */
+    /* Subtle decorative shapes */
     #hero::before {
       content: '';
       position: absolute;
-      top: -15%; left: 15%; width: 650px; height: 650px;
-      background: radial-gradient(circle, rgba(11,168,211,0.14) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(11,168,211,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     #hero::after {
       content: '';
       position: absolute;
-      top: 15%; right: 0%; width: 520px; height: 520px;
-      background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-blob-amber {
-      position: absolute;
-      bottom: 0%; left: 0%; width: 450px; height: 450px;
-      background: radial-gradient(circle, rgba(255,186,8,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-blob-teal {
-      position: absolute;
-      bottom: 5%; right: 20%; width: 380px; height: 380px;
-      background: radial-gradient(circle, rgba(13,148,136,0.1) 0%, transparent 70%);
+      bottom: -60px; left: -60px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(14,31,62,0.05) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    /* Animated noise grain texture for depth */
-    .hero-grain {
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-      opacity: 0.4;
-      pointer-events: none;
-    }
-
-    .c-wrap {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
       text-align: center;
       position: relative;
-      z-index: 10;
+      z-index: 2;
     }
 
-    /* Pill badge */
-    .careers-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, rgba(255,186,8,0.12), rgba(11,168,211,0.12));
-      border: 1px solid rgba(255,186,8,0.25);
-      color: var(--amber-light);
-      margin-bottom: 28px;
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 18px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(11,168,211,0.07);
+      border: 1px solid rgba(11,168,211,0.2);
+      margin-bottom: 32px;
     }
-    .careers-pill .pill-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--amber);
-      box-shadow: 0 0 8px var(--amber);
-      animation: pulse-dot 2s ease-in-out infinite;
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 6px var(--cyan);
+      animation: blink 2s ease-in-out infinite;
     }
-    @keyframes pulse-dot {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.5; transform: scale(0.7); }
+    @keyframes blink {
+      0%,100% { opacity:1; } 50% { opacity:0.3; }
     }
 
-    .headline {
-      font-family: "Outfit", sans-serif;
-      font-size: clamp(40px, 6vw, 72px);
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
       font-weight: 900;
       letter-spacing: -0.04em;
-      line-height: 1.08;
-      margin-bottom: 28px;
-      background: linear-gradient(135deg, #ffffff 25%, var(--purple-light) 60%, var(--cyan-light) 100%);
+      line-height: 1.07;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .hero-title .accent {
+      background: linear-gradient(90deg, var(--cyan), #0BA8D3 60%, #25E0E2);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .sub {
-      font-size: 17px;
+    .hero-sub {
+      font-size: 18px;
       line-height: 1.7;
-      color: var(--grey-muted);
+      color: var(--text-muted);
       max-width: 580px;
-      margin-bottom: 72px;
+      margin: 20px auto 0;
     }
 
-    /* ── CARD GRID ── */
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── ROLE CARDS ── */
+    #roles {
+      background: var(--off-white);
+      padding: 96px 48px;
+    }
+
+    .roles-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .roles-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 14px;
+    }
+    .roles-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .roles-sub {
+      font-size: 16px; color: var(--text-muted); max-width: 500px; margin: 0 auto;
+    }
+
     .c-grid {
+      max-width: 1100px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 28px;
-      width: 100%;
     }
 
+    /* Base card */
     .c-card {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 56px 48px;
-      text-align: left;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 52px 44px;
+      display: block;
       position: relative;
       overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 24px rgba(14,31,62,0.04);
       text-decoration: none;
-      display: block;
+    }
+    .c-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(14,31,62,0.1);
     }
 
-    /* ─ Card 1 (corporate) — Navy + Cyan theme ─ */
-    #corporate {
-      background: linear-gradient(145deg, rgba(8,20,50,0.7) 0%, rgba(11,37,69,0.5) 100%);
-      border: 1px solid rgba(11,168,211,0.18);
-      box-shadow: 0 16px 56px rgba(0,0,0,0.35), inset 0 1px 0 rgba(11,168,211,0.1);
-    }
-    /* Cyan top-right ambient glow */
-    #corporate .card-glow {
+    /* Cyan accent bar at top */
+    .c-card-bar {
       position: absolute;
-      top: -30%; right: -15%; width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(11,168,211,0.15) 0%, transparent 70%);
-      pointer-events: none;
+      top: 0; left: 0; right: 0; height: 3px;
+      border-radius: 24px 24px 0 0;
     }
-    /* Teal bottom-left accent */
-    #corporate .card-glow-2 {
-      position: absolute;
-      bottom: -20%; left: -10%; width: 220px; height: 220px;
-      background: radial-gradient(circle, rgba(13,148,136,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #corporate:hover {
-      border-color: rgba(11,168,211,0.45);
-      transform: translateY(-12px);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.45), 0 0 80px rgba(11,168,211,0.14);
-    }
-    #corporate .c-icon {
-      background: linear-gradient(135deg, rgba(11,168,211,0.18), rgba(13,148,136,0.1));
-      border: 1px solid rgba(11,168,211,0.3);
-      box-shadow: 0 8px 24px rgba(11,168,211,0.15);
-    }
-    #corporate .c-tag { color: var(--cyan-light); background: rgba(11,168,211,0.1); border-color: rgba(11,168,211,0.2); }
-    #corporate .c-btn-primary {
-      background: rgba(11,168,211,0.12);
-      color: var(--cyan-light);
-      border: 1px solid rgba(11,168,211,0.35);
-    }
-    #corporate .c-btn-primary:hover {
-      background: var(--cyan);
-      color: var(--navy-deep);
-      box-shadow: 0 8px 32px rgba(11,168,211,0.45);
-      transform: translateX(4px);
-    }
+    #corporate .c-card-bar  { background: linear-gradient(90deg, var(--navy), var(--cyan)); }
+    #freelancing .c-card-bar { background: linear-gradient(90deg, var(--cyan), var(--navy)); }
 
-    /* ─ Card 2 (freelancing) — Purple + Amber theme ─ */
-    #freelancing {
-      background: linear-gradient(145deg, rgba(20,8,50,0.7) 0%, rgba(40,15,80,0.5) 100%);
-      border: 1px solid rgba(124,58,237,0.22);
-      box-shadow: 0 16px 56px rgba(0,0,0,0.35), inset 0 1px 0 rgba(167,139,250,0.1);
-    }
-    #freelancing .card-glow {
-      position: absolute;
-      top: -30%; left: -15%; width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(124,58,237,0.16) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #freelancing .card-glow-2 {
-      position: absolute;
-      bottom: -15%; right: -10%; width: 260px; height: 260px;
-      background: radial-gradient(circle, rgba(255,186,8,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #freelancing:hover {
-      border-color: rgba(124,58,237,0.5);
-      transform: translateY(-12px);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.45), 0 0 80px rgba(124,58,237,0.18);
-    }
-    #freelancing .c-icon {
-      background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(255,186,8,0.1));
-      border: 1px solid rgba(167,139,250,0.3);
-      box-shadow: 0 8px 24px rgba(124,58,237,0.15);
-    }
-    #freelancing .c-tag { color: var(--purple-light); background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.2); }
-    #freelancing .c-btn-primary {
-      background: rgba(124,58,237,0.12);
-      color: var(--purple-light);
-      border: 1px solid rgba(124,58,237,0.35);
-    }
-    #freelancing .c-btn-primary:hover {
-      background: linear-gradient(90deg, var(--purple), var(--amber));
-      color: #ffffff;
-      border-color: transparent;
-      box-shadow: 0 8px 32px rgba(124,58,237,0.45);
-      transform: translateX(4px);
-    }
-
-    /* Shimmer sweep */
-    .c-sweep {
-      position: absolute;
-      top: 0; left: -100%; width: 55%; height: 100%;
-      background: linear-gradient(to right, transparent, rgba(255,255,255,0.04), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.8s cubic-bezier(0.16,1,0.3,1);
-      z-index: 0;
-    }
-    .c-card:hover .c-sweep { left: 200%; }
-
-    /* Top accent line */
-    .c-card-line {
-      position: absolute;
-      top: 0; left: 48px; right: 48px; height: 2px;
-      border-radius: 0 0 4px 4px;
-    }
-    #corporate .c-card-line { background: linear-gradient(90deg, var(--cyan), var(--teal-light), transparent); }
-    #freelancing .c-card-line { background: linear-gradient(90deg, var(--purple-light), var(--amber), transparent); }
+    #corporate:hover  { border-color: rgba(11,168,211,0.25); }
+    #freelancing:hover { border-color: rgba(11,168,211,0.25); }
 
     .c-icon {
-      width: 68px; height: 68px;
-      border-radius: 18px;
+      width: 60px; height: 60px;
+      border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 30px;
-      margin-bottom: 24px;
-      position: relative; z-index: 1;
+      font-size: 26px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
     }
+    #corporate  .c-icon { background: rgba(14,31,62,0.04); }
+    #freelancing .c-icon { background: rgba(11,168,211,0.06); border-color: rgba(11,168,211,0.15); }
 
     .c-tag {
       display: inline-block;
-      font-size: 10px; font-weight: 800;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
       padding: 5px 12px; border-radius: 100px;
-      border: 1px solid;
-      margin-bottom: 16px;
-      position: relative; z-index: 1;
+      margin-bottom: 14px;
     }
+    #corporate  .c-tag { color: var(--navy);      background: rgba(14,31,62,0.06);      }
+    #freelancing .c-tag { color: var(--cyan);      background: rgba(11,168,211,0.08);    }
 
     .c-title {
-      font-family: "Outfit", sans-serif;
-      font-size: 30px; font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 14px;
-      position: relative; z-index: 1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px; font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
     }
 
     .c-desc {
-      font-size: 15.5px; line-height: 1.7;
-      color: var(--grey-muted);
-      margin-bottom: 40px;
-      position: relative; z-index: 1;
+      font-size: 15px; line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 36px;
     }
 
     .c-btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; border-radius: 100px;
+      padding: 13px 26px; border-radius: 100px;
       font-size: 13.5px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.06em;
       transition: all 0.3s;
-      position: relative; z-index: 1;
     }
     .c-btn-outline {
-      background: transparent; color: var(--grey-dim);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
       cursor: not-allowed;
     }
-    .c-btn-primary { text-decoration: none; cursor: pointer; }
+    .c-btn-primary {
+      background: var(--navy);
+      color: #fff;
+      border: 1px solid var(--navy);
+    }
+    .c-btn-primary:hover {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(11,168,211,0.3);
+      transform: translateX(3px);
+    }
 
     /* ── STATS STRIP ── */
-    .stats-strip {
+    #stats-strip {
+      background: var(--navy);
+      padding: 56px 48px;
+    }
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
-      gap: 0;
-      margin-top: 72px;
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(12px);
-      overflow: hidden;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
     }
-    .stat-item {
-      flex: 1;
-      padding: 32px 24px;
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.05);
-      position: relative;
-    }
-    .stat-item:last-child { border-right: none; }
+    .stat-item { text-align: center; }
     .stat-num {
-      font-family: "Outfit", sans-serif;
-      font-size: 32px; font-weight: 900;
-      letter-spacing: -0.03em;
+      font-family: 'Outfit', sans-serif;
+      font-size: 38px; font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.04em;
       line-height: 1;
       margin-bottom: 8px;
     }
-    .stat-lbl { font-size: 12px; font-weight: 600; color: var(--grey-dim); text-transform: uppercase; letter-spacing: 0.08em; }
-    /* colour each stat differently */
-    .stat-item:nth-child(1) .stat-num { color: var(--cyan-light); }
-    .stat-item:nth-child(2) .stat-num { color: var(--amber-light); }
-    .stat-item:nth-child(3) .stat-num { color: var(--purple-light); }
-    .stat-item:nth-child(4) .stat-num { color: var(--teal-light); }
+    .stat-num span { color: var(--cyan); }
+    .stat-lbl {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .stat-divider {
+      width: 1px; height: 48px;
+      background: rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    /* ── VALUES STRIP ── */
+    #values-strip {
+      background: var(--white);
+      padding: 96px 48px;
+      border-top: 1px solid var(--border);
+    }
+    .values-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .values-header { text-align: center; margin-bottom: 64px; }
+    .values-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(28px, 3vw, 40px); font-weight: 700;
+      color: var(--navy); margin-bottom: 12px;
+    }
+    .values-sub { font-size: 15.5px; color: var(--text-muted); }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+      transition: all 0.3s;
+    }
+    .value-card:hover {
+      border-color: rgba(11,168,211,0.25);
+      box-shadow: 0 12px 40px rgba(14,31,62,0.07);
+      transform: translateY(-4px);
+    }
+    .value-icon {
+      font-size: 28px; margin-bottom: 16px;
+    }
+    .value-title {
+      font-weight: 800; font-size: 16px; color: var(--navy); margin-bottom: 8px;
+    }
+    .value-desc {
+      font-size: 14px; line-height: 1.65; color: var(--text-muted);
+    }
+
+    /* ── CTA BANNER ── */
+    #cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2d5e 50%, #0d3870 100%);
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(11,168,211,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 900;
+      color: var(--white); letter-spacing: -0.03em;
+      margin-bottom: 16px; position: relative;
+    }
+    .cta-sub {
+      font-size: 16px; color: rgba(255,255,255,0.65);
+      max-width: 480px; margin: 0 auto 36px;
+      line-height: 1.6; position: relative;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 36px; border-radius: 100px;
+      font-size: 15px; font-weight: 700;
+      background: var(--cyan);
+      color: var(--navy);
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(11,168,211,0.35);
+      position: relative;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(11,168,211,0.5);
+      background: var(--cyan-light);
+    }
   </style>
 </head>
 <body>
 
   <nav id="navbar">
-    <a href="./index.html" class="nav-brand"><img src="./DeepAnnototate-1.png" alt="DeepAnnotate Logo" style="height:52px;width:auto;" /></a>
+    <a href="./index.html" class="nav-brand">
+      <img src="./DeepAnnototate-1.png" alt="DeepAnnotate Logo" style="height:52px;width:auto;" />
+    </a>
     <ul class="nav-links">
       <li><a href="./services.html">Services</a></li>
       <li><a href="./how-it-works.html">How It Works</a></li>
@@ -381,69 +410,134 @@
     <a href="./contact.html" class="nav-cta">Connect to us</a>
   </nav>
 
+  <!-- HERO -->
   <section id="hero">
-    <!-- Ambient blobs -->
-    <div class="hero-blob-amber"></div>
-    <div class="hero-blob-teal"></div>
-    <div class="hero-grain"></div>
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="dot"></span> We're Hiring</div>
+      <h1 class="hero-title">
+        Shape the Future<br>of <span class="accent">AI Data.</span>
+      </h1>
+      <p class="hero-sub">
+        Whether you're an engineer building core infrastructure or a domain expert
+        annotating ground-truth data — DeepAnnotate is where the future of
+        multimodal AI is made.
+      </p>
+    </div>
+  </section>
 
-    <div class="c-wrap">
-      <div class="careers-pill">
-        <span class="pill-dot"></span>
-        Join The Mission
+  <div class="section-divider"></div>
+
+  <!-- ROLE CARDS -->
+  <section id="roles">
+    <div class="roles-header">
+      <div class="roles-eyebrow">Open Opportunities</div>
+      <h2 class="roles-title">Find Your Place at DeepAnnotate</h2>
+      <p class="roles-sub">Two distinct paths, one shared mission — advancing the quality of AI data at scale.</p>
+    </div>
+
+    <div class="c-grid">
+      <!-- Full-Time -->
+      <a href="./full-time.html" class="c-card" id="corporate">
+        <div class="c-card-bar"></div>
+        <div class="c-icon">🏢</div>
+        <span class="c-tag">Core Team</span>
+        <h2 class="c-title">Full-Time Opportunities</h2>
+        <p class="c-desc">
+          Join our core team of AI researchers, distributed systems engineers, and
+          operations experts working out of our global hubs to redefine data
+          infrastructure for the world's leading AI companies.
+        </p>
+        <div class="c-btn c-btn-outline">Coming Soon &rarr;</div>
+      </a>
+
+      <!-- Freelancing -->
+      <a href="./data-forage.html" class="c-card" id="freelancing">
+        <div class="c-card-bar"></div>
+        <div class="c-icon">🌐</div>
+        <span class="c-tag">Global Network</span>
+        <h2 class="c-title">Freelancing</h2>
+        <p class="c-desc">
+          We are always looking for domain experts — medical, legal, aerospace —
+          and multilingual linguists to join our global network of freelance
+          annotators contributing to enterprise-grade AI datasets.
+        </p>
+        <div class="c-btn c-btn-primary">Explore Freelancing &rarr;</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section id="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">10<span>M+</span></div>
+        <div class="stat-lbl">Assets Annotated</div>
       </div>
-
-      <h1 class="headline">Build the Next Generation&nbsp;of&nbsp;AI.</h1>
-      <p class="sub">Whether you're an engineer shaping our core infrastructure or a domain expert annotating ground-truth data, DeepAnnotate is where the future of multimodal AI is built.</p>
-
-      <div class="c-grid">
-        <!-- Full-Time Card (Cyan/Teal) -->
-        <a href="./full-time.html" class="c-card" id="corporate">
-          <div class="c-card-line"></div>
-          <div class="card-glow"></div>
-          <div class="card-glow-2"></div>
-          <div class="c-sweep"></div>
-          <div class="c-icon">🏢</div>
-          <span class="c-tag">Core Team</span>
-          <h2 class="c-title">Full-Time Opportunities</h2>
-          <p class="c-desc">Join our core team of AI researchers, distributed systems engineers, and operations experts working out of our global hubs to redefine data infrastructure.</p>
-          <div class="c-btn c-btn-outline">View Openings &rarr;</div>
-        </a>
-
-        <!-- Freelancing Card (Purple/Amber) -->
-        <a href="./data-forage.html" class="c-card" id="freelancing">
-          <div class="c-card-line"></div>
-          <div class="card-glow"></div>
-          <div class="card-glow-2"></div>
-          <div class="c-sweep"></div>
-          <div class="c-icon">🌐</div>
-          <span class="c-tag">Global Network</span>
-          <h2 class="c-title">Freelancing</h2>
-          <p class="c-desc">We are always looking for domain experts (medical, legal, aerospace) and multilingual linguists to join our global network of freelance annotators.</p>
-          <div class="c-btn c-btn-primary">Explore Freelancing &rarr;</div>
-        </a>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-lbl">AI Domains</div>
       </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">99<span>.9%</span></div>
+        <div class="stat-lbl">QA Accuracy</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-lbl">Global Delivery</div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Stats Strip -->
-      <div class="stats-strip">
-        <div class="stat-item">
-          <div class="stat-num">10M+</div>
-          <div class="stat-lbl">Assets Annotated</div>
+  <!-- VALUES -->
+  <section id="values-strip">
+    <div class="values-inner">
+      <div class="values-header">
+        <h2 class="values-title">Why Work With Us</h2>
+        <p class="values-sub">A culture built on quality, ownership, and impact.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <div class="value-title">Mission-Driven Work</div>
+          <div class="value-desc">Every dataset you touch powers AI models that shape how machines see, hear, and understand the world.</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">50+</div>
-          <div class="stat-lbl">AI Domains</div>
+        <div class="value-card">
+          <div class="value-icon">🌍</div>
+          <div class="value-title">Remote-First & Global</div>
+          <div class="value-desc">Our team operates across continents. Quality has no geography — neither does opportunity.</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">99.9%</div>
-          <div class="stat-lbl">QA Accuracy</div>
+        <div class="value-card">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Fast-Moving Environment</div>
+          <div class="value-desc">Work on real enterprise AI projects with fast feedback cycles and direct impact from day one.</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">24/7</div>
-          <div class="stat-lbl">Global Delivery</div>
+        <div class="value-card">
+          <div class="value-icon">🤝</div>
+          <div class="value-title">Expert Community</div>
+          <div class="value-desc">Collaborate with ML engineers, domain scientists, and AI researchers building the next generation of models.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📈</div>
+          <div class="value-title">Grow With AI</div>
+          <div class="value-desc">The AI data industry is one of the fastest growing in tech. Join at the inflection point.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🏆</div>
+          <div class="value-title">Quality Obsessed</div>
+          <div class="value-desc">We operate at 99.9% accuracy. We hire people who hold themselves to the same standard.</div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section id="cta-banner">
+    <h2 class="cta-title">Ready to Build the Future?</h2>
+    <p class="cta-sub">Explore open roles or join our global network of freelance annotation experts today.</p>
+    <a href="./data-forage.html" class="cta-btn">Get Started &rarr;</a>
   </section>
 
   <div id="footer-placeholder"></div>
