@@ -130,8 +130,8 @@ body {
 .face-bottom { transform: rotateX(-90deg) translateZ(100px); }
 
 @keyframes rotateCube {
-  0%   { transform: rotateX(-15deg) rotateY(0deg) translateZ(0); }
-  100% { transform: rotateX(-15deg) rotateY(360deg) translateZ(0); }
+  0%   { transform: rotateX(0deg) rotateY(0deg) translateZ(0); }
+  100% { transform: rotateX(360deg) rotateY(360deg) translateZ(0); }
 }
 
 /* TIMELINE CONTAINER & HARDWARE ACCELERATION */
