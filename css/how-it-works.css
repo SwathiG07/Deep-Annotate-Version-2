@@ -71,8 +71,8 @@ body {
   background-size: 40px 40px;
 }
 .wireframe-cube {
-  width: 240px;
-  height: 240px;
+  width: 200px;
+  height: 200px;
   margin: 0 auto 40px;
   position: relative;
   transform-style: preserve-3d;
@@ -122,12 +122,12 @@ body {
   display: block;
 }
 
-.face-front  { transform: rotateY(0deg)   translateZ(120px); }
-.face-back   { transform: rotateY(180deg) translateZ(120px); }
-.face-left   { transform: rotateY(-90deg) translateZ(120px); }
-.face-right  { transform: rotateY(90deg)  translateZ(120px); }
-.face-top    { transform: rotateX(90deg)  translateZ(120px); }
-.face-bottom { transform: rotateX(-90deg) translateZ(120px); }
+.face-front  { transform: rotateY(0deg)   translateZ(100px); }
+.face-back   { transform: rotateY(180deg) translateZ(100px); }
+.face-left   { transform: rotateY(-90deg) translateZ(100px); }
+.face-right  { transform: rotateY(90deg)  translateZ(100px); }
+.face-top    { transform: rotateX(90deg)  translateZ(100px); }
+.face-bottom { transform: rotateX(-90deg) translateZ(100px); }
 
 @keyframes rotateCube {
   0%   { transform: rotateX(-15deg) rotateY(0deg) translateZ(0); }
