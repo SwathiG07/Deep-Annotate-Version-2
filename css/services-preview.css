@@ -126,11 +126,6 @@
   z-index: 1;
 }
 
-.svc2-card:first-child {
-  background: var(--teal); /* #0BA8D3 */
-  border-color: var(--teal);
-}
-
 /* Glassy shine overlay */
 .svc2-card::before {
   content: '';
