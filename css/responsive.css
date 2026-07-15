@@ -30,8 +30,8 @@
   }
 
   /* General Padding & Spacing */
-  .sp, .section-wrap, main.section-wrap {
-    padding-top: 60px !important;
+  .sp, .section-wrap, main.section-wrap, #hero {
+    padding-top: 100px !important;
     padding-bottom: 60px !important;
     padding-left: 20px !important;
     padding-right: 20px !important;

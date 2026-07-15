@@ -13,16 +13,16 @@
   <style>
     :root {
       --navy: #0E1F3E;
-      --navy-deep: #060e1c;
-      --navy-panel: #0a1830;
+      --navy-deep: #F8FAFC;
+      --navy-panel: #FFFFFF;
       --cyan: #0BA8D3;
-      --cyan-light: #25E0E2;
+      --cyan-light: #0BA8D3;
       --amber: #FFBA08;
-      --grey: #F1F5F9;
-      --grey-muted: rgba(241, 245, 249, 0.7);
-      --grey-dim: rgba(241, 245, 249, 0.4);
-      --border-sub: rgba(255, 255, 255, 0.1);
-      --glass-nav: rgba(6, 14, 28, 0.85);
+      --grey: #0E1F3E;
+      --grey-muted: rgba(14, 31, 62, 0.7);
+      --grey-dim: rgba(14, 31, 62, 0.4);
+      --border-sub: rgba(14, 31, 62, 0.1);
+      --glass-nav: rgba(255, 255, 255, 0.85);
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
@@ -138,8 +138,8 @@
       gap: 32px;
     }
     .f-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--grey);
+      border: 1px solid var(--border-sub);
       border-radius: 20px;
       padding: 48px 32px;
       text-align: center;
@@ -157,7 +157,7 @@
       font-family: "Outfit", sans-serif;
       font-size: 22px;
       font-weight: 700;
-      color: #ffffff;
+      color: var(--navy);
       margin-bottom: 16px;
     }
     .f-desc {
