@@ -122,15 +122,18 @@
     }
 
     .hero-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(42px, 6vw, 64px);
-      font-weight: 700;
-      line-height: 1.1;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.07;
       color: var(--navy);
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
     .hero-title .accent {
-      color: var(--cyan);
+      background: linear-gradient(90deg, var(--cyan), #0BA8D3 60%, #25E0E2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero-sub {
