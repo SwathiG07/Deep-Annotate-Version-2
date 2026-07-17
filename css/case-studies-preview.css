@@ -134,19 +134,39 @@
 }
 
 @media (max-width: 768px) {
+  /* Bespoke Mobile Redesign: Sidebar becomes a premium horizontal header */
   .cs2-card {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+    margin: 0 auto;
   }
   .cs2-sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    padding: 32px;
+    padding: 20px 24px;
+  }
+  .cs2-stat {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+  .cs2-tag {
+    font-size: 11px;
+    margin-bottom: 0;
+    text-align: left;
+  }
+  .cs2-stat-lbl {
+    /* DO NOT HIDE. Keep all desktop content. Adjust size slightly */
+    font-size: 11px;
+    margin-left: 12px;
+    text-align: right;
   }
   .cs2-body {
-    padding: 32px;
-  }
-  .cs2-header {
-    padding-bottom: 40px;
+    padding: 24px;
   }
   .cs2-all-link {
     position: static;

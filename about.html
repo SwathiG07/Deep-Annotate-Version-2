@@ -296,7 +296,7 @@
     .val-desc {
       font-size: 16.5px; line-height: 1.8; color: rgba(11, 37, 69, 0.75);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      padding-left: 76px;
+      padding-left: 0;
     }
     .val-row:hover .val-desc { color: rgba(11, 37, 69, 1); }
     
@@ -797,10 +797,17 @@
     @media(max-width:768px){
       #navbar{padding:0 20px;}.nav-links{display:none;}.sw{padding:0 20px;}.sp{padding-top:80px;padding-bottom:80px;}
       .hh{font-size:44px;}.mvg,.sg{grid-template-columns:1fr;}
-      .tl{padding:0 16px;}.tl::before{left:24px;}.tli{grid-template-columns:48px 1fr;grid-template-rows:auto auto;}.tlc{padding:0 0 0 16px;text-align:left!important;}.tli:nth-child(odd) .tlc:first-child{text-align:left!important;}
+      .tl{padding:0 16px;} .tl::before{display:none;}
+      .tli{display:flex; flex-direction:column; gap:24px; text-align:center; margin-bottom:60px;}
+      .tlc{padding:0!important; text-align:center!important; order:1!important;}
+      .tlcard{order:2!important; padding:20px 16px; margin:0 auto; max-width:280px; width:100%;}
+      .tli > div:not(.tlc):not(.tlcard){display:none!important;}
       .comph,.compr{grid-template-columns:1fr 1fr 1fr;}.cc{padding:12px 12px;font-size:12px;}
-      .vg,.ig,.trg,.cug,.trust-split{grid-template-columns:1fr;}.cui.lg{grid-column:span 1;}
+      .vg,.ig,.trg,.cug,.trust-split,.val-split{grid-template-columns:1fr;}.cui.lg{grid-column:span 1;}
+      .val-row { padding: 32px 24px 32px 70px !important; }
+      .val-row::before { left: 16px !important; top: 32px !important; font-size: 28px !important; }
       .lead-premium-grid,.teg,.ttg{grid-template-columns:1fr;}.wft{flex-direction:column;gap:20px;}.wfs::after{display:none;}
+      .gc { height: 220px; }
     }
     .awb { display: flex; align-items: center; justify-content: flex-start; }
 </style>
@@ -1644,6 +1651,25 @@ const wfObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.3 });
 if (document.getElementById('wf')) wfObserver.observe(document.getElementById('wf'));
+
+// MOBILE SCROLL HOVER SIMULATION
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 1024) {
+    const mObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        let rect = entry.boundingClientRect;
+        let center = window.innerHeight / 2;
+        if (rect.top < center + 120 && rect.bottom > center - 120) {
+          entry.target.classList.add('m-hover');
+        } else {
+          entry.target.classList.remove('m-hover');
+        }
+      });
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1], rootMargin: '-10% 0px -10% 0px' });
+    
+    document.querySelectorAll('.val-row, .mvc, .ic, .si, .lead-card, .ttc, .trc, .tlcard').forEach(el => mObserver.observe(el));
+  }
+});
 </script>
 </body>
 </html>

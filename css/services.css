@@ -992,15 +992,17 @@ a {
 }
 
 /* Zig-Zag Layout */
-#sec-physical .srv-grid, #sec-video .srv-grid, #sec-rlhf .srv-grid {
-  display: flex;
-  flex-direction: row-reverse;
-}
-#sec-physical .srv-visual, #sec-video .srv-visual, #sec-rlhf .srv-visual {
-  width: 45%;
-}
-#sec-physical .srv-content, #sec-video .srv-content, #sec-rlhf .srv-content {
-  width: 55%;
+@media (min-width: 1025px) {
+  #sec-physical .srv-grid, #sec-video .srv-grid, #sec-rlhf .srv-grid {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  #sec-physical .srv-visual, #sec-video .srv-visual, #sec-rlhf .srv-visual {
+    width: 45%;
+  }
+  #sec-physical .srv-content, #sec-video .srv-content, #sec-rlhf .srv-content {
+    width: 55%;
+  }
 }
 
 /* Hover Animations for Static Cards */

@@ -374,6 +374,13 @@
       display: flex;
       flex-direction: column;
       gap: 11px;
+      /* Premium glassmorphic background for visual separation from robot */
+      background: rgba(6, 14, 28, 0.4);
+      padding: 16px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .s-dot {
@@ -1507,7 +1514,7 @@
             powering Computer Vision, Generative AI, Physical AI, Robotics and Large Language Models.</p>
 
           <div
-            style="font-size: 13.5px; color: rgba(255,255,255,0.6); margin-bottom: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;">
+            style="font-size: 13.5px; color: #0c1a30; font-weight: 600; opacity: 0.85; margin-bottom: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;">
             <div>&bull; Image Annotation</div>
             <div>&bull; Video Annotation</div>
             <div>&bull; Audio Annotation</div>
@@ -1754,6 +1761,11 @@
         if (st - sy < wh * 2.5 && !S.images[sc.id]) preload(sc.id, () => draw(sc.id, 0));
       });
       dots.forEach(d => d.classList.toggle('active', parseInt(d.dataset.scene) === active));
+      const sceneDotsContainer = document.getElementById('scene-dots');
+      if (sceneDotsContainer) {
+        sceneDotsContainer.style.opacity = sy > wh * 0.8 ? '1' : '0';
+        sceneDotsContainer.style.pointerEvents = sy > wh * 0.8 ? 'all' : 'none';
+      }
     }
 
     function init() {

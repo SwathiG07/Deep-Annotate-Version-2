@@ -167,7 +167,6 @@
       color: var(--cyan); margin-bottom: 14px;
     }
     .roles-title {
-      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(30px, 3.5vw, 44px);
       font-weight: 700;
       color: var(--navy);
@@ -236,7 +235,6 @@
     #freelancing .c-tag { color: var(--cyan);      background: rgba(11,168,211,0.08);    }
 
     .c-title {
-      font-family: 'Playfair Display', Georgia, serif;
       font-size: 26px; font-weight: 700;
       color: var(--navy);
       margin-bottom: 12px;
@@ -319,7 +317,6 @@
     }
     .values-header { text-align: center; margin-bottom: 64px; }
     .values-title {
-      font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(28px, 3vw, 40px); font-weight: 700;
       color: var(--navy); margin-bottom: 12px;
     }
@@ -393,6 +390,13 @@
       transform: translateY(-3px);
       box-shadow: 0 16px 48px rgba(11,168,211,0.5);
       background: var(--cyan-light);
+    }
+
+    @media (max-width: 768px) {
+      .c-grid { grid-template-columns: 1fr; }
+      .stats-inner { flex-direction: column; gap: 40px; }
+      .values-grid { grid-template-columns: 1fr; }
+      #roles, #stats-strip, #values-strip, #cta-banner { padding-left: 24px; padding-right: 24px; }
     }
   </style>
 
