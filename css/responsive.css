@@ -191,27 +191,7 @@
     min-width: min(600px, 150vw) !important; /* Prevents extreme rigidity */
   }
 
-  .scene-sticky {
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column-reverse !important; /* Forces Text to appear above the Canvas */
-    height: auto !important;
-    top: 0 !important;
-  }
-
-  /* Task 3: Scene 04 Un-Scrolljacked Mobile Composition */
-  #copy-4, #copy-5 {
-    position: relative !important;
-    background: transparent !important;
-    padding: 24px 16px 40px !important;
-    border: none !important;
-    box-shadow: none !important;
-    margin-top: 0 !important;
-    width: 100% !important;
-    left: 0 !important;
-    transform: none !important;
-    opacity: 1 !important; /* Ensure desktop JS fade-ins don't hide them on mobile */
-  }
+  /* Scene 4 Scrolljacking restored to desktop defaults */
 
   .s6-left-panel {
     position: relative !important;
@@ -297,29 +277,14 @@
     max-width: 100% !important;
   }
 
-  .scene-canvas {
-    position: relative !important;
-    width: 100% !important;
-    height: 55vh !important;
-    object-fit: contain !important;
-    object-position: center bottom !important;
-    margin-bottom: -10px;
-  }
+
   
   canvas#heroCanvas {
     max-height: 400px;
     object-fit: contain;
   }
 
-  /* Fix invisible text on Scene 04 card and reduce scroll fatigue */
-  #copy-5 .scene-headline,
-  #copy-5 .scene-sub,
-  #copy-5 .scene-label {
-    color: var(--navy) !important;
-    text-shadow: none !important;
-  }
-
-  #scene-4-section > div,
+  /* Scene 6 remains unscrolljacked on mobile to fit long text */
   #scene-6-section > div {
     height: auto !important;
   }

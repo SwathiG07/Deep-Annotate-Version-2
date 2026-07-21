@@ -151,8 +151,13 @@
   transition: color 0.3s;
 }
 
-.intro-scroll-cue:hover .scroll-text {
-  color: #0E1F3E;
+@media (hover: hover) {
+  .intro-scroll-cue:hover .scroll-text {
+    color: #0E1F3E;
+  }
+  .intro-scroll-cue:hover .scroll-arrow-down span {
+    border-color: #0E1F3E;
+  }
 }
 
 .scroll-arrow-down {
@@ -181,10 +186,6 @@
 .scroll-arrow-down span:nth-child(2) {
   top: 8px;
   animation-delay: 0.2s;
-}
-
-.intro-scroll-cue:hover .scroll-arrow-down span {
-  border-color: #0E1F3E;
 }
 
 @keyframes arrow-bounce {

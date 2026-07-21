@@ -336,6 +336,6 @@
     height: 50vh;
   }
   .hero-right {
-    order: -1; /* Place robot on top on tablets/mobile */
+    /* order: -1; removed to keep natural DOM order (headline first) */
   }
 }

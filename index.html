@@ -1674,9 +1674,15 @@
 
       let s = Math.min(w_val / img.naturalWidth, h_val / img.naturalHeight);
       if (id === 4) {
-        // Scale robot to 92% of canvas height — fills screen margins during deconstruction
-        const targetS = (h_val * 0.92) / img.naturalHeight;
-        s = Math.min(s, targetS);
+        if (window.innerWidth <= 900) {
+          // Scale to 105% of screen height on mobile to completely remove the top and bottom
+          // canvas background seams. The JPG background will now seamlessly fill the vertical space.
+          s = (h_val * 1.05) / img.naturalHeight;
+        } else {
+          // Scale robot to 92% of canvas height — fills screen margins during deconstruction
+          const targetS = (h_val * 0.92) / img.naturalHeight;
+          s = Math.min(s, targetS);
+        }
       }
       if (id === 5) {
         // Keep Scene 5 robot scaled to 78%
@@ -1703,7 +1709,23 @@
       ctx.drawImage(img, dx, dy, dW, dH);
     }
 
-    function preload(id, done) { const sc = SCENES.find(s => s.id === id); if (!sc || S.images[id]) { done && done(); return; } S.images[id] = []; let n = 0; for (let i = 1; i <= sc.frames; i++) { const img = new Image(); img.onload = img.onerror = () => { n++; S.totalLoaded++; if (n === sc.frames) done && done(); }; img.src = FURL(sc.folder, i); S.images[id][i - 1] = img; } }
+    function preload(id, done) { 
+      const sc = SCENES.find(s => s.id === id); 
+      if (!sc || S.images[id]) { done && done(); return; } 
+      S.images[id] = []; 
+      let n = 0; 
+      for (let i = 1; i <= sc.frames; i++) { 
+        const img = new Image(); 
+        img.onload = img.onerror = () => { 
+          n++; 
+          S.totalLoaded++; 
+          requestAnimationFrame(tick); // Force redraw as images load!
+          if (n === sc.frames) done && done(); 
+        }; 
+        img.src = FURL(sc.folder, i); 
+        S.images[id][i - 1] = img; 
+      } 
+    }
 
     let raf = false;
     function onScroll() { if (raf) return; raf = true; requestAnimationFrame(() => { raf = false; tick(); }); }
@@ -1714,14 +1736,29 @@
         if (!sec) return;
         const st = sec.offsetTop, sh = sec.offsetHeight;
         const p = Math.max(0, Math.min(1, (sy - st) / (sh - wh)));
+        let anim_p = p;
+
+        if (window.innerWidth <= 900 && sc.id !== 4) {
+          const c = C[sc.id];
+          if (c) {
+            const rect = c.getBoundingClientRect();
+            const c_top = rect.top + sy;
+            // Start rotating exactly when the top of the canvas enters from the bottom of the screen
+            const start = c_top - wh;
+            // Finish rotating exactly when the bottom of the canvas leaves the top of the screen
+            const end = c_top + rect.height;
+            anim_p = Math.max(0, Math.min(1, (sy - start) / (end - start || 1)));
+          }
+        }
+
         if (S.images[sc.id]) {
           let fi;
           if (sc.id === 4) {
             // Skip the early static stance frames and map scroll progress to frames 35-89
             const startFrame = 35;
-            fi = startFrame + Math.min(Math.floor(p * (sc.frames - startFrame)), sc.frames - startFrame - 1);
+            fi = startFrame + Math.min(Math.floor(anim_p * (sc.frames - startFrame)), sc.frames - startFrame - 1);
           } else {
-            fi = Math.min(Math.floor(p * (sc.frames - 1)), sc.frames - 1);
+            fi = Math.min(Math.floor(anim_p * (sc.frames - 1)), sc.frames - 1);
           }
           draw(sc.id, fi);
         }
@@ -1743,8 +1780,13 @@
           const chips = document.querySelectorAll('#s3-capability-pills .story-pill');
           chips.forEach((chip, idx) => {
             const threshold = 0.1 + (idx * 0.07); // staggered thresholds from 0.1 to 0.8
-            chip.style.opacity = (p >= threshold) ? "1" : "0";
-            chip.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
+            if (window.innerWidth <= 900) {
+              chip.style.opacity = "1";
+              chip.style.transform = "none";
+            } else {
+              chip.style.opacity = (p >= threshold) ? "1" : "0";
+              chip.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
+            }
           });
         }
 
@@ -1753,8 +1795,13 @@
           const badges = document.querySelectorAll('#s4-certification-badges .story-pill');
           badges.forEach((badge, idx) => {
             const threshold = 0.55 + (idx * 0.08); // staggered thresholds in the second half
-            badge.style.opacity = (p >= threshold) ? "1" : "0";
-            badge.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
+            if (window.innerWidth <= 900) {
+              badge.style.opacity = "1";
+              badge.style.transform = "none";
+            } else {
+              badge.style.opacity = (p >= threshold) ? "1" : "0";
+              badge.style.transform = (p >= threshold) ? "translateY(0)" : "translateY(6px)";
+            }
           });
         }
 
